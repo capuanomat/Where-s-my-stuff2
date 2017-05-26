@@ -1,0 +1,2 @@
+Sharence Solomero
+ssolomero6@gatech.edu
