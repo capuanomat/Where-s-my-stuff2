@@ -3,7 +3,7 @@ package edu.gatech.oad.antlab.person;
 /**
  *  A simple class for person 2
  *  returns their name and a
- *  modified string 
+ *  modified string
  *
  * @author Bob
  * @version 1.1
@@ -30,15 +30,27 @@ public class Person2 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  //Person 2 put your implementation here
-	  return null;
+      //declare new string to build
+      String scrambled = "";
+      //loop that runs as long as input has at least one character
+      while(input.length() > 0) {
+          //random number, to be locked in for the rest of the loop turn
+          int deadSpot = (int) Math.random() * input.length();
+          //the character to be deleted
+          String deadLet = input.substring(deadSpot, deadSpot + 1);
+          //adding the character
+          scrambled += deadLet;
+          //the character will be gone by replacing it with nothing
+          input = input.replaceFirst(deadLet, "");
+      }
+      return scrambled;
 	}
 	/**
 	 * Return a string rep of this object
 	 * that varies with an input string
 	 *
 	 * @param input the varying string
-	 * @return the string representing the 
+	 * @return the string representing the
 	 *         object
 	 */
 	public String toString(String input) {
