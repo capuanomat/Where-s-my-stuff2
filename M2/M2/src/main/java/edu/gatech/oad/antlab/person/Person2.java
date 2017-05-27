@@ -35,7 +35,7 @@ public class Person2 {
       //loop that runs as long as input has at least one character
       while(input.length() > 0) {
           //random number, to be locked in for the rest of the loop turn
-          int deadSpot = (int) Math.random() * input.length();
+          int deadSpot = (int) (Math.random() * input.length());
           //the character to be deleted
           String deadLet = input.substring(deadSpot, deadSpot + 1);
           //adding the character
