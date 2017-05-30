@@ -14,6 +14,7 @@ public class Person3 {
 	/**
 	 * The constructor, takes in the persons
 	 * name
+	 *
 	 * @param pname the person's real name
 	 */
 	public Person3(String pname){
