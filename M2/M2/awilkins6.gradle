@@ -1,0 +1,30 @@
+apply plugin: 'java'
+
+description = "Alexander Wilkins' Gradle Build"
+version = "1.0"
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': description, 'Implementation-Version':version
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'lib', include: '*.jar')
+}
+
+compileJava {
+
+}
+
+compileTest {
+
+}
+
+clean {
+
+}
+
+javadoc {
+
+}
