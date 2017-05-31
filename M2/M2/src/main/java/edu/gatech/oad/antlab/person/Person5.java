@@ -33,8 +33,8 @@ public class Person5 {
 	  //Person 5 put your implementation here
       String modify = input.substring(2);
       String splice = input.substring(0,2);
-      String final = modify + splice;
-      return final;
+      String finalStr = modify + splice;
+      return finalStr;
 	}
 
 	/**
