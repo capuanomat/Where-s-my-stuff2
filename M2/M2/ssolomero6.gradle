@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+description = "'Sharence Solomero' Gradle Build"
+sourceCompatibility = "1.8"
+version = "1.0"
+
+jar {
+    manifest {
+        attributes 'Main-Class': "edu.gatech.oad.antlab.person", 'Class-Path': "M2/M2/lib/resources.jar",
+                'Implementation-Title': description, 'Implementation-Version':version
+    }
+    archiveName = 'ssolomero6.jar'
+}
+
+dependencies {
+    compile fileTree(dir: 'lib', include: '*.jar')
+    //compile "/lib/resources.jar"
+}
+
