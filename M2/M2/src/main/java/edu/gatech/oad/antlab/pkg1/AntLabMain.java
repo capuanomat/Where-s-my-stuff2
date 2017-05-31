@@ -33,6 +33,8 @@ import edu.gatech.oad.antlab.pkg2.*;
 
     /**
      * the constructor that intializes all the helper classes
+     *
+     * purposeful comment to force a conflict!
      */
     public AntLabMain () {
 
