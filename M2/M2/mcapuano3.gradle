@@ -1,19 +1,18 @@
 apply plugin: 'java'
 
-apply plugin: 'application'
-
+description = "Matthieu Capuano's Gradle Build"
 sourceCompatibility = 1.8
 version = '1.0'
 
 jar  {
-  manifest {
-    attributes   'Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
-                 'Class-Path': '../../lib/resources.jar'
+    manifest {
+        attributes   'Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
+                'Class-Path': '../../lib/resources.jar'
     }
     archiveName = 'mcapuano3.jar'
 }
 
 dependencies {
-    //compile files : './lib/resources.jar'
+    //compile files : './lib/resources.jar' // DID NOT WORK SO USED COMMAND BELOW
     compile fileTree(dir: 'lib', include: '*.jar')
 }
