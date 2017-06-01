@@ -1,3 +1,4 @@
+defaultTasks 'build'
 apply plugin: 'java'
 
 description = "Simola Nayak's Gradle Build"
@@ -6,13 +7,13 @@ version = "1.0"
 
 jar {
     manifest {
-        attributes 'Main-Class': "edu.gatech.oad.antlab.person", 'Class-Path': "M2/M2/lib/resources.jar",
-                'Implementation-Title': description, 'Implementation-Version':version
+        attributes 'Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain, 'Class-Path': "../../lib/resources.jar",
+                'Implementation-Title': description, 'Implementation-Version': version
     }
     archiveName = 'snayak47.jar'
 }
 
 dependencies {
-    compile fileTree(dir: 'lib', include: '*.jar')
-    //compile files "./lib/resources.jar"
+    //compile fileTree(dir: 'lib', include: '*.jar')
+    compile files ('lib/resources.jar')
 }
