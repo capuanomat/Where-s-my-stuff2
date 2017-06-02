@@ -13,6 +13,5 @@ jar  {
 }
 
 dependencies {
-    //compile files : './lib/resources.jar' // DID NOT WORK SO USED COMMAND BELOW
-    compile fileTree(dir: 'lib', include: '*.jar')
+    compile files('lib/resources.jar')
 }
