@@ -1,3 +1,4 @@
+defaultTasks 'build'
 apply plugin: 'java'
 
 description = "Alexander Wilkins' Gradle Build"
@@ -6,14 +7,12 @@ version = "1.0"
 
 jar {
     manifest {
-        attributes 'Main-Class': "edu.gatech.oad.antlab.person", 'Class-Path': "M2/M2/lib/resources.jar",
-                'Implementation-Title': description, 'Implementation-Version':version
+        attributes 'Main-Class': "edu.gatech.oad.antlab.pkg1.AntLabMain", 'Class-Path': "../../lib/resources.jar"
     }
     archiveName = 'awilkins6.jar'
 }
 
 dependencies {
-    compile fileTree(dir: 'lib', include: '*.jar')
-    //compile "/lib/resources.jar"
+    compile files('lib/resources.jar')
 }
 
