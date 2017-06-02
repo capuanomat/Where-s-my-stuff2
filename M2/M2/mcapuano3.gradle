@@ -1,5 +1,4 @@
-defaultTasks'build'
-
+defaultTasks 'build'
 apply plugin: 'java'
 
 description = "Matthieu Capuano's Gradle Build"
@@ -8,7 +7,7 @@ version = '1.0'
 
 jar  {
     manifest {
-        attributes   'Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
+        attributes   'Main-Class': 'src.main.java.edu.gatech.oad.antlab.pkg1.AntLabMain',
                      'Class-Path': '../../lib/resources.jar'
     }
     archiveName = 'mcapuano3.jar'
