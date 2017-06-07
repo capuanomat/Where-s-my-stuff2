@@ -25,7 +25,8 @@ dabest app
 4. Main Page
 5. Lost/Request Page
 6. Found/Donate Page
-[[images/Plan.jpg]]
+
+[[Images/Plan.jpg]]
 
 ## Future Ideas:
 - Register through a social media
