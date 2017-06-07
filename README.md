@@ -18,5 +18,5 @@ dabest app
 11. As a user who found matching items to my lost item, I want to be able to filter them by date, location, and "status", so that I can find the right one.
 12. 
 
-Future Ideas:
+## Future Ideas:
 - Register through a social media
