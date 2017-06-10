@@ -1,0 +1,44 @@
+******************USER STORY 1: FIRST-TIME USER******************
+"As a first time user, I want to be able to register on the app, so that I can
+post lost or found items."
+
+Tasks:
+Create new account based on the following text fields:
+    - Username
+    - Password
+    - Location/Hometown
+Verify that the username is not already taken, and suggest another similar one
+that isn't (if the user suggests one that is).
+
+Create an option to gather information from social media for a faster sign-up.
+Allow users to access the new-user sign in screen from the existing users
+screen in two ways:
+    -After passing in a nonexistent username
+    -Through a message for new users to sign up
+
+-----------
+How the user gets there:
+
+GIVEN: The user goes to the login screen for returning users.
+    WHEN: The user tries to pass a nonexistent email address or username into
+    the login, and proceeds with it (presses OK).
+        THEN: System prompts user with the message "Sorry, that username doesn't
+        exist."
+        Along with that comes the option to create a username: "Sign up
+        here."
+    WHEN: The user clicks on a link to the new user sign up activity (says
+    something like "New users sign up here").
+        THEN: The user goes to the new user sign up activity.
+
+GIVEN: The very first boot of the app.
+    WHEN: The user goes through the tutorial.
+        THEN: Allow the user to sign up (default) or (SEE RETURNING USER) go to
+        the sign-in screen for returning users.
+    WHEN: The user skips the tutorial (or exits at any point).
+        THEN: Allow the user to sign up (default) or (SEE RETURNING USER) go to
+        the sign-in screen for returning users.
+
+-----------
+How the user signs up:
+
+GIVEN: 
