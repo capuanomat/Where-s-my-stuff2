@@ -3,9 +3,10 @@
     package="com.example.matthieujbcapuano.wheresmystuff">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    -->
 
     <application
         android:allowBackup="true"
@@ -24,9 +25,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".LoginScreenActivity"
-            android:label="@string/title_activity_login_screen"></activity>
+            android:label="@string/title_activity_login_screen">
+
+            <!-- MATTHIEU: Added the two lines below so that the MainScreenActivity is defined as
+                           the parent activity of the LoginScreenActivity (recommended by android
+                           tutorials:
+                 https://developer.android.com/training/basics/firstapp/starting-activity.html
+            -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainScreenActivity" />
+        </activity>
     </application>
 
 </manifest>

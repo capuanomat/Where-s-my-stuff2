@@ -15,6 +15,7 @@ import android.widget.Button;
 public class MainScreenActivity extends AppCompatActivity {
     static String TAG = "MainScreenActivity";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class MainScreenActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Log.i(TAG, "Application is running, YAY!!!");
 
+        // MATTHIEU: This is for the button on the bottom right I think
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,20 +34,18 @@ public class MainScreenActivity extends AppCompatActivity {
             }
         });
 
+        // MATTHIEU: This is for the login button
         Button buttonLogin = (Button) (findViewById(R.id.buttonLogin));
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "Login Button was Tagged!");
+                Log.i(TAG, "Login Button was Tagged!"); // This just prints the passed in string to the Monitor
+                Intent intentLogin = new Intent(MainScreenActivity.this, LoginScreenActivity.class);
+                startActivity(intentLogin);
+                //sendToLogin(v); // public void sendToLogin(View view) { //Two lines above } outside onCreate
             }
         });
 
-    }
-
-    /** MATTHIEU: Called when the user presses the "Login" button */
-    public void sendToLogin(View view) {
-        Intent intentLogin = new Intent(this, LoginScreenActivity.class);
-        startActivity(intentLogin);
     }
 
 
