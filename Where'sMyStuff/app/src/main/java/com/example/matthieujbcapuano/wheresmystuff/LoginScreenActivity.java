@@ -3,6 +3,7 @@ package com.example.matthieujbcapuano.wheresmystuff;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,11 +35,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static com.example.matthieujbcapuano.wheresmystuff.R.id.buttonLogin;
+import static com.example.matthieujbcapuano.wheresmystuff.R.id.email_sign_in_button;
 
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginScreenActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    static String TAG = "LoginScreenActivity";
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -68,7 +74,7 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
         setContentView(R.layout.activity_login_screen);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+        //populateAutoComplete(); // MATTHIEU: Removed because we don't need contacts permission
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -93,50 +99,6 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
-
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
-            return;
-        }
-
-        getLoaderManager().initLoader(0, null, this);
-    }
-
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
-    }
-
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
-        }
-    }
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -167,6 +129,8 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
         }
 
         // Check for a valid email address.
+        // MATTHIEU: First check verifies that there's something in the email field, second one
+        //           calls isEmailValid(String email) to actually test content
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
@@ -184,21 +148,45 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
+            /**
+            showProgress(true);     // MATTHIEU: I THINK THIS IS WHAT DISPLAYS THE SPINNER AFTER YOU PRESS "SIGN IN"
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+             */
+            Log.i(TAG, "MATTHIEU: A valid attempt at logging in is being made!");
+
+            Button buttonLoginAttempt = (Button) (findViewById(email_sign_in_button));
+            buttonLoginAttempt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentMainPage = new Intent(LoginScreenActivity.this, MainPageActivity.class);
+                    startActivity(intentMainPage);
+                    //sendToLogin(v); // public void sendToLogin(View view) { //Two lines above } outside onCreate
+                }
+            });
         }
     }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        //return email.contains("@");
+
+        // MATTHIEU: Implementing step 4 of the Implementation part of M4
+        return email.equals("user");
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        //return password.length() > 4;
+
+        // MATTHIEU: Implementing step 4 of the Implementation part of M4
+        return password.equals("pass");
     }
+
+
+
+
+
 
     /**
      * Shows the progress UI and hides the login form.
@@ -346,5 +334,56 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
             showProgress(false);
         }
     }
+
+
+    /** MATTHIEU: COMMENTED ALL THIS OUT AS IT RELATES TO REQUESTING PERMISSION TO ACCESS CONTACTS
+     *            This was originally much higher up in the code, directly below onCreate(), things
+     *            seem to work fine without it but let's not delete it yet just in case.
+     *
+     private void populateAutoComplete() {
+     if (!mayRequestContacts()) {
+     return;
+     }
+
+     getLoaderManager().initLoader(0, null, this);
+     }
+
+
+     private boolean mayRequestContacts() {
+     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+     return true;
+     }
+     if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+     return true;
+     }
+     if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
+     Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+     .setAction(android.R.string.ok, new View.OnClickListener() {
+    @Override
+    @TargetApi(Build.VERSION_CODES.M)
+    public void onClick(View v) {
+    requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+    }
+    });
+     } else {
+     requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+     }
+     return false;
+     }
+     */
+
+    /**
+     * Callback received when a permissions request has been completed.
+     *
+     @Override
+     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+     @NonNull int[] grantResults) {
+     if (requestCode == REQUEST_READ_CONTACTS) {
+     if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+     populateAutoComplete();
+     }
+     }
+     }
+     */
 }
 

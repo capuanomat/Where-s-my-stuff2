@@ -12,8 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-public class MainScreenActivity extends AppCompatActivity {
-    static String TAG = "MainScreenActivity";
+public class WelcomeScreenActivity extends AppCompatActivity {
+    static String TAG = "WelcomeScreenActivity";
 
 
     @Override
@@ -40,7 +40,7 @@ public class MainScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Login Button was Tagged!"); // This just prints the passed in string to the Monitor
-                Intent intentLogin = new Intent(MainScreenActivity.this, LoginScreenActivity.class);
+                Intent intentLogin = new Intent(WelcomeScreenActivity.this, LoginScreenActivity.class);
                 startActivity(intentLogin);
                 //sendToLogin(v); // public void sendToLogin(View view) { //Two lines above } outside onCreate
             }
