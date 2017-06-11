@@ -1,0 +1,61 @@
+******************USER STORY 1: FIRST-TIME USER******************
+"As a first time user, I want to be able to register on the app, so that I can
+post lost or found items."
+
+Tasks:
+Create new account based on the following text fields:
+    - Username
+    - Password
+    - Location/Hometown
+Verify that the username is not already taken, and suggest another similar one
+that isn't (if the user suggests one that is).
+
+Create an option to gather information from social media for a faster sign-up.
+Allow users to access the new-user sign in screen from the existing users
+screen in two ways:
+    -After passing in a nonexistent username
+    -Through a message for new users to sign up
+
+-----------
+How the user gets there:
+
+GIVEN: The user goes to the login screen for returning users.
+    WHEN: The user tries to pass a nonexistent email address or username into
+    the login, and proceeds with it (presses OK).
+        THEN: System prompts user with the message "Sorry, that username doesn't
+        exist."
+        Along with that comes the option to create a username: "Sign up
+        here."
+            WHEN: The user clicks on said link.
+            THEN: The user goes to the new sign up activity, except the field
+            for a new username is pre-filled (but still editable).
+    WHEN: The user clicks on a link to the new user sign up activity (says
+    something like "New users sign up here").
+        THEN: The user goes to the new user sign up activity.
+
+GIVEN: The very first boot of the app.
+    WHEN: The user goes through the tutorial.
+        THEN: Allow the user to sign up (default) or (SEE RETURNING USER) go to
+        the sign-in screen for returning users.
+    WHEN: The user skips the tutorial (or exits at any point).
+        THEN: Allow the user to sign up (default) or (SEE RETURNING USER) go to
+        the sign-in screen for returning users.
+
+-----------
+How the user signs up:
+
+GIVEN: The user lands on the sign-up page.
+    WHEN: The user has already passed in a user name before landing on the
+    sign-up page.
+        THEN: The user name field is already filled but the user can edit it
+        and proceed with the password and contact info.
+    WHEN: The user tries to pass in a user name that's already taken.
+        THEN: Suggest a new user name that appends a number to the end of what
+        the user initially passed in.
+    WHEN: The user passes in and confirms an invalid password.
+        THEN: Stay on the page, clear the password and confirmation fields,
+        display a message outlining the password requirements and put a red
+        outline around the box.
+    WHEN: The user passes in a valid (non-taken) username and password.
+        THEN: Go to the page for the next action, which is a choice between
+        reporting a missing item, reporting a sighting of an item, and donating.
