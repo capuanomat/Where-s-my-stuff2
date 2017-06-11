@@ -37,12 +37,17 @@ public class MainScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Login Button was Tagged!");
-                //Intent intentLogin = new Intent(this, LoginScreenActivity.class);
-                //startActivity(intentLogin);
             }
         });
 
     }
+
+    /** MATTHIEU: Called when the user presses the "Login" button */
+    public void sendToLogin(View view) {
+        Intent intentLogin = new Intent(this, LoginScreenActivity.class);
+        startActivity(intentLogin);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
