@@ -14,9 +14,10 @@ dabest app
 7. As an admin, I want to be able to look through all the users, so that I can ban ones posting innapropriate thing.
 8. As a user who previously posted a found item, I want to be able to remove it from the "Found Page", so that it isn't on the list after the owner got it back.
 9. As a user who's seen something found by another user, I want to be able to update it's location (if it's a moving item), so people can  track it.
-10. As a user who needs an item after the disaster, I want to be able to request an item even if I haven't lost it, so that I can get an item I need.
+10. (Ash) As a user who needs an item after the disaster, I want to be able to request an item even if I haven't lost it, so that I can get an item I need.
 11. As a user who found matching items to my lost item, I want to be able to filter them by date, location, and "status", so that I can find the right one.
-12. 
+12. As a returning user, I want to be able to make donations, so that I can help those in need after a disaster.
+13. As a returning user, I want to be able to request an item even if I haven't lost it, so that I can obtain an item I need after a disaster.
 
 ## Priority
 1. Welcome Screen
@@ -26,7 +27,6 @@ dabest app
 5. Lost/Request Page
 6. Found/Donate Page
 
-[[Images/Plan.jpg]]
-
-## Future Ideas:
+## Future Ideas & Extra Credit Ideas:
 - Register through a social media
+- Implement app in different language(s) (Matt can do French)

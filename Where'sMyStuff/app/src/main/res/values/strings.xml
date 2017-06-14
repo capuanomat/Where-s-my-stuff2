@@ -19,7 +19,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="whereMyStuff">Where the hell is my stuff?</string>
+    <string name="whereMyStuff">Where the hell is my stuff Gradle Daemon!!!!???</string>
     <string name="logoutButton">Logout</string>
     <string name="lostRequestButton">Lost / Request</string>
     <string name="foundButton">Found!</string>

@@ -185,7 +185,7 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
 
 
 
-
+// ------------------------------------------- MATTHIEU: DID NOT MODIFY ANYTHING BELOW HERE -----------------
 
 
     /**
