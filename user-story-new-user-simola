@@ -59,3 +59,15 @@ GIVEN: The user lands on the sign-up page.
     WHEN: The user passes in a valid (non-taken) username and password.
         THEN: Go to the page for the next action, which is a choice between
         reporting a missing item, reporting a sighting of an item, and donating.
+
+----------
+
+Done-Done Criteria:
+-Registration validates username (not taken) and password (strong enough)
+    -...and suggests a new similar username if taken
+-Registration offers a redirect to the main login activity (Returning User?)
+-User goes into databases when the "OK" button is pressed
+-User can cancel registration (clears all fields)
+-Require username, password, and location/hometown fields (asterisks and red highlighting in case of empty fields)
+    -Validate the inputs for all fields to ensure allowable characters
+        -emails: ensure name@site.dom format
