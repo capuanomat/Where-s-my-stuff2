@@ -3,6 +3,11 @@
     package="com.example.matthieujbcapuano.wheresmystuff">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <!--
  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -39,7 +44,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".WelcomeScreenActivity" />
         </activity>
-        <activity android:name=".MainPageActivity"></activity>
+        <activity android:name=".MainPageActivity" />
+        <activity
+            android:name=".RegistrationScreenActivity"
+            android:label="@string/title_activity_registration_screen"></activity>
     </application>
 
 </manifest>

@@ -24,6 +24,7 @@
     <string name="lostRequestButton">Lost / Request</string>
     <string name="foundButton">Found!</string>
     <string name="buttonDonate">Donate!</string>
+    <string name="title_activity_registration_screen">"Sign Up "</string>
 
 
 </resources>
