@@ -1,4 +1,4 @@
-package com.example.matthieujbcapuano.wheresmystuff;
+package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+
+import com.example.matthieujbcapuano.wheresmystuff.R;
 
 public class WelcomeScreenActivity extends AppCompatActivity {
     static String TAG = "WelcomeScreenActivity";
