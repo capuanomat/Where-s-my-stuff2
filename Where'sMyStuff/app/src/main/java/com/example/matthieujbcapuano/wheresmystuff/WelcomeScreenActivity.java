@@ -46,7 +46,24 @@ public class WelcomeScreenActivity extends AppCompatActivity {
             }
         });
 
+        // ALEXANDER: This is for the register button
+        Button buttonRegister = (Button) (findViewById(R.id.buttonRegister));
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Register Button was Tagged!"); // This just prints the passed in string to the Monitor
+                //Intent intentRegister = new Intent(WelcomeScreenActivity.this, RegistrationScreenActivity.class);
+                //Intent intentRegister = new Intent(WelcomeScreenActivity.this, RegistrationScreenActivity.class);
+                startActivity(new Intent(WelcomeScreenActivity.this, RegistrationScreenActivity.class));
+            }
+        });
+
     }
+
+//    public void sendToRegister(View view) {
+//        Intent intentRegister = new Intent(WelcomeScreenActivity.this, RegistrationScreenActivity.class);
+//        startActivity(intentRegister);
+//    }
 
 
     @Override
@@ -72,6 +89,9 @@ public class WelcomeScreenActivity extends AppCompatActivity {
              *           Intent intentLogin = new Intent(this, LoginScreenActivity.class);
              *           startActivity(intentLogin);
              */
+            //ALEXANDER: added settings for registration page
+            Intent intentRegistration = new Intent(this, RegistrationScreenActivity.class);
+            startActivity(intentRegistration);
             return true;
         }
         return super.onOptionsItemSelected(item);

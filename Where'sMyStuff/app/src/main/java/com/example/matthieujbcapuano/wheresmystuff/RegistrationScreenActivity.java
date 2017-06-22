@@ -18,7 +18,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,6 +42,7 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class RegistrationScreenActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
+    static String TAG = "RegistrationActivity";
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -75,12 +78,17 @@ public class RegistrationScreenActivity extends AppCompatActivity implements Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_screen);
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        Log.i(TAG, "Registration is kinda working!!");
+        // Set up the registration form.
+        mUsernameView = (EditText) findViewById(R.id.username);
+        mPasswordView = (EditText) findViewById(R.id.password);
+        mNameView = (EditText) findViewById(R.id.name);
+        mPhoneNumberView = (EditText) findViewById(R.id.name);
+        mEmailView = (EditText) findViewById(R.id.email);
+        userTypeSpinner = (Spinner) findViewById(R.id.userTypeSpinner);
         //method was commented out below
         //populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -92,8 +100,8 @@ public class RegistrationScreenActivity extends AppCompatActivity implements Loa
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();

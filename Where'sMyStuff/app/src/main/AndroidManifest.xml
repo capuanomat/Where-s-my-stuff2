@@ -47,7 +47,11 @@
         <activity android:name=".MainPageActivity" />
         <activity
             android:name=".RegistrationScreenActivity"
-            android:label="@string/title_activity_registration_screen"></activity>
+            android:label="@string/title_activity_registration_screen">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".WelcomeScreenActivity" />
+        </activity>
     </application>
 
 </manifest>
