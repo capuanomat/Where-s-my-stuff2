@@ -73,6 +73,10 @@ public class RegistrationScreenActivity extends AppCompatActivity implements Loa
     //Alexander: not sure what these do
     private View mProgressView;
     private View mLoginFormView;
+    private UserManager userManager;
+
+    //ALEXANDER: to store this user's data, looked at M3
+    private UserModel user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,28 +92,39 @@ public class RegistrationScreenActivity extends AppCompatActivity implements Loa
         userTypeSpinner = (Spinner) findViewById(R.id.userTypeSpinner);
         //method was commented out below
         //populateAutoComplete();
+        //ALEXANDER: the new user manager will store all new users created while app
+        //           is running, no persistence
+        userManager = new UserManager();
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptRegister();
                     return true;
                 }
                 return false;
             }
         });
 
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, UserModel.legalUserTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        userTypeSpinner.setAdapter(adapter);
+
         Button registerButton = (Button) findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptRegister();
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
     }
 /**
  * Alexander: Commented out following what was done in LoginScreenActivity
@@ -164,7 +179,7 @@ public class RegistrationScreenActivity extends AppCompatActivity implements Loa
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptRegister() {
         if (mAuthTask != null) {
             return;
         }
@@ -172,10 +187,26 @@ public class RegistrationScreenActivity extends AppCompatActivity implements Loa
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        mUsernameView.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        String username = mUsernameView.getText().toString();
+        String name = mNameView.getText().toString();
+        //ALEXANDER: Right now, can only register with one phone number, using array hardcoded to
+        //           a length of 1
+        String initialPhoneNumber = String.valueOf(mPhoneNumberView.getText());
+        int[] phoneNumber = new int[1];
+        //phoneNumber[0] = Integer.parseInt(initialPhoneNumber);
+
+        boolean isAdmin = false;
+
+        if (userTypeSpinner.getSelectedItem().equals("Regular")) {
+            isAdmin = false;
+        } else if (userTypeSpinner.getSelectedItem().equals("Admin")) {
+            isAdmin = true;
+        }
 
         boolean cancel = false;
         View focusView = null;
@@ -184,6 +215,12 @@ public class RegistrationScreenActivity extends AppCompatActivity implements Loa
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
+            cancel = true;
+        }
+
+        if (!TextUtils.isEmpty(username) && !isPasswordValid(username)) {
+            mPasswordView.setError(getString(R.string.error_invalid_username));
+            focusView = mUsernameView;
             cancel = true;
         }
 
@@ -206,6 +243,15 @@ public class RegistrationScreenActivity extends AppCompatActivity implements Loa
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
+//            mAuthTask = new UserLoginTask(email, password);
+//            mAuthTask.execute((Void) null);
+            if (isAdmin) {
+                user = new AdminUser(name, username, password, phoneNumber, email);
+                userManager.addUser(user);
+            } else {
+                user = new RegularUser(name, username, password, phoneNumber, email);
+                userManager.addUser(user);
+            }
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
@@ -215,10 +261,13 @@ public class RegistrationScreenActivity extends AppCompatActivity implements Loa
         //TODO: Replace this with your own logic
         return email.contains("@");
     }
-
+    //ALEXANDER: added this method, implemented usermanager's method
+    private boolean isUserNameValid(String username) {
+        return userManager.findValidUsername(username);
+    }
+    //ALEXANDER: changed this method from template, implemented usermanager's method
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return userManager.findValidPassword(password);
     }
 /**
  * Alexander: Did not modify anything below here

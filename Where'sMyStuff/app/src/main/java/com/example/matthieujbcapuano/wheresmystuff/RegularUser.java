@@ -7,8 +7,8 @@ package com.example.matthieujbcapuano.wheresmystuff;
 public class RegularUser extends UserModel {
 
     public RegularUser(String name, String userName, String password, int[] phoneNumber,
-                     String email, boolean banned, boolean banPermission) {
-        super(name, userName, password, phoneNumber, email, banned, banPermission);
+                     String email) {
+        super(name, userName, password, phoneNumber, email, false, false, false);
     }
 
     /**
