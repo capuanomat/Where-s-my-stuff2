@@ -2,7 +2,7 @@ package com.example.matthieujbcapuano.wheresmystuff;
 
 /**
  * Created by Alezx on 6/19/2017.
- */
+ *////
 
 public class RegularUser extends UserModel {
 
