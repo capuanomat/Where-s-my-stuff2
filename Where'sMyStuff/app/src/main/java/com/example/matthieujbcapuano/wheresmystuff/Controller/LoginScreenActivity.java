@@ -1,12 +1,9 @@
-package com.example.matthieujbcapuano.wheresmystuff;
+package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -31,11 +28,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.matthieujbcapuano.wheresmystuff.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.Manifest.permission.READ_CONTACTS;
-import static com.example.matthieujbcapuano.wheresmystuff.R.id.buttonLogin;
 import static com.example.matthieujbcapuano.wheresmystuff.R.id.email_sign_in_button;
 
 /**
