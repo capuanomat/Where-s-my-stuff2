@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Controller.WelcomeScreenActivity"
+            android:name=".Controller.LandingActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,20 +26,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Controller.LoginScreenActivity"
+            android:name=".Controller.LoginActivity"
             android:label="@string/title_activity_login_screen">
 
             <!--
-                 MATTHIEU: Added the two lines below so that the WelcomeScreenActivity is defined as
-                           the parent activity of the LoginScreenActivity (recommended by android
+                 MATTHIEU: Added the two lines below so that the LandingActivity is defined as
+                           the parent activity of the LoginActivity (recommended by android
                            tutorials:
                  https://developer.android.com/training/basics/firstapp/starting-activity.html
             -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controller.WelcomeScreenActivity" />
+                android:value=".Controller.LandingActivity" />
         </activity>
-        <activity android:name=".Controller.MainPageActivity"></activity>
+        <activity android:name=".Controller.MainPageActivity" />
+        <activity android:name=".Controller.RegistrationActivity" />
+
     </application>
 
 </manifest>

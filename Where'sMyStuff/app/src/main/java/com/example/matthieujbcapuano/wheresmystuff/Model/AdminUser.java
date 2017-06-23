@@ -1,13 +1,9 @@
-package com.example.matthieujbcapuano.wheresmystuff;
+package com.example.matthieujbcapuano.wheresmystuff.Model;
 
-/**
- * Created by Alezx on 6/19/2017.
- */
-
-public class AdminUser extends UserModel {
+public class AdminUser extends User {
         public AdminUser(String name, String userName, String password, int[] phoneNumber,
         String email) {
-            super(name, userName, password, phoneNumber, email, false, true, true);
+            super(name, userName, password, phoneNumber, email, false, true);
         }
 
     /**
@@ -19,7 +15,7 @@ public class AdminUser extends UserModel {
         if (phoneNumber.length <= 1) {
             return "Admin--- Name:  " + name + " " + "UserName: " + userName + " Password: " +
                     password + " Phone Number: " + phoneNumber[0] + " Email: " + email + " Banned: "
-                    + banned + " Ban Permission: " + banPermission;
+                    + banned;
         } else {
             String printout = "Admin--- Name:  " + name + " " + "UserName: " + userName + " Password: " +
                     password + " Phone Number: ";
@@ -27,7 +23,7 @@ public class AdminUser extends UserModel {
                 printout += phoneNumber[i] + " ";
             }
             printout += " Email: " + email + " Banned: "
-                    + banned + " Ban Permission: " + banPermission;
+                    + banned;
             return printout;
         }
     }

@@ -1,5 +1,7 @@
 package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
+import com.example.matthieujbcapuano.wheresmystuff.Model.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,9 +16,12 @@ import android.widget.Button;
 
 import com.example.matthieujbcapuano.wheresmystuff.R;
 
-public class WelcomeScreenActivity extends AppCompatActivity {
-    static String TAG = "WelcomeScreenActivity";
+public class LandingActivity extends AppCompatActivity {
 
+    static String TAG = "LandingActivity";
+
+    // MATTHIEU: This is the variable we'll use to store all our users, has a getter below
+    private UserManager _userManager = new UserManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +47,25 @@ public class WelcomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Login Button was Tagged!"); // This just prints the passed in string to the Monitor
-                Intent intentLogin = new Intent(WelcomeScreenActivity.this, LoginScreenActivity.class);
+                Intent intentLogin = new Intent(LandingActivity.this, LoginActivity.class);
                 startActivity(intentLogin);
-                //sendToLogin(v); // public void sendToLogin(View view) { //Two lines above } outside onCreate
             }
         });
 
+        //MATTHIEU: This is for the Register button
+        Button buttonRegister = (Button) (findViewById(R.id.buttonRegister));
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Register Button was Tagged!");
+
+                Intent intentRegister = new Intent(LandingActivity.this, RegistrationActivity.class);
+                Bundle b = new Bundle();
+                //b.putParcelable("userManager", _userManager);
+                //intentRegister.putExtra("userManager", _userManager);
+                startActivity(intentRegister);
+            }
+        });
     }
 
 
@@ -71,7 +89,7 @@ public class WelcomeScreenActivity extends AppCompatActivity {
              * MATTHIEU: iF YOU ADDED AN ACTIVITY AND WANT THE SETTINGS PAGE (THREE LITTLE DOTS ON
              *           TOP RIGHT TO REDIRECT TO THAT PAGE, THIS IS WHERE YOU'D ADD THE CODE.
              *           e.g.
-             *           Intent intentLogin = new Intent(this, LoginScreenActivity.class);
+             *           Intent intentLogin = new Intent(this, LoginActivity.class);
              *           startActivity(intentLogin);
              */
             return true;

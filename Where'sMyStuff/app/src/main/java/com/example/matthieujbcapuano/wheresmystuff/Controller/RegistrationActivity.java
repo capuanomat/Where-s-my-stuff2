@@ -1,9 +1,11 @@
 package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
+import com.example.matthieujbcapuano.wheresmystuff.Model.*;
+import com.example.matthieujbcapuano.wheresmystuff.R;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -23,25 +25,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.example.matthieujbcapuano.wheresmystuff.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.matthieujbcapuano.wheresmystuff.R.id.email_sign_in_button;
-
 /**
- * A login screen that offers login via email/password.
+ * REGISTRATION SCREEN
  */
-public class LoginScreenActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class RegistrationActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
-    static String TAG = "LoginScreenActivity";
-
+    static String TAG = "RegistrationActivity";
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -60,36 +57,72 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    //Alexander: in layout I used a textinputlayout instead of an AutoCompleteTextView
+    //private AutoCompleteTextView mEmailView;
+    //ALEXANDER: added more instance variables based on ui
+    private EditText mUsernameView;
     private EditText mPasswordView;
+    private EditText mNameView;
+    private EditText mPhoneNumberView;
+    private EditText mEmailView;
+    private Spinner userTypeSpinner;
+
+    //ALEXANDER: not sure what these do
     private View mProgressView;
     private View mLoginFormView;
+
+    //ALEXANDER: to store this user's data, looked at M3
+    //private User user;
+
+
+    /**
+     * Getter for the _userManager variable we'll have to use in other classes (like LoginActivity)
+     * @return
+     */
+    //public UserManager getUserManager() {
+    //    return _userManager;
+    //}
+
+    UserManager _userManager = new UserManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_screen);
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        //populateAutoComplete(); // MATTHIEU: Removed because we don't need contacts permission
+        setContentView(R.layout.activity_registration_screen);
+        //TextVi
 
+        Log.i(TAG, "ALEX: REGISTRATION SCREEN DISPLAYING!!!");
+
+        // READING INPUT FROM THE REGISTRATION SCREEN
+        mUsernameView = (EditText) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
+        mNameView = (EditText) findViewById(R.id.name);
+        mPhoneNumberView = (EditText) findViewById(R.id.name);
+        mEmailView = (EditText) findViewById(R.id.email);
+        userTypeSpinner = (Spinner) findViewById(R.id.userTypeSpinner);
+
+
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptRegister();
                     return true;
                 }
                 return false;
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, User.legalUserTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        userTypeSpinner.setAdapter(adapter);
+
+        // WHEN THE USER PRESSES THE "REGISTER" BUTTON
+        Button registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptRegister();
             }
         });
 
@@ -102,32 +135,61 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptRegister() {
+
+        // MATTHIEU: RANDOM STUFF THAT WAS ALREADY THERE ------
         if (mAuthTask != null) {
             return;
         }
-
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        mUsernameView.setError(null);
+        // ---------------------------
 
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        // MATTHIEU: THIS READS IN ALL THE VALUES INPUT BY THE USER
         String password = mPasswordView.getText().toString();
+        String username = mUsernameView.getText().toString();
+        String name = mNameView.getText().toString();
+        String initialPhoneNumber = String.valueOf(mPhoneNumberView.getText());
+        String email = mEmailView.getText().toString();
+        String userType = userTypeSpinner.getSelectedItem().toString();
+
+        /**
+         * NOTE: The maximum integer in java is 2,147,483,647. Which has 10 digits; most phone
+         *       numbers have 10 digits, and you can't run Integer.parseInt on a number greater than
+         *       that one. Meaning phone numbers cannot be converted to ints, hence the use of an
+         *       array.
+         *       TODO: FINISH THE CONVERSION TO AN int[]
+         */
+        int[] phoneNumber = new int[1];
+
+        // IS THE USER AN ADMIN???
+        boolean isAdmin = false;
+        if (userType.equals("Regular")) {
+            isAdmin = false;
+        } else if (userType.equals("Admin")) {
+            isAdmin = true;
+        }
 
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
+        /** THESE TWO IF STATEMENTS CHECK FOR VALID USERNAME AND PASSWORD IF THE USER INPUT ONE */
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
-        // Check for a valid email address.
-        // MATTHIEU: First check verifies that there's something in the email field, second one
-        //           calls isEmailValid(String email) to actually test content
+        if (!TextUtils.isEmpty(username) && !isPasswordValid(username)) {
+            mPasswordView.setError(getString(R.string.error_invalid_username));
+            focusView = mUsernameView;
+            cancel = true;
+        }
+
+        // THIS THROWS AN ERROR IF THE USER DID NOT ENTER AN EMAIL (REQUIRED FOR LOGIN) AND MAKES
+        // SURE THE EMAIL IS VALID IF HE/SHE ENTERED ONE
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
@@ -139,52 +201,44 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
+            // There was an error; don't attempt login and focus the first form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            /**
-            showProgress(true);     // MATTHIEU: I THINK THIS IS WHAT DISPLAYS THE SPINNER AFTER YOU PRESS "SIGN IN"
+            // Show a progress spinner, and kick off a background task to perform the user login attempt.
+            showProgress(true);
+            User user;
+            if (isAdmin) {
+                user = new AdminUser(name, username, password, phoneNumber, email);
+            } else {
+                user = new RegularUser(name, username, password, phoneNumber, email);
+            }
+            _userManager.addUser(user);
+
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
-             */
-            Log.i(TAG, "MATTHIEU: A valid attempt at logging in is being made!");
-
-            Button buttonLoginAttempt = (Button) (findViewById(email_sign_in_button));
-            buttonLoginAttempt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intentMainPage = new Intent(LoginScreenActivity.this, MainPageActivity.class);
-                    startActivity(intentMainPage);
-                    //sendToLogin(v); // public void sendToLogin(View view) { //Two lines above } outside onCreate
-                }
-            });
         }
     }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        //return email.contains("@");
-
-        // MATTHIEU: Implementing step 4 of the Implementation part of M4
-        return email.equals("user");
+        return email.contains("@");
     }
 
+    //ALEXANDER: added this method, implemented userManager's method
+    private boolean isUserNameValid(String username) {
+        return _userManager.findValidUsername(username);
+    }
+
+    //ALEXANDER: changed this method from template, implemented usermanager's method
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        //return password.length() > 4;
-
-        // MATTHIEU: Implementing step 4 of the Implementation part of M4
-        return password.equals("pass");
+        return _userManager.findValidPassword(password);
     }
 
 
 
-// ------------------------------------------- MATTHIEU: DID NOT MODIFY ANYTHING BELOW HERE -----------------
-
-
+    /**
+     * Alexander: Did not modify anything below here----------------------------------------------------
+     */
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -258,10 +312,10 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginScreenActivity.this,
+                new ArrayAdapter<>(RegistrationActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        //mEmailView.setAdapter(adapter);
     }
 
 
@@ -331,56 +385,5 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
             showProgress(false);
         }
     }
-
-
-    /** MATTHIEU: COMMENTED ALL THIS OUT AS IT RELATES TO REQUESTING PERMISSION TO ACCESS CONTACTS
-     *            This was originally much higher up in the code, directly below onCreate(), things
-     *            seem to work fine without it but let's not delete it yet just in case.
-     *
-     private void populateAutoComplete() {
-     if (!mayRequestContacts()) {
-     return;
-     }
-
-     getLoaderManager().initLoader(0, null, this);
-     }
-
-
-     private boolean mayRequestContacts() {
-     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-     return true;
-     }
-     if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-     return true;
-     }
-     if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-     Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-     .setAction(android.R.string.ok, new View.OnClickListener() {
-    @Override
-    @TargetApi(Build.VERSION_CODES.M)
-    public void onClick(View v) {
-    requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-    }
-    });
-     } else {
-     requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-     }
-     return false;
-     }
-     */
-
-    /**
-     * Callback received when a permissions request has been completed.
-     *
-     @Override
-     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-     @NonNull int[] grantResults) {
-     if (requestCode == REQUEST_READ_CONTACTS) {
-     if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-     populateAutoComplete();
-     }
-     }
-     }
-     */
 }
 

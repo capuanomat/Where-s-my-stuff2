@@ -1,14 +1,15 @@
-package com.example.matthieujbcapuano.wheresmystuff;
+package com.example.matthieujbcapuano.wheresmystuff.Model;
+
+import java.io.Serializable;
 import java.util.ArrayList;
-/**
- * Created by Alezx on 6/22/2017.
- */
 
-public class UserManager {
-    ArrayList<UserModel> allUsers;
-    ArrayList<String> allPasswords;
-    ArrayList<String> allUserNames;
+public class UserManager implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+
+    private ArrayList<User> allUsers;
+    private ArrayList<String> allPasswords;
+    private ArrayList<String> allUserNames;
 
     public UserManager() {
         allUsers = new ArrayList<>();
@@ -18,14 +19,10 @@ public class UserManager {
         allPasswords = new ArrayList<>();
         allPasswords.add("pass");
     }
-    //
-    //ALEXANDER: might be a useful method to have later
-//    public UserModel findUser(UserModel){
-//
-//    }
+
 
     public boolean loginAttempt(String username, String password) {
-        for(UserModel u: allUsers) {
+        for(User u: allUsers) {
             if (u.getUserName().equals(username) && u.getPassword().equals(password)) {
                 return true;
             }
@@ -33,13 +30,14 @@ public class UserManager {
         return false;
     }
 
-    public UserModel addUser(UserModel user) {
+    public User addUser(User user) {
         allUsers.add(user);
         allUserNames.add(user.getUserName());
         allPasswords.add(user.getPassword());
         return user;
     }
-   //ALEXANDER: to make sure there are no duplicate usernames
+
+   //ALEXANDER: Makes sure there are no  duplicate usernames
     public boolean findValidUsername(String username) {
         if (allUserNames == null) {
             return true;
@@ -52,7 +50,7 @@ public class UserManager {
         return true;
     }
 
-    //ALEXANDER: to make sure there ar eno duplicate passwords
+    //ALEXANDER: Makes sure there are no duplicate passwords
     public boolean findValidPassword(String password) {
         if (allPasswords == null) {
             return true;
@@ -63,5 +61,14 @@ public class UserManager {
             }
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "UserManager{" +
+                "allUsers=" + allUsers +
+                "\n, allPasswords=" + allPasswords +
+                "\n, allUserNames=" + allUserNames +
+                '}';
     }
 }

@@ -1,27 +1,25 @@
-package com.example.matthieujbcapuano.wheresmystuff;
+package com.example.matthieujbcapuano.wheresmystuff.Model;
 
-/**
- * Created by Alezx on 6/19/2017.
- *////
-
-public class RegularUser extends UserModel {
+public class RegularUser extends User {
 
     public RegularUser(String name, String userName, String password, int[] phoneNumber,
                      String email) {
-        super(name, userName, password, phoneNumber, email, false, false, false);
+        super(name, userName, password, phoneNumber, email, false, false);
     }
 
     /**
-     * Alexander: replaces 'user' with 'Regular User' in printout, to show if we are creating generic users or regular
-     * users
+     * Alexander: replaces 'user' with 'Regular User' in printout, to show which type of user
      * @return String printout, tells all the info on the regular user
      */
     @Override
     public String toString() {
         if (phoneNumber.length <= 1) {
-            return "Regular User--- Name:  " + name + " " + "UserName: " + userName + " Password: " +
-                    password + " Phone Number: " + phoneNumber[0] + " Email: " + email + " Banned: "
-                    + banned + " Ban Permission: " + banPermission;
+            return "Regular User--- Name:  " + name
+                    + " UserName: " + userName
+                    + " Password: " + password
+                    + " Phone Number: " + phoneNumber[0]
+                    + " Email: " + email
+                    + " Banned: " + banned;
         } else {
             String printout = "Regular User--- Name:  " + name + " " + "UserName: " + userName + " Password: " +
                     password + " Phone Number: ";
@@ -29,7 +27,7 @@ public class RegularUser extends UserModel {
                 printout += phoneNumber[i] + " ";
             }
             printout += " Email: " + email + " Banned: "
-                    + banned + " Ban Permission: " + banPermission;
+                    + banned;
             return printout;
         }
     }

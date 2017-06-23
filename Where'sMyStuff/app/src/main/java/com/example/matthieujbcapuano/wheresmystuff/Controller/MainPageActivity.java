@@ -24,7 +24,7 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "MATTHIEU: Lougout Button was Pressed!");
-                Intent intentLogout = new Intent(MainPageActivity.this, WelcomeScreenActivity.class);
+                Intent intentLogout = new Intent(MainPageActivity.this, LandingActivity.class);
                 startActivity(intentLogout);
             }
         });
