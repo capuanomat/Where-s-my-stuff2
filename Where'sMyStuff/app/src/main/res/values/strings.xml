@@ -5,6 +5,7 @@
     <string name="edit_message">Enter a message</string>
     <string name="buttonLogin">Login!</string>
     <string name="registerButton">Register!</string>
+    <string name="error_invalid_username">Input username is invalid fool!!!!</string>
 
     <!-- Strings related to login -->
     <!-- MATTHIEU: THESE ARE STRINGS THAT WERE CREATED WHEN I CREATED THE LOGIN ACTIVITY -->
