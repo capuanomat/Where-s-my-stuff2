@@ -13,14 +13,16 @@ public class MainPageActivity extends AppCompatActivity {
 
     static String TAG = "MainPageActivity";
 
+    Button btnLogout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
-        //MATTHIEU: ADDING THE CODE TO SEND USER BACK TO WELCOME SCREEN IF LOGOUT IS PRESSED
-        Button buttonLogout = (Button) (findViewById(R.id.buttonLogout));
-        buttonLogout.setOnClickListener(new View.OnClickListener() {
+
+        btnLogout = (Button) (findViewById(R.id.buttonLogout));
+        btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "MATTHIEU: Lougout Button was Pressed!");

@@ -1,5 +1,6 @@
 package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
+import com.example.matthieujbcapuano.wheresmystuff.Data.DatabaseHelper;
 import com.example.matthieujbcapuano.wheresmystuff.Model.*;
 
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.matthieujbcapuano.wheresmystuff.R;
 
@@ -20,11 +22,22 @@ import java.util.ArrayList;
 
 public class LandingActivity extends AppCompatActivity {
 
+    /**
+     * Descriptive tag about the activity to user when Logging stuff
+     */
     static String TAG = "LandingActivity";
 
     // MATTHIEU: This is the variable we'll use to store all our users, has a getter below
-    private UserManager _userManager = new UserManager();
+    //private UserManager _userManager = new UserManager();
     private ArrayList<User> userArray = new ArrayList<>();
+
+    //DatabaseHelper myDb;
+    //EditText editName, editUsername, editPassword;
+
+    // Buttons
+    FloatingActionButton fab;
+    Button btnLogin;
+    Button btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +45,13 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Log.i(TAG, "Application is running, YAY!!!");
+        //myDb = new DatabaseHelper(this);
 
-        // MATTHIEU: This is for the button on the bottom right I think
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        // MATTHIEU: The three buttons
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        btnLogin = (Button) (findViewById(R.id.buttonLogin));
+        btnRegister = (Button) (findViewById(R.id.buttonRegister));
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,9 +60,7 @@ public class LandingActivity extends AppCompatActivity {
             }
         });
 
-        // MATTHIEU: This is for the login button
-        Button buttonLogin = (Button) (findViewById(R.id.buttonLogin));
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentLogin = new Intent(LandingActivity.this, LoginActivity.class);
@@ -55,9 +69,7 @@ public class LandingActivity extends AppCompatActivity {
             }
         });
 
-        //MATTHIEU: This is for the Register button
-        Button buttonRegister = (Button) (findViewById(R.id.buttonRegister));
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentRegister = new Intent(LandingActivity.this, RegistrationActivity.class);
@@ -67,7 +79,20 @@ public class LandingActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    public void onLoginPresser(View view) {
+        btnLogin.setOnClickListener(
+                @Override
+        public void onClick(View v) {
 
+        }
+        );
+        Intent intentLogin = new Intent(LandingActivity.this, LoginActivity.class);
+        startActivity(intentLogin);
+    }
+    */
+
+    // ----------------------------------------- MAYBE REMOVABLE -------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

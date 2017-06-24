@@ -7,7 +7,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class User implements Parcelable {
+
+    /**
+     * Instance variable to describe legal user types.
+     */
     public static List<String> legalUserTypes = Arrays.asList("Regular", "Admin");
+
+    /**
+     * Instance variables to describe everything important about the user.
+     */
     String name;
     String userName;
     String password;
@@ -25,6 +33,7 @@ public class User implements Parcelable {
      * @param email         Email of user
      * @param banned        Whether the user is banned or not
      * @param isAdmin       Whether the user is an admin or not
+     * TODO: Add constructors with fewer arguments and do constructor chaining to this one.
      */
     public User(String name, String userName, String password, int[] phoneNumber,
                 String email, boolean banned, boolean isAdmin) {
@@ -38,7 +47,7 @@ public class User implements Parcelable {
     }
 
     /**
-     * Getter for Name variable.
+     * Getter for name variable.
      * @return  Name of user
      */
     public String getName() {
@@ -62,14 +71,6 @@ public class User implements Parcelable {
     }
 
     /**
-     * Getter for the email.
-     * @return  Email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
      * Getter for the phone number(s).
      * @return  Phone number(s)
      */
@@ -83,6 +84,14 @@ public class User implements Parcelable {
             }
         }
         return number;
+    }
+
+    /**
+     * Getter for the email.
+     * @return  Email
+     */
+    public String getEmail() {
+        return email;
     }
 
     /**
@@ -101,6 +110,11 @@ public class User implements Parcelable {
         return isAdmin;
     }
 
+    /**
+     * toString method for the User Class. Is o verriden by the RegularUser and AdminUser classes.
+     * @return  A string describing all important details about the user
+     * TODO: It may be better to do instanceof and not override this method in Regular/AdminUser
+     */
     public String toString() {
         String toPrint =
                 "User------ Name: " + name + ", UserName: " + userName + ", Password: " + password;
@@ -116,11 +130,12 @@ public class User implements Parcelable {
     }
 
 
-    /* *********************************
+
+
+    /**********************************************************************************************
      * ALEXANDER: Borrowed from M3, These methods are required by the parcelable interface
      *
      */
-
     private User(Parcel in) {
         userName = in.readString();
         password = in.readString();

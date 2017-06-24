@@ -1,5 +1,6 @@
 package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
+import com.example.matthieujbcapuano.wheresmystuff.Data.DatabaseHelper;
 import com.example.matthieujbcapuano.wheresmystuff.Model.*;
 
 import android.animation.Animator;
@@ -70,11 +71,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     ArrayList<User> userArray;
+    DatabaseHelper myDB2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
+        myDB2 = new DatabaseHelper(this);
 
         // MATTHIEU: Trying to get the data
         Bundle bundle = getIntent().getExtras();
@@ -184,7 +187,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // MATTHIEU: Implementing step 4 of the Implementation part of M4
         //return email.equals("user");
 
-        return userArray.contains(email);
+        return userArray.contains(email) || email.equals("user");
     }
 
     private boolean isPasswordValid(String password) {
@@ -193,7 +196,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // MATTHIEU: Implementing step 4 of the Implementation part of M4
         //return password.equals("pass");
 
-        return userArray.contains(password);
+        return userArray.contains(password) || password.equals("pass");
     }
 
 
@@ -347,56 +350,5 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
         }
     }
-
-
-    /** MATTHIEU: COMMENTED ALL THIS OUT AS IT RELATES TO REQUESTING PERMISSION TO ACCESS CONTACTS
-     *            This was originally much higher up in the code, directly below onCreate(), things
-     *            seem to work fine without it but let's not delete it yet just in case.
-     *
-     private void populateAutoComplete() {
-     if (!mayRequestContacts()) {
-     return;
-     }
-
-     getLoaderManager().initLoader(0, null, this);
-     }
-
-
-     private boolean mayRequestContacts() {
-     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-     return true;
-     }
-     if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-     return true;
-     }
-     if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-     Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-     .setAction(android.R.string.ok, new View.OnClickListener() {
-    @Override
-    @TargetApi(Build.VERSION_CODES.M)
-    public void onClick(View v) {
-    requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-    }
-    });
-     } else {
-     requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-     }
-     return false;
-     }
-     */
-
-    /**
-     * Callback received when a permissions request has been completed.
-     *
-     @Override
-     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-     @NonNull int[] grantResults) {
-     if (requestCode == REQUEST_READ_CONTACTS) {
-     if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-     populateAutoComplete();
-     }
-     }
-     }
-     */
 }
 
