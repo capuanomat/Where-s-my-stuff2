@@ -16,12 +16,15 @@ import android.widget.Button;
 
 import com.example.matthieujbcapuano.wheresmystuff.R;
 
+import java.util.ArrayList;
+
 public class LandingActivity extends AppCompatActivity {
 
     static String TAG = "LandingActivity";
 
     // MATTHIEU: This is the variable we'll use to store all our users, has a getter below
     private UserManager _userManager = new UserManager();
+    private ArrayList<User> userArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +49,8 @@ public class LandingActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "Login Button was Tagged!"); // This just prints the passed in string to the Monitor
                 Intent intentLogin = new Intent(LandingActivity.this, LoginActivity.class);
+                intentLogin.putExtra("userManager", userArray);
                 startActivity(intentLogin);
             }
         });
@@ -57,12 +60,8 @@ public class LandingActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "Register Button was Tagged!");
-
                 Intent intentRegister = new Intent(LandingActivity.this, RegistrationActivity.class);
-                Bundle b = new Bundle();
-                //b.putParcelable("userManager", _userManager);
-                //intentRegister.putExtra("userManager", _userManager);
+                intentRegister.putExtra("userManager", userArray);
                 startActivity(intentRegister);
             }
         });
@@ -78,9 +77,8 @@ public class LandingActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle action bar item clicks here. The action bar will automatically handle clicks on
+        // the Home/Up button, so long as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

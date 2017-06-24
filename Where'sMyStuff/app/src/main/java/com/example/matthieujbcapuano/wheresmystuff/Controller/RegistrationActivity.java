@@ -83,15 +83,16 @@ public class RegistrationActivity extends AppCompatActivity implements LoaderCal
     //    return _userManager;
     //}
 
-    UserManager _userManager = new UserManager();
+    ArrayList<User> userArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_screen);
-        //TextVi
 
-        Log.i(TAG, "ALEX: REGISTRATION SCREEN DISPLAYING!!!");
+        Bundle bundle = getIntent().getExtras();
+        userArray = bundle.getParcelableArrayList("userManager");
+
 
         // READING INPUT FROM THE REGISTRATION SCREEN
         mUsernameView = (EditText) findViewById(R.id.username);
@@ -106,7 +107,7 @@ public class RegistrationActivity extends AppCompatActivity implements LoaderCal
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptRegister();
+                    attemptRegister(userArray);
                     return true;
                 }
                 return false;
@@ -122,7 +123,7 @@ public class RegistrationActivity extends AppCompatActivity implements LoaderCal
         registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptRegister();
+                attemptRegister(userArray);
             }
         });
 
@@ -135,7 +136,7 @@ public class RegistrationActivity extends AppCompatActivity implements LoaderCal
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptRegister() {
+    private void attemptRegister(ArrayList<User> userArray) {
 
         // MATTHIEU: RANDOM STUFF THAT WAS ALREADY THERE ------
         if (mAuthTask != null) {
@@ -212,7 +213,7 @@ public class RegistrationActivity extends AppCompatActivity implements LoaderCal
             } else {
                 user = new RegularUser(name, username, password, phoneNumber, email);
             }
-            _userManager.addUser(user);
+            userArray.add(user);
 
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
@@ -226,12 +227,12 @@ public class RegistrationActivity extends AppCompatActivity implements LoaderCal
 
     //ALEXANDER: added this method, implemented userManager's method
     private boolean isUserNameValid(String username) {
-        return _userManager.findValidUsername(username);
+        return true; //_userManager.findValidUsername(username);
     }
 
     //ALEXANDER: changed this method from template, implemented usermanager's method
     private boolean isPasswordValid(String password) {
-        return _userManager.findValidPassword(password);
+        return true; //_userManager.findValidPassword(password);
     }
 
 

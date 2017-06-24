@@ -20,6 +20,9 @@ public class UserManager implements Serializable{
         allPasswords.add("pass");
     }
 
+    public ArrayList<User> getAllUsers() {
+        return allUsers;
+    }
 
     public boolean loginAttempt(String username, String password) {
         for(User u: allUsers) {
@@ -65,10 +68,10 @@ public class UserManager implements Serializable{
 
     @Override
     public String toString() {
-        return "UserManager{" +
-                "allUsers=" + allUsers +
-                "\n, allPasswords=" + allPasswords +
-                "\n, allUserNames=" + allUserNames +
-                '}';
+        return "UserManager{";
+                //+ "allUsers=" + allUsers +
+                //"\n, allPasswords=" + allPasswords +
+                //"\n, allUserNames=" + allUserNames +
+                //'}';
     }
 }

@@ -53,20 +53,31 @@ public class User implements Parcelable {
         return userName;
     }
 
+    /**
+     * Getter for the password.
+     * @return  Password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Getter for the email.
+     * @return  Email
+     */
     public String getEmail() {
-        return "Email: " + email;
+        return email;
     }
 
+    /**
+     * Getter for the phone number(s).
+     * @return  Phone number(s)
+     */
     public String getPhoneNumber() {
-        String number;
+        String number = "";
         if (phoneNumber.length <= 1) {
-            number = "Number: " + phoneNumber[0];
+            number += phoneNumber[0];
         } else {
-            number = "Number: ";
             for (int i = 0; i < phoneNumber.length; i++) {
                 number += phoneNumber[i] + " ";
             }
@@ -74,6 +85,18 @@ public class User implements Parcelable {
         return number;
     }
 
+    /**
+     * Getter for banned status.
+     * @return  Whether the user is banned or not.
+     */
+    public boolean getBanned() {
+        return banned;
+    }
+
+    /**
+     * Getter for the admin Status.
+     * @return  Whether user is admin or not.
+     */
     public boolean getIsAdmin() {
         return isAdmin;
     }
@@ -84,8 +107,8 @@ public class User implements Parcelable {
         if (phoneNumber.length <= 1) {
             toPrint = toPrint + ", Phone Number: " + phoneNumber[0];
         } else {
-            for (int i = 0; i < phoneNumber.length; i++) {
-                toPrint += phoneNumber[i] + " ";
+            for (int i : phoneNumber) {
+                toPrint += i + " ";
             }
         }
         toPrint = toPrint + ", Email: " + email + ", Banned: " + banned;

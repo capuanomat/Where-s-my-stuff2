@@ -1,5 +1,7 @@
 package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
+import com.example.matthieujbcapuano.wheresmystuff.Model.*;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -30,6 +32,7 @@ import android.widget.TextView;
 
 import com.example.matthieujbcapuano.wheresmystuff.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -65,22 +69,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    ArrayList<User> userArray;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
+        // MATTHIEU: Trying to get the data
+        Bundle bundle = getIntent().getExtras();
+        userArray = bundle.getParcelableArrayList("userManager");
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
 
-        // MATTHIEU: TODO: JUST REALISED THIS IS WHAT'S CAUSING THE DOUBLE CLICK ON LOGIN ISSUE,
-        //                 This call and the .setOnClickListener below are both attempting login
+        // MATTHIEU: TODO: This part and the next may be causing the login double click issue
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptLogin(userArray);
                     return true;
                 }
                 return false;
@@ -94,7 +103,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptLogin(userArray);
             }
         });
 
@@ -107,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptLogin(ArrayList<User> userArray) {
         if (mAuthTask != null) {
             return;
         }
@@ -170,21 +179,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         //return email.contains("@");
 
         // MATTHIEU: Implementing step 4 of the Implementation part of M4
-        return email.equals("user");
-        //UserManager userManager = RegistrationActivity.get
+        //return email.equals("user");
 
+        return userArray.contains(email);
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         //return password.length() > 4;
 
         // MATTHIEU: Implementing step 4 of the Implementation part of M4
-        return password.equals("pass");
+        //return password.equals("pass");
+
+        return userArray.contains(password);
     }
 
 
