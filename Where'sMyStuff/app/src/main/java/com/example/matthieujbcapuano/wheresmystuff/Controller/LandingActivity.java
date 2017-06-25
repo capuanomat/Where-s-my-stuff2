@@ -39,13 +39,15 @@ public class LandingActivity extends AppCompatActivity {
     Button btnLogin;
     Button btnRegister;
 
+    DatabaseHelper myDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //myDb = new DatabaseHelper(this);
+        myDb = new DatabaseHelper(this);
 
         // MATTHIEU: The three buttons
         fab = (FloatingActionButton) findViewById(R.id.fab);

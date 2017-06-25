@@ -62,13 +62,10 @@ public class RegistrationActivity extends AppCompatActivity {
     ArrayList<User> userArray;
     DatabaseHelper myDb;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_screen);
-
-
 
         /** Reading in the data **/
         mUsernameView = (EditText) findViewById(R.id.username);
@@ -88,10 +85,9 @@ public class RegistrationActivity extends AppCompatActivity {
         btnCancel = (Button) findViewById(R.id.buttonCancelRegister);
 
         /** Initializing database variables **/
-        myDb = new DatabaseHelper(this);
         Bundle bundle = getIntent().getExtras();
         userArray = bundle.getParcelableArrayList("userManager");
-
+        myDb = new DatabaseHelper(this);
 
         /** When the buttons are pressed **/
         btnRegister.setOnClickListener(new OnClickListener() {
@@ -113,8 +109,7 @@ public class RegistrationActivity extends AppCompatActivity {
     /**
      * After the data was read in during OnCreate, these variables will store the strings specifically.
      */
-    String password, username, name;
-    String initialPhoneNumber, email, userType;
+    String password, username, name, initialPhoneNumber, email, userType;
 
     private void attemptRegister(ArrayList<User> userArray) {
 
@@ -125,9 +120,7 @@ public class RegistrationActivity extends AppCompatActivity {
         email = mEmailView.getText().toString();
         userType = userTypeSpinner.getSelectedItem().toString();
 
-        /**
-         *  TODO: Figure out how we want to deal with phone numbers (2,147,483,647 is largest int).
-         */
+        // TODO: Figure out how we want to deal with phone numbers (2,147,483,647 is largest int).
         int[] phoneNumber = new int[1];
 
         boolean isAdmin = userType.equals("Admin");
@@ -142,6 +135,7 @@ public class RegistrationActivity extends AppCompatActivity {
         AddData();
     }
 
+    // TODO: This and the three methods below check that input data is correct. We can improve them.
     private boolean isEmailValid(String email) {
         if (!email.contains("@")) {
             Toast.makeText(RegistrationActivity.this, "Email is invalid", Toast.LENGTH_LONG).show();

@@ -6,21 +6,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "user.db";
 
     public static final String TABLE_NAME = "user_table";
-    public static final String COL_1 = "NAME";
-    public static final String COL_2 = "USERNAME";
-    public static final String COL_3 = "PASSWORD";
+    public static final String COL_1 = "ID";
+    public static final String COL_2 = "NAME";
+    public static final String COL_3 = "USERNAME";
+    public static final String COL_4 = "PASSWORD";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " () ");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, USERNAME TEXT, PASSWORD TEXT)");
     }
 
     @Override
@@ -32,9 +33,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public boolean insertData(String name, String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, name);
-        contentValues.put(COL_2, username);
-        contentValues.put(COL_3, password);
+        contentValues.put(COL_2, name);
+        contentValues.put(COL_3, username);
+        contentValues.put(COL_4, password);
         long result = db.insert(TABLE_NAME, null, contentValues);
         return (result != -1);
     }
