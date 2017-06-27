@@ -46,6 +46,18 @@ public class User implements Parcelable {
         this.isAdmin = isAdmin;
     }
 
+    public User(String name, String username, String password) {
+        this(name, username, password, new int[0], "", false, false);
+    }
+
+    public User(String username, String password) {
+        this("", username, password, new int[0], "", false, false);
+    }
+
+    public User() {
+        this("", "", "", new int[0], "", false, false);
+    }
+
     /**
      * Getter for name variable.
      * @return  Name of user
@@ -108,6 +120,18 @@ public class User implements Parcelable {
      */
     public boolean getIsAdmin() {
         return isAdmin;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**

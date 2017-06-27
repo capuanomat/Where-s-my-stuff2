@@ -4,18 +4,8 @@ import com.example.matthieujbcapuano.wheresmystuff.Data.DatabaseHelper;
 import com.example.matthieujbcapuano.wheresmystuff.Model.*;
 import com.example.matthieujbcapuano.wheresmystuff.R;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -112,7 +102,6 @@ public class RegistrationActivity extends AppCompatActivity {
     String password, username, name, initialPhoneNumber, email, userType;
 
     private void attemptRegister(ArrayList<User> userArray) {
-
         password = mPasswordView.getText().toString();
         username = mUsernameView.getText().toString();
         name = mNameView.getText().toString();
@@ -155,11 +144,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
     public void AddData() {
-        boolean isInserted = myDb.insertData(name, username, password);
+        boolean isInserted = myDb.addAccount(new User(name, username, password));
         if(isInserted) {
             Toast.makeText(RegistrationActivity.this, "Data was Inserted!", Toast.LENGTH_LONG).show();
+            this.finish();
         } else {
             Toast.makeText(RegistrationActivity.this, "Data was NOT Inserted!", Toast.LENGTH_LONG).show();
+            // TODO: Add a more descriptive error message here
         }
     }
 }

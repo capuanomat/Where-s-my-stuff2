@@ -39,7 +39,7 @@ public class LandingActivity extends AppCompatActivity {
     Button btnLogin;
     Button btnRegister;
 
-    DatabaseHelper myDb;
+    //DatabaseHelper myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        myDb = new DatabaseHelper(this);
+        //myDb = new DatabaseHelper(this);
 
         // MATTHIEU: The three buttons
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -80,19 +80,6 @@ public class LandingActivity extends AppCompatActivity {
             }
         });
     }
-
-    /*
-    public void onLoginPresser(View view) {
-        btnLogin.setOnClickListener(
-                @Override
-        public void onClick(View v) {
-
-        }
-        );
-        Intent intentLogin = new Intent(LandingActivity.this, LoginActivity.class);
-        startActivity(intentLogin);
-    }
-    */
 
     // ----------------------------------------- MAYBE REMOVABLE -------------------------------
     @Override

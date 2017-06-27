@@ -7,6 +7,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.matthieujbcapuano.wheresmystuff.R.id.email_sign_in_button;
+import static com.example.matthieujbcapuano.wheresmystuff.R.id.password;
 
 /**
  * A login screen that offers login via email/password.
@@ -71,13 +73,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     ArrayList<User> userArray;
-    DatabaseHelper myDB2;
+    private DatabaseHelper db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
-        myDB2 = new DatabaseHelper(this);
+
+        /** Database stuff **/
+        db = new DatabaseHelper(this);
 
         // MATTHIEU: Trying to get the data
         Bundle bundle = getIntent().getExtras();
@@ -119,6 +124,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+    String username, password;
     private void attemptLogin(ArrayList<User> userArray) {
         if (mAuthTask != null) {
             return;
@@ -128,28 +134,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        // MATTHIEU: THIS READS IN ALL THE VALUES INPUT BY THE USER
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+       /** Reads in the values input by the user **/
+        username = mEmailView.getText().toString();
+        password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
+        /** If a password is entered and that password is invalid, this executes **/
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
-
-        // MATTHIEU: First check verifies that there's something in the email field, second one
-        //           calls isEmailValid(String email) to test content
-        if (TextUtils.isEmpty(email)) {
+        /** Verifies that an email was entered and that it's valid **/
+            // MATTHIEU: First check verifies that there's something in the email field, second one
+            //           calls isEmailValid(String email) to test content
+        if (TextUtils.isEmpty(username)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(username)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
@@ -160,13 +166,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            /**
-            showProgress(true);     // MATTHIEU: I THINK THIS IS WHAT DISPLAYS THE SPINNER AFTER YOU PRESS "SIGN IN"
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-             */
+
             Log.i(TAG, "MATTHIEU: A valid attempt at logging in is being made!");
 
             Button buttonLoginAttempt = (Button) (findViewById(email_sign_in_button));
@@ -175,31 +175,44 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void onClick(View v) {
                     Intent intentMainPage = new Intent(LoginActivity.this, MainPageActivity.class);
                     startActivity(intentMainPage);
-                    //sendToLogin(v); // public void sendToLogin(View view) { //Two lines above } outside onCreate
                 }
             });
         }
     }
 
     private boolean isEmailValid(String email) {
-        //return email.contains("@");
-
-        // MATTHIEU: Implementing step 4 of the Implementation part of M4
-        //return email.equals("user");
-
-        return userArray.contains(email) || email.equals("user");
+        List<User> users = db.getAccounts();
+        if (users.isEmpty()) {
+            return false;
+        }
+        boolean toRet = false;
+        for (User user : users) {
+            if ((user.getUserName().equals(username)) && (user.getPassword().equals(password))) {
+                toRet = true;
+            }
+        }
+        return toRet;
+        //return userArray.contains(email) || email.equals("user");
     }
 
-    private boolean isPasswordValid(String password) {
-        //return password.length() > 4;
-
-        // MATTHIEU: Implementing step 4 of the Implementation part of M4
-        //return password.equals("pass");
-
-        return userArray.contains(password) || password.equals("pass");
+    private boolean isPasswordValid(String passwords) {
+        List<User> users = db.getAccounts();
+        if (users.isEmpty()) {
+            return false;
+        }
+        boolean toRet = false;
+        for (User user : users) {
+            if ((user.getUserName().equals(username)) && (user.getPassword().equals(password))) {
+                toRet = true;
+            }
+        }
+        return toRet;
+        //return userArray.contains(password) || password.equals("pass");
     }
 
-
+    public void viewAll() {
+        //SQLiteDatabase db = this.getReadableDatabase();
+    }
 
 // ------------------------------------------- MATTHIEU: DID NOT MODIFY ANYTHING BELOW HERE -----------------
 
