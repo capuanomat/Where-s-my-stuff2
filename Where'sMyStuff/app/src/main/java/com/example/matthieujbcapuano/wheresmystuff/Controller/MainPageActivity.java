@@ -14,6 +14,7 @@ public class MainPageActivity extends AppCompatActivity {
     static String TAG = "MainPageActivity";
 
     Button btnLogout;
+    Button btnLostPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +32,14 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
+        btnLostPage = (Button) (findViewById(R.id.buttonLostRequest));
+        btnLostPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Lost/Request button pressed!");
+                Intent intentGoToLostPage = new Intent(MainPageActivity.this, LostItemPage.class);
+                startActivity(intentGoToLostPage);
+            }
+        });
     }
 }

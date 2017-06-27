@@ -41,7 +41,14 @@
         </activity>
         <activity android:name=".Controller.MainPageActivity" />
         <activity android:name=".Controller.RegistrationActivity" />
-
+        <activity
+            android:name=".Controller.LostItemPage"
+            android:label="@string/title_activity_lost_item_page"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Controller.MainPageActivity" />
+        </activity>
     </application>
 
 </manifest>

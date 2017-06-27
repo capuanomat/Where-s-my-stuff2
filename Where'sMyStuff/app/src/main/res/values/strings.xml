@@ -26,6 +26,7 @@
     <string name="foundButton">Found!</string>
     <string name="buttonDonate">Donate!</string>
     <string name="title_activity_registration_screen2">RegistrationScreenActivity2</string>
+    <string name="title_activity_lost_item_page">LostItemPage</string>
 
 
 </resources>
