@@ -1,12 +1,9 @@
-package com.example.matthieujbcapuano.wheresmystuff;
+package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -31,11 +28,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.matthieujbcapuano.wheresmystuff.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.Manifest.permission.READ_CONTACTS;
-import static com.example.matthieujbcapuano.wheresmystuff.R.id.buttonLogin;
 import static com.example.matthieujbcapuano.wheresmystuff.R.id.email_sign_in_button;
 
 /**
@@ -63,17 +60,21 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    //ALEXANDER: switched mEmailView with mUsernameView
+    private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private RegistrationScreenActivity registrationScreenActivity = new RegistrationScreenActivity();
+    private UserManager userManager = new UserManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
+        //userManager = registrationScreenActivity.getUserManager();
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
         //populateAutoComplete(); // MATTHIEU: Removed because we don't need contacts permission
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -111,35 +112,39 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
         }
 
         // Reset errors.
-        mEmailView.setError(null);
+        mUsernameView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String username = mUsernameView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+        if (!isLoginAttemptValid(username, password)) {
+            mPasswordView.setError(getString(R.string.error_incorrect_username_or_password));
             focusView = mPasswordView;
             cancel = true;
         }
+        // Check for a valid password, if the user entered one.
+//        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+//            mPasswordView.setError(getString(R.string.error_invalid_password));
+//            focusView = mPasswordView;
+//            cancel = true;
+//        }
 
         // Check for a valid email address.
         // MATTHIEU: First check verifies that there's something in the email field, second one
         //           calls isEmailValid(String email) to actually test content
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
+//        if (TextUtils.isEmpty(email)) {
+//            mEmailView.setError(getString(R.string.error_field_required));
+//            focusView = mEmailView;
+//            cancel = true;
+//        } else if (!isEmailValid(email)) {
+//            mEmailView.setError(getString(R.string.error_invalid_email));
+//            focusView = mEmailView;
+//            cancel = true;
+//        }
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -166,22 +171,25 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
             });
         }
     }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        //return email.contains("@");
-
-        // MATTHIEU: Implementing step 4 of the Implementation part of M4
-        return email.equals("user");
+    private boolean isLoginAttemptValid(String username, String password) {
+        return userManager.loginAttempt(username, password);
     }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        //return password.length() > 4;
-
-        // MATTHIEU: Implementing step 4 of the Implementation part of M4
-        return password.equals("pass");
-    }
+//ALEXANDER: below is old login method, hardcoded to 'user' and 'pass'
+//    private boolean isUsernameValid(String email) {
+//        //TODO: Replace this with your own logic
+//        //return email.contains("@");
+//
+//        // MATTHIEU: Implementing step 4 of the Implementation part of M4
+//        return email.equals("user");
+//    }
+//
+//    private boolean isPasswordValid(String password) {
+//        //TODO: Replace this with your own logic
+//        //return password.length() > 4;
+//
+//        // MATTHIEU: Implementing step 4 of the Implementation part of M4
+//        return password.equals("pass");
+//    }
 
 
 
@@ -264,7 +272,7 @@ public class LoginScreenActivity extends AppCompatActivity implements LoaderCall
                 new ArrayAdapter<>(LoginScreenActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        mUsernameView.setAdapter(adapter);
     }
 
 

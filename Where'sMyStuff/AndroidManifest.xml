@@ -3,6 +3,11 @@
     package="com.example.matthieujbcapuano.wheresmystuff">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <!--
  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -16,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Controller.LandingActivity"
+            android:name=".WelcomeScreenActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,28 +31,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Controller.LoginActivity"
+            android:name=".LoginScreenActivity"
             android:label="@string/title_activity_login_screen">
 
             <!--
-                 MATTHIEU: Added the two lines below so that the LandingActivity is defined as
-                           the parent activity of the LoginActivity (recommended by android
+                 MATTHIEU: Added the two lines below so that the WelcomeScreenActivity is defined as
+                           the parent activity of the LoginScreenActivity (recommended by android
                            tutorials:
                  https://developer.android.com/training/basics/firstapp/starting-activity.html
             -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controller.LandingActivity" />
+                android:value=".WelcomeScreenActivity" />
         </activity>
-        <activity android:name=".Controller.MainPageActivity" />
-        <activity android:name=".Controller.RegistrationActivity" />
+        <activity android:name=".MainPageActivity" />
         <activity
-            android:name=".Controller.LostItemPage"
-            android:label="@string/title_activity_lost_item_page"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".RegistrationScreenActivity"
+            android:label="@string/title_activity_registration_screen">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controller.MainPageActivity" />
+                android:value=".WelcomeScreenActivity" />
         </activity>
     </application>
 

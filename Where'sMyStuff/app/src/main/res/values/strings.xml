@@ -5,6 +5,7 @@
     <string name="edit_message">Enter a message</string>
     <string name="buttonLogin">Login!</string>
     <string name="registerButton">Register!</string>
+    <string name="error_invalid_username">Input username is invalid fool!!!!</string>
 
     <!-- Strings related to login -->
     <!-- MATTHIEU: THESE ARE STRINGS THAT WERE CREATED WHEN I CREATED THE LOGIN ACTIVITY -->
@@ -19,11 +20,13 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="whereMyStuff">Where the hell is my stuff Gradle Daemon!!!!???</string>
+    <string name="whereMyStuff">Where the hell is my stuff?</string>
     <string name="logoutButton">Logout</string>
     <string name="lostRequestButton">Lost / Request</string>
     <string name="foundButton">Found!</string>
     <string name="buttonDonate">Donate!</string>
+    <string name="title_activity_registration_screen2">RegistrationScreenActivity2</string>
+    <string name="title_activity_lost_item_page">LostItemPage</string>
 
 
 </resources>

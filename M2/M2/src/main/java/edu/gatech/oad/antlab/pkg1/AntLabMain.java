@@ -36,7 +36,7 @@ import edu.gatech.oad.antlab.pkg2.*;
      *
      * purposeful comment to force a conflict!
      */
-    public AntLabMain () {
+    public AntLabMain() {
 
         ant11 = new AntLab11();
         ant12 = new AntLab12();
