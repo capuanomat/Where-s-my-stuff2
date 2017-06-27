@@ -4,13 +4,11 @@ Team 18: Summer 2017, CS - 2340 group project to help people find lost items in 
 
 dabest app
 
-## Priority
-1. Welcome Screen (Done)
-2. Login Screen (Done) 
-3. Registration screen (In progress, not required for M4)
-4. Main Page (Done)
-5. Lost/Request Page
-6. Found/Donate Page
+## Priority as of 27/06: M5
+- Sharence: Do the UI stuff
+- Ash and Simola: Make the UML Diagram
+- Alex and Matthieu: Work on the code implementation
+
 
 ## Future Ideas & Extra Credit Ideas:
 - Make the UI prettier
