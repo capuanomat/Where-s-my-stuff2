@@ -9,4 +9,5 @@ public class LostItem extends Item {
     public LostItem(String name, String description, String location, String date) {
         super(name, description, location, date, "LOST");
     }
+
 }

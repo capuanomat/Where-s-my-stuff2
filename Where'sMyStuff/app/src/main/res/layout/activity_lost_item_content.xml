@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.matthieujbcapuano.wheresmystuff.Controller.LostItemPage">
+    tools:context="com.example.matthieujbcapuano.wheresmystuff.Controller.LostItemContent">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,40 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
-        layout="@layout/content_lost_item_page"
-        android:layout_height="456dp"
-        android:layout_weight="1"
-        android:id="@+id/include4" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="65dp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/lostRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </android.support.v7.widget.RecyclerView>
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-        </LinearLayout>
-    </ScrollView>
+    <include layout="@layout/content_lost_item_content" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

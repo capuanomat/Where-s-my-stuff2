@@ -49,6 +49,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controller.MainPageActivity" />
         </activity>
+        <activity
+            android:name=".Controller.LostItemContent"
+            android:label="@string/title_activity_lost_item_content"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Controller.addLostItem"
+            android:label="@string/title_activity_add_lost_item"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
