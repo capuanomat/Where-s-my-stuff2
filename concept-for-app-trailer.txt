@@ -1,0 +1,48 @@
+"Where's My Stuff?" Trailer Idea, Fleshed Out
+Simola Nayak
+
+TABLE OF CONTENTS (use CTRL/CMD F and search to skip to a section):
+0: PREFACE
+1: TRAILER CONCEPT
+2: WHAT'S THIS GOT TO DO WITH ANYTHING?
+
+-----------------------------PREFACE--------------------------------------------
+This is the first time any of us has fleshed out an idea on a text file, so a few things:
+Feel free to add your ideas relating to the trailer to this file: concept-for-app-trailer.txt
+Otherwise, if you have a nice, big, pretty well-fleshed-out idea and have a lot to say about it, create a new text file. And if it gets big and you want the file to have sections, please mention them at the beginning so we can search and skip to them...
+And never forget to commit to the repo! This is how you get heard and we see the ideas :D
+
+--------------------------TRAILER CONCEPT---------------------------------------
+Actors:
+A person who lost their pet (hereafter referred to as pet-seeker)
+A person who found said pet (hereafter referred to as cafe-person)
+The pet (don't know if it's a cat or a dog yet)
+
+Showcase both sides of users:
+"I lost my dog"
+User Scenario: Pet-seeker tries to locate their pet (probably a dog if we want our branding game to be strong and consistent).
+
+"I found a pup looking like [insert description]... Friends, if you know the person who owns this, hit me up"
+User Scenario: Cafe-person 100 miles away (artistic license...) posts a picture of lost pet on Facebook and then a friend recommends the "Where's My Stuff" app. Person downloads it, creates a profile, and reports the lost animal.
+
+Rough sketch of the script/events in it:
+1- Pet paws the coffeeshop window, and cafe-person thinks, "I wonder if [pet] has an owner," posts the animal to social media. Cut to 2
+2- Distance shot of pet-seeker near disaster rubble...
+3- Zoom closer to pet-seeker yelling out the name of the pet - yells at least twice (in desperation if more calls for pet)... e.g. "Toto! Toto!" Cut to 4
+4- Cafe-person is recommended the "Where's My Stuff" app in the comments section. Jump to person creating a profile. Cut to 5
+5- Pet-seeker reports lost animal on "Where's My Stuff"
+6- Cafe-person reports lost animal with picture
+7- Pet-seeker's phone vibrates with a notification from WMS. Message from person in cafe: "I believe this is your [pet]" Conversation in texts about logistics.
+8- Cafe-person delivers dog and the pet-seeker is finally happy.
+9- Where's My Stuff logo
+
+
+-------------WHAT'S THIS GOT TO DO WITH ANYTHING?-------------------------------
+This is not just about cute puppies and/or the opportunity to interact with animals as a stress reliever. (In fact, filming and editing would probably counteract those effects...)
+
+Business Value:
+If we proceed with the splash screen and the revised puppy logo, this could enhance our branding and make it more cohesive.
+You know the Android app store and how some apps on the Android app store have videos that describe or promote them? This could be like one of those.
+This demonstrates that the app doesn't just have some niche use and could be of use to even those who feel invincible and well-connected, like city-dwellers.
+This shows our app in action and could show our beautiful UI.
+This shows happy users.
