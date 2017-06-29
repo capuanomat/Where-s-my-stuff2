@@ -1,30 +1,22 @@
 package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
-import com.example.matthieujbcapuano.wheresmystuff.Data.DatabaseHelper;
+import com.example.matthieujbcapuano.wheresmystuff.Data.RegisteredUsersDB;
 import com.example.matthieujbcapuano.wheresmystuff.Model.*;
 import com.example.matthieujbcapuano.wheresmystuff.R;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -50,7 +42,7 @@ public class RegistrationActivity extends AppCompatActivity {
      * Instance variables to try to store user data
      */
     ArrayList<User> userArray;
-    DatabaseHelper myDb;
+    RegisteredUsersDB myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +69,12 @@ public class RegistrationActivity extends AppCompatActivity {
         /** Initializing database variables **/
         Bundle bundle = getIntent().getExtras();
         userArray = bundle.getParcelableArrayList("userManager");
-        myDb = new DatabaseHelper(this);
+        myDb = new RegisteredUsersDB(this);
 
         /** When the buttons are pressed **/
         btnRegister.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 attemptRegister(userArray);
             }
         });

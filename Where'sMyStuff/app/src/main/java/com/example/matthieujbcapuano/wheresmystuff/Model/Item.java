@@ -3,10 +3,6 @@ package com.example.matthieujbcapuano.wheresmystuff.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Alezx on 6/27/2017.
- */
-
 public class Item implements Parcelable {
     private String date;
     //TODO: add category enum
@@ -24,6 +20,11 @@ public class Item implements Parcelable {
         this.status = status;
     }
 
+    public Item() {
+        this("", "", "", "", "");
+    }
+
+    /** Getters **/
     public String getName() {
         return name;
     }
@@ -42,6 +43,27 @@ public class Item implements Parcelable {
 
     public String getStatus() {
         return status;
+    }
+
+    /** Setters **/
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
