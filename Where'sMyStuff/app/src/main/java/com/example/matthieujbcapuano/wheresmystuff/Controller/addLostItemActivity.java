@@ -102,7 +102,8 @@ public class addLostItemActivity extends AppCompatActivity {
         boolean isInserted = myDB2.addLostItem(new Item(name, description, location, date, "Lost"));
         if (isInserted) {
             Toast.makeText(addLostItemActivity.this, "Item was posted!", Toast.LENGTH_LONG).show();
-            this.finish();
+            Intent backToLostPage = new Intent(addLostItemActivity.this, LostItemPage.class);
+            startActivity(backToLostPage);
         } else {
             Toast.makeText(addLostItemActivity.this, "Item was NOT posted!!", Toast.LENGTH_LONG).show();
             //TODO: Add more descriptive error message here

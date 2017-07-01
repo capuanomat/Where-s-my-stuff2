@@ -62,6 +62,7 @@ public class RegisteredUsersDB extends SQLiteOpenHelper{
                 users.add(us);
             } while (res.moveToNext());
         }
+        db.close();
         return users;
     }
 }

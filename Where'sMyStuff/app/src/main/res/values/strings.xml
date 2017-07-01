@@ -30,6 +30,7 @@
     <string name="title_activity_lost_item_content">LostItemContent</string>
     <string name="title_activity_add_lost_item">addLostItem</string>
     <string name="postAsLost">Post as Lost</string>
+    <string name="deleteLostItem">Delete Item</string>
 
 
 </resources>

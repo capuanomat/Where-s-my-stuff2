@@ -68,4 +68,9 @@ public class LostItemsDB extends SQLiteOpenHelper{
         }
         return items;
     }
+
+    public Integer deleteItem(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, "IDL = ?", new String[]{id});
+    }
 }

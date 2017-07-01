@@ -28,7 +28,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="460dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             <ListView
                 android:id="@+id/lostItems"
                 android:layout_width="match_parent"
-                android:layout_height="486dp" />
+                android:layout_height="390dp" />
 
         </LinearLayout>
     </ScrollView>
@@ -54,5 +54,14 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <Button
+        android:id="@+id/buttonDeleteLItem"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:text="@string/deleteLostItem"
+        app:layout_anchor="@+id/include4"
+        app:layout_anchorGravity="bottom|left" />
 
 </android.support.design.widget.CoordinatorLayout>

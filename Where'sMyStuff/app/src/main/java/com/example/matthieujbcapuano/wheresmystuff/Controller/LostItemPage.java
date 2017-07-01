@@ -3,40 +3,42 @@ package com.example.matthieujbcapuano.wheresmystuff.Controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.matthieujbcapuano.wheresmystuff.Data.LostItemsDB;
 import com.example.matthieujbcapuano.wheresmystuff.Model.Item;
-import com.example.matthieujbcapuano.wheresmystuff.Model.LostItem;
 import com.example.matthieujbcapuano.wheresmystuff.R;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.matthieujbcapuano.wheresmystuff.R.id.lostItems;
 
 //ALEXANDER: Built from a combination M3 and Creating Lists Tutorial online
 public class LostItemPage extends AppCompatActivity {
 
-    /** Instance variables for ??? **/
+    /**
+     * Instance variables for ???
+     **/
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ListView listView;
 
-    /** Database variables **/
-    private LostItemsDB db2;
+    /**
+     * Database variables
+     **/
+    private LostItemsDB myDB2;
     List<Item> items;
+
+    /**
+     * Buttons
+     **/
+    Button btnDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +52,29 @@ public class LostItemPage extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.lostItems);
 
         /** Database stuff **/
-        db2 = new LostItemsDB(this);
-        items = db2.getLostItems();
-        //ALEX: THIS IS THE PART THAT GETS THE LIST OF ALL ITEMS, SINCE IT'S IN THE onCreate METHOD
-        //      IT MIGHT ONLY UPDATE WHENEVER THIS METHOD TAKES PLACE. WHICH MIGHT JUST BE ONCE IDK.
-        //      IF YOU NEED IT TO UPDATE EACH TIME YOU WANT TO LIST THE ITEMS THEN JUST RUN THAT
-        //      LAST LINE WHEREVER YOU NEED THE LATEST LIST
-
-        /** Initializing the floating action button and setting it off if pressed */
+        myDB2 = new LostItemsDB(this);
+        items = myDB2.getLostItems();
 
         ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(
                 this, android.R.layout.simple_list_item_1, items
         );
         listView.setAdapter(arrayAdapter);
+
+        btnDelete = (Button) findViewById(R.id.buttonDeleteLItem);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer deleteRows = myDB2.deleteItem("9");
+                if (deleteRows > 0) {
+                    Toast.makeText(LostItemPage.this, "Data was deleted!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(LostItemPage.this, "Data was NOT deleted!", Toast.LENGTH_SHORT).show();
+                    // TODO: Add a more descriptive error message here
+                }
+            }
+        });
+
+        /** Initializing the floating action button and setting it off if pressed **/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +93,11 @@ public class LostItemPage extends AppCompatActivity {
 //        mRecyclerView.setAdapter(mAdapter);
     }
 }
+
+
+
+
+
 
 //    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 //        private List<Item> mDataset;
