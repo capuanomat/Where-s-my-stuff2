@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.matthieujbcapuano.wheresmystuff.Controller.LostItemPage">
+    tools:context="com.example.matthieujbcapuano.wheresmystuff.Controller.LostItemPageActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -42,7 +42,13 @@
             <ListView
                 android:id="@+id/lostItems"
                 android:layout_width="match_parent"
-                android:layout_height="390dp" />
+                android:layout_height="359dp" />
+
+            <Button
+                android:id="@+id/buttonBackToMainLost"
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:text="@string/backToMainLost" />
 
         </LinearLayout>
     </ScrollView>

@@ -31,6 +31,11 @@
     <string name="title_activity_add_lost_item">addLostItem</string>
     <string name="postAsLost">Post as Lost</string>
     <string name="deleteLostItem">Delete Item</string>
+    <string name="title_activity_found_item_page">FoundItemPageActivity</string>
+    <string name="title_activity_add_fount_item">addFountItemActivity</string>
+    <string name="postAsFound">Post as Found</string>
+    <string name="backToMainFound">Back to Main Page</string>
+    <string name="backToMainLost">Back to Main Page</string>
 
 
 </resources>

@@ -12,33 +12,28 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.matthieujbcapuano.wheresmystuff.Data.LostItemsDB;
+import com.example.matthieujbcapuano.wheresmystuff.Data.ItemsDB;
 import com.example.matthieujbcapuano.wheresmystuff.Model.Item;
 import com.example.matthieujbcapuano.wheresmystuff.R;
 
 import java.util.List;
 
 //ALEXANDER: Built from a combination M3 and Creating Lists Tutorial online
-public class LostItemPage extends AppCompatActivity {
+public class LostItemPageActivity extends AppCompatActivity {
 
-    /**
-     * Instance variables for ???
-     **/
+    /** Instance variables for ??? **/
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ListView listView;
 
-    /**
-     * Database variables
-     **/
-    private LostItemsDB myDB2;
-    List<Item> items;
+    /** Database variables **/
+    private ItemsDB myDB2;
+    List<Item> lostItems;
 
-    /**
-     * Buttons
-     **/
+    /** Buttons **/
     Button btnDelete;
+    Button btnBackToMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +47,13 @@ public class LostItemPage extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.lostItems);
 
         /** Database stuff **/
-        myDB2 = new LostItemsDB(this);
-        items = myDB2.getLostItems();
+        myDB2 = new ItemsDB(this);
+        lostItems = myDB2.getLostItems();
+
+        btnBackToMain = (Button) findViewById(R.id.buttonBackToMainLost);
 
         ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(
-                this, android.R.layout.simple_list_item_1, items
+                this, android.R.layout.simple_list_item_1, lostItems
         );
         listView.setAdapter(arrayAdapter);
 
@@ -64,11 +61,12 @@ public class LostItemPage extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer deleteRows = myDB2.deleteItem("9");
+                // TODO: Index to delete is currently hardcoded, make it delete whichever item you want
+                Integer deleteRows = myDB2.deleteLostItem("9");
                 if (deleteRows > 0) {
-                    Toast.makeText(LostItemPage.this, "Data was deleted!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LostItemPageActivity.this, "Data was deleted!", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(LostItemPage.this, "Data was NOT deleted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LostItemPageActivity.this, "Data was NOT deleted!", Toast.LENGTH_SHORT).show();
                     // TODO: Add a more descriptive error message here
                 }
             }
@@ -79,8 +77,17 @@ public class LostItemPage extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentAddLostItem = new Intent(LostItemPage.this, addLostItemActivity.class);
+                Intent intentAddLostItem = new Intent(LostItemPageActivity.this, addLostItemActivity.class);
                 startActivity(intentAddLostItem);
+            }
+        });
+
+
+        btnBackToMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentBackToMain = new Intent(LostItemPageActivity.this, MainPageActivity.class);
+                startActivity(intentBackToMain);
             }
         });
 
@@ -89,7 +96,7 @@ public class LostItemPage extends AppCompatActivity {
 //        mRecyclerView.setLayoutManager(mLayoutManager);
 //        addLostItemActivity lostItemManager = new addLostItemActivity();
 //        //ArrayList<LostItem> list = lostItemManager.getLostItemsList();
-//        mAdapter = new MyAdapter(items);
+//        mAdapter = new MyAdapter(lostItems);
 //        mRecyclerView.setAdapter(mAdapter);
     }
 }
@@ -103,7 +110,7 @@ public class LostItemPage extends AppCompatActivity {
 //        private List<Item> mDataset;
 //
 //        // Provide a reference to the views for each data item
-//        // Complex data items may need more than one view per item, and
+//        // Complex data lostItems may need more than one view per item, and
 //        // you provide access to all the views for a data item in a view holder
 //        public class ViewHolder extends RecyclerView.ViewHolder {
 //            // each data item is just a string in this case

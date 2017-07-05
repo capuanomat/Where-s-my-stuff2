@@ -15,6 +15,7 @@ public class MainPageActivity extends AppCompatActivity {
 
     Button btnLogout;
     Button btnLostPage;
+    Button btnFoundPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,18 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Lost/Request button pressed!");
-                Intent intentGoToLostPage = new Intent(MainPageActivity.this, LostItemPage.class);
+                Intent intentGoToLostPage = new Intent(MainPageActivity.this, LostItemPageActivity.class);
                 startActivity(intentGoToLostPage);
+            }
+        });
+
+        btnFoundPage = (Button) (findViewById(R.id.buttonFound));
+        btnFoundPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Found button pressed!");
+                Intent intentGoToFoundPage = new Intent(MainPageActivity.this, FoundItemPageActivity.class);
+                startActivity(intentGoToFoundPage);
             }
         });
     }

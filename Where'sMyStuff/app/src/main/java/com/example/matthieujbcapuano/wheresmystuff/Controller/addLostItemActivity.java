@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.matthieujbcapuano.wheresmystuff.Data.LostItemsDB;
+import com.example.matthieujbcapuano.wheresmystuff.Data.ItemsDB;
 import com.example.matthieujbcapuano.wheresmystuff.Model.Item;
 import com.example.matthieujbcapuano.wheresmystuff.Model.LostItem;
 import com.example.matthieujbcapuano.wheresmystuff.R;
@@ -26,22 +26,19 @@ public class addLostItemActivity extends AppCompatActivity {
     private EditText mLocationView;
     private EditText mDateView;
 
-    /**
-     * Instance variable to store lost items
-     */
+    /** Instance variable to store lost lostItems **/
     ArrayList<LostItem> lostItemsList;
 
-    Button addLostItemButton;
+    /** Instance variables to try to store user data **/
+    ItemsDB myDB2;
 
-    /**
-     * Instance variables to try to store user data
-     */
-    LostItemsDB myDB2;
-
-    /** Getter for the array of lost items **/
+    /** Getter for the array of lost lostItems **/
     public ArrayList<LostItem> getLostItemsList() {
         return lostItemsList;
     }
+
+    /** Buttons **/
+    Button addLostItemButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +53,11 @@ public class addLostItemActivity extends AppCompatActivity {
         mLocationView = (EditText) findViewById(R.id.location);
         mDateView = (EditText) findViewById(R.id.date);
 
-        /** Initializing the list where we will store lost items **/
+        /** Initializing the list where we will store lost lostItems **/
         lostItemsList = new ArrayList<>();
 
         /** Initializing database variables **/
-        myDB2 = new LostItemsDB(this);
+        myDB2 = new ItemsDB(this);
 
         /** Initializing the "Post Lost Item" Button and setting it off if clicked**/
         addLostItemButton = (Button) findViewById(R.id.buttonAddLost);
@@ -89,7 +86,7 @@ public class addLostItemActivity extends AppCompatActivity {
 
         /*
         if (added) {
-            Intent returnToLostPage = new Intent(addLostItemActivity.this, LostItemPage.class);
+            Intent returnToLostPage = new Intent(addLostItemActivity.this, LostItemPageActivity.class);
             startActivity(returnToLostPage);
         } else {
             Toast.makeText(addLostItemActivity.this, "Item was not inserted!", Toast.LENGTH_LONG).show();
@@ -102,7 +99,7 @@ public class addLostItemActivity extends AppCompatActivity {
         boolean isInserted = myDB2.addLostItem(new Item(name, description, location, date, "Lost"));
         if (isInserted) {
             Toast.makeText(addLostItemActivity.this, "Item was posted!", Toast.LENGTH_LONG).show();
-            Intent backToLostPage = new Intent(addLostItemActivity.this, LostItemPage.class);
+            Intent backToLostPage = new Intent(addLostItemActivity.this, LostItemPageActivity.class);
             startActivity(backToLostPage);
         } else {
             Toast.makeText(addLostItemActivity.this, "Item was NOT posted!!", Toast.LENGTH_LONG).show();
