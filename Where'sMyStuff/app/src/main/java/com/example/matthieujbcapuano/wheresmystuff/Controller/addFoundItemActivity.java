@@ -98,8 +98,8 @@ public class addFoundItemActivity extends AppCompatActivity {
         boolean isInserted = myDB2.addFoundItem(new Item(name, description, location, date, "Found"));
         if (isInserted) {
             Toast.makeText(addFoundItemActivity.this, "Item was posted!", Toast.LENGTH_LONG).show();
-            Intent backToLostPage = new Intent(addFoundItemActivity.this, FoundItemPageActivity.class);
-            startActivity(backToLostPage);
+            Intent backToFoundPage = new Intent(addFoundItemActivity.this, FoundItemPageActivity.class);
+            startActivity(backToFoundPage);
         } else {
             Toast.makeText(addFoundItemActivity.this, "Item was NOT posted!!", Toast.LENGTH_LONG).show();
             //TODO: Add more descriptive error message here
