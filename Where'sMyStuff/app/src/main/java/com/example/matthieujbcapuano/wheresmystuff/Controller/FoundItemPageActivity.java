@@ -82,13 +82,13 @@ public class FoundItemPageActivity extends AppCompatActivity {
     }
 
     private void attemptSearch() {
-        String search = searchBar.getText().toString();
+        String search = searchBar.getText().toString().toLowerCase();
         searchFoundItems = new ArrayList<>();
         //ALEXANDER: searches array to find the items with searched for date, this was done because
         //the date is what is shown currently on found item page
         //TODO: change display to name and description, and then modify search accordingly
         for(Item item: myDB2.getFoundItems()) {
-            if (item.getName().equals(search)) {
+            if (item.getName().toLowerCase().equals(search)) {
                 searchFoundItems.add(item);
             }
 //             else if (item.getDescription().equals(search)) {
@@ -109,9 +109,9 @@ public class FoundItemPageActivity extends AppCompatActivity {
         } else {
             Toast.makeText(FoundItemPageActivity.this, "Here are your search results",
                     Toast.LENGTH_LONG).show();
-            Intent intentRefreshFoundPage = new Intent(FoundItemPageActivity.this,
-                    FoundItemPageActivity.class);
-            startActivity(intentRefreshFoundPage);
+//            Intent intentRefreshFoundPage = new Intent(FoundItemPageActivity.this,
+//                    FoundItemPageActivity.class);
+//            startActivity(intentRefreshFoundPage);
         }
     }
 
