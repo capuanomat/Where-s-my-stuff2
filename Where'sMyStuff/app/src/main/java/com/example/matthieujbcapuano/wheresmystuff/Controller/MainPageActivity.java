@@ -17,6 +17,10 @@ public class MainPageActivity extends AppCompatActivity {
     Button btnLostPage;
     Button btnFoundPage;
 
+    /**
+     *
+     * @param savedInstanceState instance state for launch
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

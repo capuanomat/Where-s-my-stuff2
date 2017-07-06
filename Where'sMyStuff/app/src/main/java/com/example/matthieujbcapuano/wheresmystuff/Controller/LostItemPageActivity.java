@@ -35,6 +35,10 @@ public class LostItemPageActivity extends AppCompatActivity {
     Button btnDelete;
     Button btnBackToMain;
 
+    /**
+     *
+     * @param savedInstanceState instance state for launch
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

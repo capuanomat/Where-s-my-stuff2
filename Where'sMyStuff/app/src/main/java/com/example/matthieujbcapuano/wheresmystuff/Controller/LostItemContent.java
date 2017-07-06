@@ -11,6 +11,10 @@ import com.example.matthieujbcapuano.wheresmystuff.R;
 
 public class LostItemContent extends AppCompatActivity {
 
+    /**
+     *
+     * @param savedInstanceState instance state for launch
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

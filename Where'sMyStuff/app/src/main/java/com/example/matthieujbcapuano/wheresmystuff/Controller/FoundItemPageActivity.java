@@ -36,6 +36,10 @@ public class FoundItemPageActivity extends AppCompatActivity {
     Button btnBackToMain;
     Button searchButton;
 
+    /**
+     *
+     * @param savedInstanceState instance state used to launch
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +64,8 @@ public class FoundItemPageActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentAddFoundItem = new Intent(FoundItemPageActivity.this, addFoundItemActivity.class);
+                Intent intentAddFoundItem = new Intent(FoundItemPageActivity.this,
+                        addFoundItemActivity.class);
                 startActivity(intentAddFoundItem);
             }
         });
@@ -68,7 +73,8 @@ public class FoundItemPageActivity extends AppCompatActivity {
         btnBackToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentBackToMain = new Intent(FoundItemPageActivity.this, MainPageActivity.class);
+                Intent intentBackToMain = new Intent(FoundItemPageActivity.this,
+                        MainPageActivity.class);
                 startActivity(intentBackToMain);
             }
         });
@@ -81,6 +87,10 @@ public class FoundItemPageActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * reads edit text view for search, makes a new database and adapter to fill items that fit are
+     * with search
+     */
     private void attemptSearch() {
         String search = searchBar.getText().toString().toLowerCase();
         searchFoundItems = new ArrayList<>();

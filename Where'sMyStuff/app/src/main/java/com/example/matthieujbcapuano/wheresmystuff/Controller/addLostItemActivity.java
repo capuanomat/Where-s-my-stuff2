@@ -93,10 +93,12 @@ public class addLostItemActivity extends AppCompatActivity {
 
         /*
         if (added) {
-            Intent returnToLostPage = new Intent(addLostItemActivity.this, LostItemPageActivity.class);
+            Intent returnToLostPage = new Intent(addLostItemActivity.this,
+            LostItemPageActivity.class);
             startActivity(returnToLostPage);
         } else {
-            Toast.makeText(addLostItemActivity.this, "Item was not inserted!", Toast.LENGTH_LONG).show();
+            Toast.makeText(addLostItemActivity.this, "Item was not inserted!",
+            Toast.LENGTH_LONG).show();
         }
         */
         AddData();
@@ -110,10 +112,12 @@ public class addLostItemActivity extends AppCompatActivity {
         boolean isInserted = myDB2.addLostItem(new Item(name, description, location, date, "Lost"));
         if (isInserted) {
             Toast.makeText(addLostItemActivity.this, "Item was posted!", Toast.LENGTH_LONG).show();
-            Intent backToLostPage = new Intent(addLostItemActivity.this, LostItemPageActivity.class);
+            Intent backToLostPage = new Intent(addLostItemActivity.this,
+                    LostItemPageActivity.class);
             startActivity(backToLostPage);
         } else {
-            Toast.makeText(addLostItemActivity.this, "Item was NOT posted!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(addLostItemActivity.this, "Item was NOT posted!!",
+                    Toast.LENGTH_LONG).show();
             //TODO: Add more descriptive error message here
         }
     }

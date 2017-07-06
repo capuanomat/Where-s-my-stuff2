@@ -64,7 +64,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     ArrayList<User> userArray;
     private RegisteredUsersDB db;
 
-
+    /**
+     *
+     * @param savedInstanceState instance state for launch
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,6 +172,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    /**
+     *
+     * @param email the email to check
+     * @return whether or not email is valid
+     */
     private boolean isEmailValid(String email) {
         List<User> users = db.getAccounts();
         if (users.isEmpty()) {
@@ -184,6 +192,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //return userArray.contains(email) || email.equals("user");
     }
 
+    /**
+     *
+     * @param passwords the password to check
+     * @return whether or not password is valid
+     */
     private boolean isPasswordValid(String passwords) {
         List<User> users = db.getAccounts();
         if (users.isEmpty()) {
@@ -199,6 +212,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //return userArray.contains(password) || password.equals("pass");
     }
 
+    /**
+     * views database
+     */
     public void viewAll() {
         //SQLiteDatabase db = this.getReadableDatabase();
     }
@@ -242,6 +258,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    /**
+     *
+     * @param i integer for oncreate
+     * @param bundle bundle for oncreate
+     * @return loader for on create
+     */
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
@@ -259,6 +281,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
 
+    /**
+     *
+     * @param cursorLoader the cursorloader for loading
+     * @param cursor the cursor for loading
+     */
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         List<String> emails = new ArrayList<>();
@@ -271,11 +298,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         addEmailsToAutoComplete(emails);
     }
 
+    /**
+     *
+     * @param cursorLoader the cursorloader for loading
+     */
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
     }
 
+    /**
+     *
+     * @param emailAddressCollection list to add emails to
+     */
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
@@ -285,7 +320,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
-
+    /**
+     * query for emails
+     */
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
@@ -310,6 +347,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mPassword = password;
         }
 
+        /**
+         *
+         * @param params parameter
+         * @return whether or not new account is registered
+         */
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
@@ -325,6 +367,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
 
+        /**
+         *
+         * @param success whether or not password is correct
+         */
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
@@ -338,6 +384,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         }
 
+        /**
+         * cancels login
+         */
         @Override
         protected void onCancelled() {
             mAuthTask = null;

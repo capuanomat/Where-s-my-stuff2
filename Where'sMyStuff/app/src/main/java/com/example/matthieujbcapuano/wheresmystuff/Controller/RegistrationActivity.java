@@ -44,6 +44,10 @@ public class RegistrationActivity extends AppCompatActivity {
     ArrayList<User> userArray;
     RegisteredUsersDB myDb;
 
+    /**
+     *
+     * @param savedInstanceState instance state for launch
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +97,10 @@ public class RegistrationActivity extends AppCompatActivity {
      */
     String password, username, name, initialPhoneNumber, email, userType;
 
+    /**
+     *
+     * @param userArray list of all users
+     */
     private void attemptRegister(ArrayList<User> userArray) {
         password = mPasswordView.getText().toString();
         username = mUsernameView.getText().toString();
@@ -117,6 +125,12 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     // TODO: This and the three methods below check that input data is correct. We can improve them.
+
+    /**
+     *
+     * @param email the email to check
+     * @return whether or not email is valid
+     */
     private boolean isEmailValid(String email) {
         if (!email.contains("@")) {
             Toast.makeText(RegistrationActivity.this, "Email is invalid", Toast.LENGTH_LONG).show();
@@ -125,16 +139,28 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     //ALEXANDER: added this method, implemented userManager's method
+    /**
+     *
+     * @param username the username to check
+     * @return whether or not the username is valid
+     */
     private boolean isUserNameValid(String username) {
         return true; //_userManager.findValidUsername(username);
     }
 
     //ALEXANDER: changed this method from template, implemented usermanager's method
+    /**
+     *
+     * @param password the password to check
+     * @return whether or not the password is valid
+     */
     private boolean isPasswordValid(String password) {
         return true; //_userManager.findValidPassword(password);
     }
 
-
+    /**
+     * checks if user was added to database, posts message
+     */
     public void AddData() {
         boolean isInserted = myDb.addAccount(new User(name, username, password));
         if(isInserted) {

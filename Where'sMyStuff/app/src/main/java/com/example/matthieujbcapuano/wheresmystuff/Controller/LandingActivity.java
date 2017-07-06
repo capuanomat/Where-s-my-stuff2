@@ -38,6 +38,10 @@ public class LandingActivity extends AppCompatActivity {
 
     //RegisteredUsersDB myDb;
 
+    /**
+     *
+     * @param savedInstanceState instance state for launch
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +83,12 @@ public class LandingActivity extends AppCompatActivity {
     }
 
     // ----------------------------------------- MAYBE REMOVABLE -------------------------------
+
+    /**
+     *
+     * @param menu adds lost items to action bar
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds lostItems to the action bar if it is present.
@@ -86,6 +96,11 @@ public class LandingActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     *
+     * @param item menu item to select
+     * @return whether item was selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will automatically handle clicks on
