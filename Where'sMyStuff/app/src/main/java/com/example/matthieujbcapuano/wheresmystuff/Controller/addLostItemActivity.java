@@ -40,6 +40,10 @@ public class addLostItemActivity extends AppCompatActivity {
     /** Buttons **/
     Button addLostItemButton;
 
+    /**
+     *
+     * @param savedInstanceState instance state to create on
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +76,9 @@ public class addLostItemActivity extends AppCompatActivity {
     /** Instance variables to store data from the UI **/
     String name, description, location, date;
 
+    /**
+     * reads in views for information, creates new lost item with information
+     */
     private void attemptToAddLostItem() {
         name = mNameView.getText().toString();
         description = mDescriptionView.getText().toString();
@@ -95,6 +102,10 @@ public class addLostItemActivity extends AppCompatActivity {
         AddData();
     }
 
+    /**
+     * tells whether or not lost item was added to data base, displays message
+     * reloads lost page if item was added
+     */
     public void AddData() {
         boolean isInserted = myDB2.addLostItem(new Item(name, description, location, date, "Lost"));
         if (isInserted) {

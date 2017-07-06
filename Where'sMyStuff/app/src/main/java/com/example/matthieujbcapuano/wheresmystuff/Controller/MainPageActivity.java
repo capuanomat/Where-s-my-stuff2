@@ -27,7 +27,7 @@ public class MainPageActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "MATTHIEU: Lougout Button was Pressed!");
+                Log.i(TAG, "MATTHIEU: Logout Button was Pressed!");
                 Intent intentLogout = new Intent(MainPageActivity.this, LandingActivity.class);
                 startActivity(intentLogout);
             }

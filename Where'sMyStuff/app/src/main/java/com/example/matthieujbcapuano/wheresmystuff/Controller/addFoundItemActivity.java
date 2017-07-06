@@ -37,7 +37,10 @@ public class addFoundItemActivity extends AppCompatActivity {
     /** Buttons **/
     Button addFoundItemButton;
 
-
+    /**
+     *
+     * @param savedInstanceState previous instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +74,9 @@ public class addFoundItemActivity extends AppCompatActivity {
     /** Instance variables to store data from the UI **/
     String name, description, location, date;
 
+    /**
+     * reads views for information, creates a new foun item
+     */
     private void attemptToAddFoundItem() {
         name = mNameView.getText().toString();
         description = mDescriptionView.getText().toString();
@@ -94,6 +100,10 @@ public class addFoundItemActivity extends AppCompatActivity {
         AddData();
     }
 
+    /**
+     * tells whether or not new found item was added to database, displays text message
+     * if item was added, reloads found page
+     */
     public void AddData() {
         boolean isInserted = myDB2.addFoundItem(new Item(name, description, location, date, "Found"));
         if (isInserted) {
