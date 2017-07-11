@@ -1,13 +1,12 @@
 package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
-import com.example.matthieujbcapuano.wheresmystuff.Data.DatabaseHelper;
+import com.example.matthieujbcapuano.wheresmystuff.Data.RegisteredUsersDB;
 import com.example.matthieujbcapuano.wheresmystuff.Model.*;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -34,12 +33,10 @@ import android.widget.TextView;
 
 import com.example.matthieujbcapuano.wheresmystuff.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.matthieujbcapuano.wheresmystuff.R.id.email_sign_in_button;
-import static com.example.matthieujbcapuano.wheresmystuff.R.id.password;
 
 /**
  * A login screen that offers login via email/password.
@@ -54,14 +51,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final int REQUEST_READ_CONTACTS = 0;
 
     /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-
-    /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
@@ -73,16 +62,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     ArrayList<User> userArray;
-    private DatabaseHelper db;
+    private RegisteredUsersDB db;
 
-
+    /**
+     *
+     * @param savedInstanceState instance state for launch
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
         /** Database stuff **/
-        db = new DatabaseHelper(this);
+        db = new RegisteredUsersDB(this);
 
         // MATTHIEU: Trying to get the data
         Bundle bundle = getIntent().getExtras();
@@ -180,6 +172,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    /**
+     *
+     * @param email the email to check
+     * @return whether or not email is valid
+     */
     private boolean isEmailValid(String email) {
         List<User> users = db.getAccounts();
         if (users.isEmpty()) {
@@ -195,6 +192,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //return userArray.contains(email) || email.equals("user");
     }
 
+    /**
+     *
+     * @param passwords the password to check
+     * @return whether or not password is valid
+     */
     private boolean isPasswordValid(String passwords) {
         List<User> users = db.getAccounts();
         if (users.isEmpty()) {
@@ -210,6 +212,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //return userArray.contains(password) || password.equals("pass");
     }
 
+    /**
+     * views database
+     */
     public void viewAll() {
         //SQLiteDatabase db = this.getReadableDatabase();
     }
@@ -253,6 +258,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    /**
+     *
+     * @param i integer for oncreate
+     * @param bundle bundle for oncreate
+     * @return loader for on create
+     */
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
@@ -270,6 +281,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
 
+    /**
+     *
+     * @param cursorLoader the cursorloader for loading
+     * @param cursor the cursor for loading
+     */
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         List<String> emails = new ArrayList<>();
@@ -282,11 +298,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         addEmailsToAutoComplete(emails);
     }
 
+    /**
+     *
+     * @param cursorLoader the cursorloader for loading
+     */
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
     }
 
+    /**
+     *
+     * @param emailAddressCollection list to add emails to
+     */
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
@@ -296,7 +320,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
-
+    /**
+     * query for emails
+     */
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
@@ -321,6 +347,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mPassword = password;
         }
 
+        /**
+         *
+         * @param params parameter
+         * @return whether or not new account is registered
+         */
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
@@ -332,18 +363,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
             // TODO: register the new account here.
             return true;
         }
 
+        /**
+         *
+         * @param success whether or not password is correct
+         */
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
@@ -357,6 +384,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         }
 
+        /**
+         * cancels login
+         */
         @Override
         protected void onCancelled() {
             mAuthTask = null;

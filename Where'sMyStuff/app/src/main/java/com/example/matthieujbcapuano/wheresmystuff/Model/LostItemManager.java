@@ -21,6 +21,9 @@ public class LostItemManager {
     //ALEXANDER: null item returned when no item is found
     private final LostItem theNullItem = new LostItem("No name","No description","No Location", "No date");
 
+    /**
+     * constructor of manager
+     */
     public LostItemManager() {
         lostItemlist = new ArrayList<>();
     }
@@ -37,16 +40,30 @@ public class LostItemManager {
         return true;
     }
 
+    /**
+     *
+     * @return lost item
+     */
     public LostItem getCurrentLostItem() {
         return currenLostItem;
     }
 
+    /**
+     *
+     * @param lostItem item to set as current lost item
+     */
     public void setCurrentLostItem(LostItem lostItem) {
         currenLostItem = lostItem;
     }
 
     //ALEXANDER: example of searching for item in list by attribute from M3, can be implemented via
     //other methods for all attributes
+
+    /**
+     *
+     * @param name the name to search for
+     * @return the item found
+     */
     public LostItem getLostItemByName(String name) {
         for (LostItem item: lostItemlist) {
             if (item.getName().equals(name)) {

@@ -4,11 +4,9 @@ Team 18: Summer 2017, CS - 2340 group project to help people find lost items in 
 
 dabest app
 
-## Priority as of 27/06: M5
-- Sharence: Do the UI stuff
-- Ash and Simola: Make the UML Diagram
-- Alex and Matthieu: Work on the code implementation
-
+## Priorities and M7 Requirements
+- Add Google map and everything related to that
+- Fix found and registration page so it's less buggy and hacky
 
 ## Future Ideas & Extra Credit Ideas:
 - Make the UI prettier
