@@ -1,16 +1,20 @@
 package com.example.matthieujbcapuano.wheresmystuff.Model;
 
+import java.util.Date;
+
+import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.location.Location;
 
 public class Item implements Parcelable {
-    private String date;
-    //TODO: add category enum
-    private String location;
+    private Date date;
+    private ItemCategory cat; //made us an enum - Simola Nayak
+    private Location location;
     private String description;
     private String name;
     private String status;
-    //TODO: add picture variable
+    private Image image; // added the picture variable- Simola Nayak
 
     /**
      *
@@ -19,20 +23,23 @@ public class Item implements Parcelable {
      * @param location the location of the item
      * @param date the date of the item
      * @param status the status of the item
+     * @param cat the category of the item
      */
-    public Item(String name, String description, String location, String date, String status) {
+    public Item(String name, String description, Location location, Date date, String status, ItemCategory cat, Image image) {
         this.name = name;
         this.description = description;
         this.location = location;
         this.date = date;
         this.status = status;
+        this.cat = cat;
+        this.image = image;
     }
 
     /**
      * empty constructor
      */
     public Item() {
-        this("", "", "", "", "");
+        this("", "", null, null, "", ItemCategory.NONE, null);
     }
 
     /** Getters **/
@@ -42,6 +49,14 @@ public class Item implements Parcelable {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     *
+     * @return picture of item
+     */
+    public Image getImage() {
+        return image;
     }
 
     /**
@@ -56,7 +71,7 @@ public class Item implements Parcelable {
      *
      * @return location of item
      */
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
@@ -64,7 +79,7 @@ public class Item implements Parcelable {
      *
      * @return date of item
      */
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -81,7 +96,7 @@ public class Item implements Parcelable {
      *
      * @param date the date to set to
      */
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -89,7 +104,7 @@ public class Item implements Parcelable {
      *
      * @param location the location to set to
      */
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
@@ -129,8 +144,8 @@ public class Item implements Parcelable {
     private Item(Parcel in) {
         name = in.readString();
         description = in.readString();
-        location = in.readString();
-        date = in.readString();
+        //location = in.readParcelable;
+        //date = in.readString();
         status = in.readString();
     }
 
@@ -146,8 +161,8 @@ public class Item implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(description);
-        dest.writeString(location);
-        dest.writeString(date);
+        dest.writeParcelable(location, 0);
+        dest.writeParcelable(date, 0);
         dest.writeString(status);
     }
 
