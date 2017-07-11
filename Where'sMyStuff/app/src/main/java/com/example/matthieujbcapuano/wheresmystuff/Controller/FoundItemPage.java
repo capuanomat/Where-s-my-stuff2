@@ -15,11 +15,12 @@ import com.example.matthieujbcapuano.wheresmystuff.R;
  * Created by simolanayak on 6/27/17.
  */
 
-public class FoundItemPage extends AppCompatActivity{
+public class LostItemPage extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_found_item_page);
+        setContentView(R.layout.activity_lost_item_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,4 +41,29 @@ public class FoundItemPage extends AppCompatActivity{
         LostItemManager lostItemManager = LostItemManager.getInstance();
         //recyclerView.setAdapter(new );
     }
+
+//    public class SimpleLostItemRecyclerViewAdapter extends
+//            RecyclerView.Adapter<SimpleLostItemRecyclerViewAdapter.ViewHolder> {
+//        private final List<LostItem> mLostItems;
+//
+//        public SimpleLostItemRecyclerViewAdapter(List<LostItem> list) {
+//            mLostItems = list;
+//        }
+//
+//        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//
+//        View view = LayoutInflater.from(parent.getContext()).inflate(
+//                R.layout.activity_lost_item_page, parent, false);
+//
+//        return new ViewHolder(view);
+//        }
+//        public onBindViewHolder(final ViewHolder holder, int position) {
+//            final LostItemManager lostItemManager = LostItemManager.getInstance();
+//            holder.mLostItem = mLostItems.get(position);
+//            holder.mNameView.setText("" + mLostItems.get(position).getName());
+//            holder.mDescriptionView.setText(mLostItems.get(position).getDescription());
+//
+//        }
+//    }
+
 }
