@@ -4,9 +4,19 @@ Team 18: Summer 2017, CS - 2340 group project to help people find lost items in 
 
 dabest app
 
-## Priorities and M7 Requirements
-- Add Google map and everything related to that
-- Fix found and registration page so it's less buggy and hacky
+## TO DO
+- SIMOLA: Finish Google Maps and demo by Tuesday
+-- M8: Methods for JUnit:
+--- Sharence: isEmailValid() in LoginActivity
+--- Ash: isPasswordValid() in LoginActivity
+--- Alex: isPasswordValid() in RegistrationActivity
+--- Simola: isUserNameValid() in RegistrationActivity
+--- Matthieu: ... will find one
+
+- M8: EVERYONE prepare for code review on Tuesday
+- ASH: IOS Implementation
+- SIMOLA: If time, do web app
+
 
 ## Future Ideas & Extra Credit Ideas:
 - Make the UI prettier
