@@ -144,8 +144,8 @@ public class Item implements Parcelable {
     private Item(Parcel in) {
         name = in.readString();
         description = in.readString();
-        //location = in.readParcelable;
-        //date = in.readString();
+        //location =  ;
+        //date = ;
         status = in.readString();
     }
 
@@ -161,8 +161,8 @@ public class Item implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(description);
-        dest.writeParcelable(location, 0);
-        dest.writeParcelable(date, 0);
+        //location
+        //date
         dest.writeString(status);
     }
 
