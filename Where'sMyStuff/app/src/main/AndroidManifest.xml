@@ -42,13 +42,29 @@
         <activity android:name=".Controller.MainPageActivity" />
         <activity android:name=".Controller.RegistrationActivity" />
         <activity
-            android:name=".Controller.LostItemPage"
+            android:name=".Controller.LostItemPageActivity"
             android:label="@string/title_activity_lost_item_page"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controller.MainPageActivity" />
         </activity>
+        <activity
+            android:name=".Controller.LostItemContent"
+            android:label="@string/title_activity_lost_item_content"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Controller.addLostItemActivity"
+            android:label="@string/title_activity_add_lost_item"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Controller.FoundItemPageActivity"
+            android:label="@string/title_activity_found_item_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Controller.addFoundItemActivity"
+            android:label="@string/title_activity_add_fount_item"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

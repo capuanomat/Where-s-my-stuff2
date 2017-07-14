@@ -11,7 +11,7 @@ import com.example.matthieujbcapuano.wheresmystuff.Model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHelper extends SQLiteOpenHelper{
+public class RegisteredUsersDB extends SQLiteOpenHelper{
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "user.db";
 
@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String COL_3 = "USERNAME";
     public static final String COL_4 = "PASSWORD";
 
-    public DatabaseHelper(Context context) {
+    public RegisteredUsersDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -44,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         contentValues.put(COL_4, user.getPassword());
 
         long result = db.insert(TABLE_NAME, null, contentValues);
+        db.close();
         return (result != -1);
     }
 
@@ -61,6 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 users.add(us);
             } while (res.moveToNext());
         }
+        db.close();
         return users;
     }
 }
