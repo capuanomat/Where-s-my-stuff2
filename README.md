@@ -6,6 +6,7 @@ dabest app
 
 ## TO DO
 - SIMOLA: Finish Google Maps and demo by Tuesday
+
 -- M8: Methods for JUnit:
 --- Sharence: isEmailValid() in LoginActivity
 --- Ash: isPasswordValid() in LoginActivity
