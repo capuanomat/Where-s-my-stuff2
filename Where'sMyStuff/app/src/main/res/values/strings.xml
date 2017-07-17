@@ -36,6 +36,7 @@
     <string name="postAsFound">Post as Found</string>
     <string name="backToMainFound">Back to Main Page</string>
     <string name="backToMainLost">Back to Main Page</string>
+    <string name="username_Hint">Username</string>
 
 
 </resources>
