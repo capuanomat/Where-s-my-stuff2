@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 public class UserManager implements Serializable{
 
-    // TEST CHANGE BY MATT
-
     /**
      * Instance variable that seems to be necessary to make a class serializable.
      */
