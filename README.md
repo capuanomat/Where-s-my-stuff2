@@ -7,7 +7,7 @@ dabest app
 ## TO DO
 - SIMOLA: Finish Google Maps and demo by Tuesday
 - M8: Methods for JUnit:
-    - Sharence: isEmailValid() in LoginActivity
+    - Sharence: findValidUsername() in UserManager
     - Ash: isPasswordValid() in LoginActivity
     - Alex: isPasswordValid() in RegistrationActivity
     - Simola: isUserNameValid() in RegistrationActivity
