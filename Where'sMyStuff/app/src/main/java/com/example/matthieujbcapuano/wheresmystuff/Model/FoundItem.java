@@ -18,7 +18,12 @@ public class FoundItem extends Item{
      * @param location the location of the found item
      * @param date the date of the found item
      */
+<<<<<<< HEAD
     public FoundItem(String name, String description, Location location, Date date, ItemCategory cat, Image img) {
         super(name, description, location, date, "FOUND", cat, img);
+=======
+    public FoundItem(String name, String description, String location, String date, Condition status, ItemCategory cat) {
+        super(name, description, location, date, status, cat);
+>>>>>>> master
     }
 }

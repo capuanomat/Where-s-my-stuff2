@@ -1,13 +1,22 @@
 package com.example.matthieujbcapuano.wheresmystuff.Model;
 
+<<<<<<< HEAD
 import java.util.Date;
 
+=======
+import android.location.Location;
+>>>>>>> master
 import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.location.Location;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Locale;
+
 public class Item implements Parcelable {
+<<<<<<< HEAD
     private Date date;
     private ItemCategory cat; //made us an enum - Simola Nayak
     private Location location;
@@ -15,6 +24,15 @@ public class Item implements Parcelable {
     private String name;
     private String status;
     private Image image; // added the picture variable- Simola Nayak
+=======
+    private String date;
+    private ItemCategory cat;
+    private String location;
+    private String description;
+    private String name;
+    private Condition status;
+    //private Image img;
+>>>>>>> master
 
     /**
      *
@@ -25,21 +43,33 @@ public class Item implements Parcelable {
      * @param status the status of the item
      * @param cat the category of the item
      */
+<<<<<<< HEAD
     public Item(String name, String description, Location location, Date date, String status, ItemCategory cat, Image image) {
+=======
+    public Item(String name, String description, String location, String date, Condition status, ItemCategory cat) {
+>>>>>>> master
         this.name = name;
         this.description = description;
         this.location = location;
         this.date = date;
         this.status = status;
         this.cat = cat;
+<<<<<<< HEAD
         this.image = image;
+=======
+        //this.img = img;
+>>>>>>> master
     }
 
     /**
      * empty constructor
      */
     public Item() {
+<<<<<<< HEAD
         this("", "", null, null, "", ItemCategory.NONE, null);
+=======
+        this("", "", "", "", Condition.NONE_UNKNOWN, ItemCategory.OTHER_NONE);
+>>>>>>> master
     }
 
     /** Getters **/
@@ -87,9 +117,11 @@ public class Item implements Parcelable {
      *
      * @return status of item
      */
-    public String getStatus() {
+    public Condition getStatus() {
         return status;
     }
+
+    public String getStatusString() {return status.toString();}
 
     /** Setters **/
     /**
@@ -128,7 +160,7 @@ public class Item implements Parcelable {
      *
      * @param status the status to set to
      */
-    public void setStatus(String status) {
+    public void setStatus(Condition status) {
         this.status = status;
     }
 
@@ -144,9 +176,16 @@ public class Item implements Parcelable {
     private Item(Parcel in) {
         name = in.readString();
         description = in.readString();
+<<<<<<< HEAD
         //location =  ;
         //date = ;
         status = in.readString();
+=======
+        location = in.readString();
+        date = in.readString();
+        status = Condition.valueOf(in.readString());
+        cat = ItemCategory.valueOf(in.readString());
+>>>>>>> master
     }
 
     @Override
@@ -161,9 +200,16 @@ public class Item implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(description);
+<<<<<<< HEAD
         //location
         //date
         dest.writeString(status);
+=======
+        dest.writeString(location);
+        dest.writeString(date);
+        dest.writeValue(status);
+        dest.writeValue(cat);
+>>>>>>> master
     }
 
     public static final Parcelable.Creator<Item> CREATOR

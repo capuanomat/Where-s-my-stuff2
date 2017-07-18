@@ -33,6 +33,11 @@ public class RegistrationActivity extends AppCompatActivity {
     private Spinner userTypeSpinner;
 
     /**
+     * After the data is read during OnCreate, these variables will store the strings specifically.
+     */
+    String username, password, name, initialPhoneNumber, email, userType;
+
+    /**
      * Buttons on the registration screen
      */
     Button btnRegister;
@@ -53,7 +58,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_screen);
 
-        /** Reading in the data **/
+        /* Reading in the data */
         mUsernameView = (EditText) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
         mNameView = (EditText) findViewById(R.id.name);
@@ -92,18 +97,14 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * After the data was read in during OnCreate, these variables will store the strings specifically.
-     */
-    String password, username, name, initialPhoneNumber, email, userType;
 
     /**
      *
      * @param userArray list of all users
      */
     private void attemptRegister(ArrayList<User> userArray) {
-        password = mPasswordView.getText().toString();
         username = mUsernameView.getText().toString();
+        password = mPasswordView.getText().toString();
         name = mNameView.getText().toString();
         initialPhoneNumber = String.valueOf(mPhoneNumberView.getText());
         email = mEmailView.getText().toString();
@@ -115,13 +116,33 @@ public class RegistrationActivity extends AppCompatActivity {
         boolean isAdmin = userType.equals("Admin");
 
         User user;
+        View focusView = null; // This may be necessary to add the little error messages
         if (isAdmin) {
             user = new AdminUser(name, username, password, phoneNumber, email);
         } else {
             user = new RegularUser(name, username, password, phoneNumber, email);
         }
-        userArray.add(user);
-        AddData();
+
+        boolean error = false;
+        if (isUserNameValid(username) && isPasswordValid(password) && isEmailValid(email)) {
+            userArray.add(user);
+            AddData();
+        } else {
+            if (!isUserNameValid(username)){
+                mUsernameView.setError(getString(R.string.error_invalid_username));
+                focusView = mUsernameView;
+            } else if (!isPasswordValid(password)) {
+                mPasswordView.setError(getString(R.string.error_invalid_password));
+                focusView = mPasswordView;
+            } else {
+                mEmailView.setError(getString(R.string.error_invalid_email));
+                focusView = mEmailView;
+            }
+            error = true;
+        }
+        if (error) {
+            focusView.requestFocus();
+        }
     }
 
     // TODO: This and the three methods below check that input data is correct. We can improve them.
@@ -138,24 +159,22 @@ public class RegistrationActivity extends AppCompatActivity {
         return email.contains("@");
     }
 
-    //ALEXANDER: added this method, implemented userManager's method
     /**
      *
      * @param username the username to check
      * @return whether or not the username is valid
      */
     private boolean isUserNameValid(String username) {
-        return true; //_userManager.findValidUsername(username);
+        return (username.length() <= 10); //_userManager.findValidUsername(username);
     }
 
-    //ALEXANDER: changed this method from template, implemented usermanager's method
     /**
      *
      * @param password the password to check
      * @return whether or not the password is valid
      */
     private boolean isPasswordValid(String password) {
-        return true; //_userManager.findValidPassword(password);
+        return (password.length() <= 10); //_userManager.findValidPassword(password);
     }
 
     /**

@@ -38,17 +38,9 @@ import java.util.List;
 
 import static com.example.matthieujbcapuano.wheresmystuff.R.id.email_sign_in_button;
 
-/**
- * A login screen that offers login via email/password.
- */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     static String TAG = "LoginActivity";
-
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
 
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -61,11 +53,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    /**
+     * Database variables
+     */
     ArrayList<User> userArray;
     private RegisteredUsersDB db;
 
     /**
-     *
      * @param savedInstanceState instance state for launch
      */
     @Override
@@ -78,7 +72,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // MATTHIEU: Trying to get the data
         Bundle bundle = getIntent().getExtras();
-        userArray = bundle.getParcelableArrayList("userManager");
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -89,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin(userArray);
+                    attemptLogin();
                     return true;
                 }
                 return false;
@@ -103,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin(userArray);
+                attemptLogin();
             }
         });
 
@@ -117,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     String username, password;
-    private void attemptLogin(ArrayList<User> userArray) {
+    private void attemptLogin() {
         if (mAuthTask != null) {
             return;
         }
@@ -141,13 +134,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         /** Verifies that an email was entered and that it's valid **/
-            // MATTHIEU: First check verifies that there's something in the email field, second one
-            //           calls isEmailValid(String email) to test content
         if (TextUtils.isEmpty(username)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(username)) {
+        } else if (!isUsernameValid(username)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
@@ -174,17 +165,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      *
-     * @param email the email to check
+     * @param username the email to check
      * @return whether or not email is valid
      */
-    private boolean isEmailValid(String email) {
+    private boolean isUsernameValid(String username) {
         List<User> users = db.getAccounts();
         if (users.isEmpty()) {
             return false;
         }
         boolean toRet = false;
         for (User user : users) {
-            if ((user.getUserName().equals(username)) && (user.getPassword().equals(password))) {
+            if ((user.getUserName().equals(username))) {
                 toRet = true;
             }
         }
