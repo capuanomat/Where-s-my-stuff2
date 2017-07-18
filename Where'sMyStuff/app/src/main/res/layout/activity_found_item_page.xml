@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="#FF4F67"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
     <ScrollView
@@ -63,7 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Search" />
+                android:backgroundTint="#FF4F67"
+                android:text="S e a r c h"
+                android:textColor="#FFFFFF" />
 
             <ListView
                 android:id="@+id/foundItems"
@@ -74,7 +77,8 @@
                 android:id="@+id/buttonBackToMainFound"
                 android:layout_width="match_parent"
                 android:layout_height="59dp"
-                android:text="@string/backToMainFound" />
+                android:backgroundTint="#DCDCDC"
+                android:text="M a i n  P a g e" />
 
         </LinearLayout>
     </ScrollView>

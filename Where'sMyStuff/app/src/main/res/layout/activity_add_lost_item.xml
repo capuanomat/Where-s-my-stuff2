@@ -34,6 +34,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="73dp" />
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Add Lost Item"
+                android:textAlignment="center"
+                android:textColor="#FF4F67"
+                android:textSize="25sp" />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -57,39 +66,54 @@
 
                             <Button
                                 android:id="@+id/buttonAddLost"
-                                android:layout_width="match_parent"
-                                android:layout_height="67dp"
-                                android:text="@string/postAsLost" />
+                                android:layout_width="119dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:backgroundTint="#FF4F67"
+                                android:text="A d d"
+                                android:textColor="#FFFFFF" />
 
                             <EditText
                                 android:id="@+id/date"
-                                android:layout_width="match_parent"
+                                android:layout_width="340dp"
                                 android:layout_height="wrap_content"
-                                android:hint="date" />
+                                android:layout_gravity="center"
+                                android:backgroundTint="#FF4F67"
+                                android:hint="Date" />
                         </android.support.design.widget.TextInputLayout>
 
                         <EditText
                             android:id="@+id/location"
-                            android:layout_width="match_parent"
+                            android:layout_width="340dp"
                             android:layout_height="wrap_content"
-                            android:hint="location" />
+                            android:layout_gravity="center"
+                            android:backgroundTint="#FF4F67"
+                            android:hint="Location" />
                     </android.support.design.widget.TextInputLayout>
 
                     <EditText
                         android:id="@+id/description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="description" />
+                        android:layout_width="340dp"
+                        android:layout_height="79dp"
+                        android:layout_gravity="center"
+                        android:backgroundTint="#FF4F67"
+                        android:hint="Description" />
                 </android.support.design.widget.TextInputLayout>
 
                 <EditText
                     android:id="@+id/name"
-                    android:layout_width="match_parent"
+                    android:layout_width="340dp"
                     android:layout_height="58dp"
-                    android:hint=" name" />
+                    android:layout_gravity="center"
+                    android:backgroundTint="#FF4F67"
+                    android:hint="Item Name"
+                    android:singleLine="false" />
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
     </ScrollView>
+
+
+
 
 </android.support.design.widget.CoordinatorLayout>
