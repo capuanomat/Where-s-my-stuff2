@@ -46,6 +46,7 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
 
     /** Buttons **/
     Button addLostItemButton;
+    Button goToMapButton;
 
     /**
      *
@@ -77,6 +78,14 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View view) {
                 attemptToAddLostItem();
+            }
+        });
+
+        goToMapButton = (Button) findViewById(R.id.buttonEnterLoc);
+        goToMapButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View view) {
+                Intent enterOnMap = new Intent(addLostItemActivity.this, EnterLocation.class);
+                startActivity(enterOnMap);
             }
         });
 

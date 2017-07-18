@@ -43,6 +43,7 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
 
     /** Buttons **/
     Button addFoundItemButton;
+    Button useMapButton;
 
     /**
      *
@@ -76,6 +77,15 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
             @Override
             public void onClick(View v) {
                 attemptToAddFoundItem();
+            }
+        });
+
+        useMapButton = (Button) findViewById(R.id.buttonEnterLoc);
+        useMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent enterOnMap = new Intent(addFoundItemActivity.this, EnterLocation.class);
+                startActivity(enterOnMap);
             }
         });
 

@@ -174,7 +174,8 @@ public class RegistrationActivity extends AppCompatActivity {
      * @return whether or not the password is valid
      */
     private boolean isPasswordValid(String password) {
-        return (password.length() <= 10); //_userManager.findValidPassword(password);
+        //a little xkcd easter egg
+        return (password.length() <= 10 && !password.equals("correct horse battery staple")); //_userManager.findValidPassword(password);
     }
 
     /**
