@@ -33,7 +33,6 @@ public class UserManager implements Serializable{
         allPasswords = new ArrayList<>();
         allPasswords.add("pass");
         allEmails = new ArrayList<>();
-        allEmails.add("wigglytuff@yahoo.com");
     }
 
     /**
@@ -58,6 +57,14 @@ public class UserManager implements Serializable{
      */
     public ArrayList<String> getAllPasswords() {
         return allPasswords;
+    }
+
+    /**
+     * Getter for the ArrayList<String> of all passwords.
+     * @return  An ArrayList<String> of all passwords
+     */
+    public ArrayList<String> getAllEmails() {
+        return allEmails;
     }
 
 
@@ -87,6 +94,7 @@ public class UserManager implements Serializable{
         allUsers.add(user);
         allUserNames.add(user.getUserName());
         allPasswords.add(user.getPassword());
+        allEmails.add(user.getEmail());
         return user;
     }
 
@@ -129,6 +137,12 @@ public class UserManager implements Serializable{
 
 
     /**
+     * METHOD CONTRACT:
+     * Signature: method name is findValidEmail, parameters is an email string, returns boolean
+     * Preconditions: can be called at anytime
+     * Postconditions: object is not modified by method only accessed
+     * Framing Conditons: no instance variables are modified
+     * Invariants: none
      * Takes in a email and sees if it already exists in the UserManager. Prevents the creation
      * of multiple users with the same email.
      * @param email  The email to be checked for duplicates
