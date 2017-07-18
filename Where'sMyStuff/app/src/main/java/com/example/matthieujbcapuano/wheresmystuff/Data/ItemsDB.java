@@ -3,6 +3,7 @@ package com.example.matthieujbcapuano.wheresmystuff.Data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -99,9 +100,10 @@ public class ItemsDB extends SQLiteOpenHelper{
                 Item it = new Item();
 
                 it.setName(res.getString(res.getColumnIndex("NAME")));
-                it.setName(res.getString(res.getColumnIndex("DESCRIPTION")));
-                it.setName(res.getString(res.getColumnIndex("LOCATION")));
-                it.setName(res.getString(res.getColumnIndex("DATE")));
+                it.setDescription(res.getString(res.getColumnIndex("DESCRIPTION")));
+                it.setLocation(res.getString(res.getColumnIndex("LOCATION")));
+                it.setDate(res.getString(res.getColumnIndex("DATE")));
+                //it.setStatus(res.getString(res.getColumnIndex("STATUS")));
                 items.add(it);
             } while (res.moveToNext());
         }
@@ -111,5 +113,10 @@ public class ItemsDB extends SQLiteOpenHelper{
     public Integer deleteFoundItem(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(FOUND_TABLE_NAME, "IDL = ?", new String[]{id});
+    }
+
+    public void deleteAllFound() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(FOUND_TABLE_NAME, null, null);
     }
 }

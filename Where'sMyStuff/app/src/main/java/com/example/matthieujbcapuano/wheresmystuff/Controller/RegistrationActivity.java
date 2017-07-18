@@ -123,6 +123,7 @@ public class RegistrationActivity extends AppCompatActivity {
             user = new RegularUser(name, username, password, phoneNumber, email);
         }
 
+        boolean error = false;
         if (isUserNameValid(username) && isPasswordValid(password) && isEmailValid(email)) {
             userArray.add(user);
             AddData();
@@ -130,16 +131,17 @@ public class RegistrationActivity extends AppCompatActivity {
             if (!isUserNameValid(username)){
                 mUsernameView.setError(getString(R.string.error_invalid_username));
                 focusView = mUsernameView;
-                focusView.requestFocus();
             } else if (!isPasswordValid(password)) {
                 mPasswordView.setError(getString(R.string.error_invalid_password));
                 focusView = mPasswordView;
-                focusView.requestFocus();
             } else {
                 mEmailView.setError(getString(R.string.error_invalid_email));
                 focusView = mEmailView;
-                focusView.requestFocus();
             }
+            error = true;
+        }
+        if (error) {
+            focusView.requestFocus();
         }
     }
 
