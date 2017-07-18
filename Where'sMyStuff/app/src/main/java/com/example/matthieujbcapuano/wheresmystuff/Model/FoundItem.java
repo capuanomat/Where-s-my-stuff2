@@ -13,7 +13,7 @@ public class FoundItem extends Item{
      * @param location the location of the found item
      * @param date the date of the found item
      */
-    public FoundItem(String name, String description, String location, String date) {
-        super(name, description, location, date, "FOUND");
+    public FoundItem(String name, String description, String location, String date, Condition status, ItemCategory cat) {
+        super(name, description, location, date, status, cat);
     }
 }

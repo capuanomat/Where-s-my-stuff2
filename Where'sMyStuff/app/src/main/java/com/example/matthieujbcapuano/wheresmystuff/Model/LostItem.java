@@ -13,8 +13,8 @@ public class LostItem extends Item {
      * @param location the location of lost item
      * @param date the date of the item
      */
-    public LostItem(String name, String description, String location, String date) {
-        super(name, description, location, date, "LOST");
+    public LostItem(String name, String description, String location, String date, ItemCategory cat) {
+        super(name, description, location, date, Condition.LOST, cat);
     }
 
 }

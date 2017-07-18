@@ -51,6 +51,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
+                            <Spinner
+                                android:id="@+id/catspin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
                             <Space
                                 android:layout_width="match_parent"
                                 android:layout_height="78dp" />
