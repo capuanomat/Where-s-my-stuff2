@@ -29,6 +29,18 @@ public class Item implements Parcelable {
     }
 
     /**
+     *
+     * @param name          The name of the item
+     * @param description   The description of the item
+     * @param location      The location of the item
+     */
+    public Item(String name, String description, String location) {
+        this.name = name;
+        this.description = description;
+        this.location = location;
+    }
+
+    /**
      * empty constructor
      */
     public Item() {
@@ -127,12 +139,12 @@ public class Item implements Parcelable {
      *
      */
     private Item(Parcel in) {
-        name = in.readString();
-        description = in.readString();
-        location = in.readString();
-        date = in.readString();
-        status = in.readString();
-    }
+    name = in.readString();
+    description = in.readString();
+    location = in.readString();
+    date = in.readString();
+    status = in.readString();
+}
 
     @Override
     public int describeContents() {
