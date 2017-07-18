@@ -26,11 +26,11 @@ public class UserManager implements Serializable{
      */
     public UserManager() {
         allUsers = new ArrayList<>();
-        allUsers.add(new RegularUser("Bob", "user","pass", new int[0] , "email"));
+        //allUsers.add(new RegularUser("Bob", "user","pass", new int[0] , "email"));
         allUserNames = new ArrayList<>();
-        allUserNames.add("user");
+        //allUserNames.add("user");
         allPasswords = new ArrayList<>();
-        allPasswords.add("pass");
+        //allPasswords.add("pass");
     }
 
     /**

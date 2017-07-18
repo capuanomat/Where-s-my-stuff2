@@ -171,8 +171,22 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param password the password to check
      * @return whether or not the password is valid
      */
-    private boolean isPasswordValid(String password) {
-        return (password.length() <= 10); //_userManager.findValidPassword(password);
+    public boolean isPasswordValid(String password) {
+        if (myDb == null) {
+            return true;
+        } else {
+            for (User user : myDb.getAccounts()) {
+                if (user.getPassword().equals(password)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        //return (password.length() <= 10); //_userManager.findValidPassword(password);
+    }
+
+    public RegisteredUsersDB getMyDb() {
+        return myDb;
     }
 
     /**
