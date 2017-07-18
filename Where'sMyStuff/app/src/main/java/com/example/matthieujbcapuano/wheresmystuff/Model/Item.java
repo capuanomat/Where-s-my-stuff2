@@ -35,9 +35,7 @@ public class Item implements Parcelable {
      * @param location      The location of the item
      */
     public Item(String name, String description, String location) {
-        this.name = name;
-        this.description = description;
-        this.location = location;
+        this(name, description, location, "", "");
     }
 
     /**
