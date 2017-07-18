@@ -18,6 +18,7 @@ public class UserManager implements Serializable{
     private ArrayList<User> allUsers;
     private ArrayList<String> allUserNames;
     private ArrayList<String> allPasswords;
+    private ArrayList<String> allEmails;
 
     /**
      * Constructor for the class. At the moment, it initializes it with a single user: "Bob", with
@@ -31,6 +32,8 @@ public class UserManager implements Serializable{
         allUserNames.add("user");
         allPasswords = new ArrayList<>();
         allPasswords.add("pass");
+        allEmails = new ArrayList<>();
+        allEmails.add("wigglytuff@yahoo.com");
     }
 
     /**
@@ -118,6 +121,25 @@ public class UserManager implements Serializable{
         }
         for (String s: allPasswords) {
             if(s.equals(password)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    /**
+     * Takes in a email and sees if it already exists in the UserManager. Prevents the creation
+     * of multiple users with the same email.
+     * @param email  The email to be checked for duplicates
+     * @return          Whether the email is unique or not
+     */
+    public boolean findValidEmail(String email) {
+        if (allEmails.isEmpty()) {
+            return true;
+        }
+        for (String e: allEmails) {
+            if(e.equals(email)) {
                 return false;
             }
         }
