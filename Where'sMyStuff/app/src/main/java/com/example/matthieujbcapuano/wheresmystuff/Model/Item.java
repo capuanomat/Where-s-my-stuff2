@@ -1,16 +1,22 @@
 package com.example.matthieujbcapuano.wheresmystuff.Model;
 
+import android.location.Location;
+import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Locale;
+
 public class Item implements Parcelable {
     private String date;
-    //TODO: add category enum
+    private ItemCategory cat;
     private String location;
     private String description;
     private String name;
-    private String status;
-    //TODO: add picture variable
+    private Condition status;
+    //private Image img;
 
     /**
      *
@@ -19,13 +25,16 @@ public class Item implements Parcelable {
      * @param location the location of the item
      * @param date the date of the item
      * @param status the status of the item
+     * @param cat the category of the item
      */
-    public Item(String name, String description, String location, String date, String status) {
+    public Item(String name, String description, String location, String date, Condition status, ItemCategory cat) {
         this.name = name;
         this.description = description;
         this.location = location;
         this.date = date;
         this.status = status;
+        this.cat = cat;
+        //this.img = img;
     }
 
     /**
@@ -42,7 +51,7 @@ public class Item implements Parcelable {
      * empty constructor
      */
     public Item() {
-        this("", "", "", "", "");
+        this("", "", "", "", Condition.NONE_UNKNOWN, ItemCategory.OTHER_NONE);
     }
 
     /** Getters **/
@@ -82,9 +91,11 @@ public class Item implements Parcelable {
      *
      * @return status of item
      */
-    public String getStatus() {
+    public Condition getStatus() {
         return status;
     }
+
+    public String getStatusString() {return status.toString();}
 
     /** Setters **/
     /**
@@ -123,7 +134,7 @@ public class Item implements Parcelable {
      *
      * @param status the status to set to
      */
-    public void setStatus(String status) {
+    public void setStatus(Condition status) {
         this.status = status;
     }
 
@@ -137,12 +148,13 @@ public class Item implements Parcelable {
      *
      */
     private Item(Parcel in) {
-    name = in.readString();
-    description = in.readString();
-    location = in.readString();
-    date = in.readString();
-    status = in.readString();
-}
+        name = in.readString();
+        description = in.readString();
+        location = in.readString();
+        date = in.readString();
+        status = Condition.valueOf(in.readString());
+        cat = ItemCategory.valueOf(in.readString());
+    }
 
     @Override
     public int describeContents() {
@@ -158,7 +170,8 @@ public class Item implements Parcelable {
         dest.writeString(description);
         dest.writeString(location);
         dest.writeString(date);
-        dest.writeString(status);
+        dest.writeValue(status);
+        dest.writeValue(cat);
     }
 
     public static final Parcelable.Creator<Item> CREATOR

@@ -19,7 +19,7 @@ public class LostItemManager {
     private LostItem currenLostItem;
 
     //ALEXANDER: null item returned when no item is found
-    private final LostItem theNullItem = new LostItem("No name","No description","No Location", "No date");
+    private final LostItem theNullItem = new LostItem("No Name","No description","No Location", "No date", ItemCategory.OTHER_NONE);
 
     /**
      * constructor of manager
