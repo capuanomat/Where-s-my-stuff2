@@ -44,7 +44,7 @@ public class Item implements Parcelable {
      * @param location      The location of the item
      */
     public Item(String name, String description, String location) {
-        this(name, description, location, "", "");
+        this(name, description, location, "", Condition.NONE_UNKNOWN, ItemCategory.OTHER_NONE);
     }
 
     /**
@@ -95,6 +95,14 @@ public class Item implements Parcelable {
         return status;
     }
 
+    /**
+     *
+     * @return category of the item
+     */
+    public ItemCategory getCategory() {
+        return cat;
+    }
+
     public String getStatusString() {return status.toString();}
 
     /** Setters **/
@@ -136,6 +144,18 @@ public class Item implements Parcelable {
      */
     public void setStatus(Condition status) {
         this.status = status;
+    }
+
+    /**
+     *
+     * @param cat the category of the item
+     */
+    public void setCategory(ItemCategory cat) {
+        this.cat = cat;
+    }
+
+    public static Creator<Item> getCREATOR() {
+        return CREATOR;
     }
 
     @Override
