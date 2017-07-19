@@ -11,7 +11,7 @@ dabest app
     - Ash: isPasswordValid() in LoginActivity
     - Alex: isPasswordValid() in RegistrationActivity
     - Simola: isUserNameValid() in RegistrationActivity
-    - Matthieu: ... will find one
+    - Matthieu: addFoundItem(Item item) in ItemsDB
 - M8: EVERYONE prepare for code review on Tuesday
 - ASH: IOS Implementation
 - SIMOLA: If time, do web app
