@@ -38,6 +38,16 @@ public class Item implements Parcelable {
     }
 
     /**
+     *
+     * @param name          The name of the item
+     * @param description   The description of the item
+     * @param location      The location of the item
+     */
+    public Item(String name, String description, String location) {
+        this(name, description, location, "", "");
+    }
+
+    /**
      * empty constructor
      */
     public Item() {

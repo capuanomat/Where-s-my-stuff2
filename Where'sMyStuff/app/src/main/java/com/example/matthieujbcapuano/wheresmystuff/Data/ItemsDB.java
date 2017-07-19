@@ -78,6 +78,23 @@ public class ItemsDB extends SQLiteOpenHelper{
         return db.delete(LOST_TABLE_NAME, "IDL = ?", new String[]{id});
     }
 
+    /**
+     *  METHOD CONTRACT (by Matthieu Capuano):
+     *  Signature: public boolean addFoundItem(Item item)
+     *  Preconditions: True
+     *  Postconditions: After adding an item, original data should still be there and unchanged,
+     *                  there should be an extra row in the found items table, the added item should
+     *                  be the latest row
+     * Invariants: Number of items in database is always >=0
+     * Framing Conditions: Size of database is increased by 1, database has an extra row, original
+     *                     elements are unchanged
+     *
+     * This method essentially just adds an item to the found Item table in the Items database. The
+     * Item may have
+     *
+     * @param item  The item to be added
+     * @return      Whether the item was added correctly or not
+     */
     public boolean addFoundItem(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -90,6 +107,10 @@ public class ItemsDB extends SQLiteOpenHelper{
         return (result != -1);
     }
 
+    /**
+     * The method returns an array list of all the found items in the database
+     * @return  A list of all the items in the database
+     */
     public List<Item> getFoundItems() {
         List<Item> items = new ArrayList<>();
 
@@ -110,11 +131,19 @@ public class ItemsDB extends SQLiteOpenHelper{
         return items;
     }
 
+    /**
+     * Deletes an item from the found item table in the Items database.
+     * @param id    The id of the item to be removed
+     * @return      An integer that describes whether or not the item was removed
+     */
     public Integer deleteFoundItem(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(FOUND_TABLE_NAME, "IDL = ?", new String[]{id});
     }
 
+    /**
+     * Deletes all the items in the database.
+     */
     public void deleteAllFound() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(FOUND_TABLE_NAME, null, null);
