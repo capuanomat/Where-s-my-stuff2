@@ -26,29 +26,30 @@
         android:layout_weight="1"
         android:id="@+id/include4" />
 
+    <Button
+        android:id="@+id/buttonBackToMainLost"
+        android:layout_width="104dp"
+        android:layout_height="63dp"
+        android:layout_weight="1"
+        android:text="@string/backToMainLost" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="460dp">
+        android:layout_height="393dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="65dp" />
+                android:layout_height="75dp" />
 
             <ListView
                 android:id="@+id/lostItems"
                 android:layout_width="match_parent"
-                android:layout_height="359dp" />
-
-            <Button
-                android:id="@+id/buttonBackToMainLost"
-                android:layout_width="match_parent"
-                android:layout_height="63dp"
-                android:text="@string/backToMainLost" />
+                android:layout_height="340dp" />
 
         </LinearLayout>
     </ScrollView>
@@ -61,13 +62,42 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
-    <Button
-        android:id="@+id/buttonDeleteLItem"
-        android:layout_width="124dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
-        android:text="@string/deleteLostItem"
-        app:layout_anchor="@+id/include4"
-        app:layout_anchorGravity="bottom|left" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="431dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonDeleteLItem"
+                android:layout_width="183dp"
+                android:layout_height="61dp"
+                android:layout_gravity="top|right"
+                android:text="@string/deleteLostItem"
+                app:layout_anchor="@+id/include4"
+                app:layout_anchorGravity="bottom|left" />
+
+            <Space
+                android:layout_width="28dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/buttonShowMap"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:text="View Item Reports Near You" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

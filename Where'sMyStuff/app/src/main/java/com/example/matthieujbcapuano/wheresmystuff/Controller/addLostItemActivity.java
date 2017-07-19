@@ -18,6 +18,7 @@ import com.example.matthieujbcapuano.wheresmystuff.Model.Item;
 import com.example.matthieujbcapuano.wheresmystuff.Model.ItemCategory;
 import com.example.matthieujbcapuano.wheresmystuff.Model.LostItem;
 import com.example.matthieujbcapuano.wheresmystuff.R;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,8 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
      */
     private EditText mNameView;
     private EditText mDescriptionView;
-    private EditText mLocationView;
+    private EditText mEditLat;
+    private EditText mEditLong;
     private EditText mDateView;
     private Spinner categorySpinner;
 
@@ -46,7 +48,6 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
 
     /** Buttons **/
     Button addLostItemButton;
-    Button goToMapButton;
 
     /**
      *
@@ -62,7 +63,8 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
         /** Reading in the data **/
         mNameView = (EditText) findViewById(R.id.name);
         mDescriptionView = (EditText) findViewById(R.id.description);
-        mLocationView = (EditText) findViewById(R.id.location);
+        mEditLat = (EditText) findViewById(R.id.mEditLat);
+        mEditLong = (EditText) findViewById(R.id.mEditLong);
         mDateView = (EditText) findViewById(R.id.date);
         categorySpinner = (Spinner) findViewById(R.id.catspin);
 
@@ -81,14 +83,6 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
             }
         });
 
-        goToMapButton = (Button) findViewById(R.id.buttonEnterLoc);
-        goToMapButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick (View view) {
-                Intent enterOnMap = new Intent(addLostItemActivity.this, EnterLocation.class);
-                startActivity(enterOnMap);
-            }
-        });
-
         /**Putting the names of the item categories**/
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, ItemCategory.catarr());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -96,8 +90,9 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
     }
 
     /** Instance variables to store data from the UI **/
-    String name, description, location, date;
+    String name, description, date;
     ItemCategory cat;
+    double latitude, longitude;
 
     /**
      * reads in views for information, creates new lost item with information
@@ -105,7 +100,8 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
     private void attemptToAddLostItem() {
         name = mNameView.getText().toString();
         description = mDescriptionView.getText().toString();
-        location = mLocationView.getText().toString();
+        latitude = Double.parseDouble(mEditLat.getText().toString());
+        longitude = Double.parseDouble(mEditLong.getText().toString());
         date = mDateView.getText().toString();
         cat = (ItemCategory) categorySpinner.getSelectedItem();
 
@@ -113,7 +109,7 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
         //TODO: Add verification that the item is of appropriate format before adding it
 
         /** Creates the new lost item instance and tries to add it to the list **/
-        LostItem lostItem = new LostItem(name, description, location, date, cat);
+        LostItem lostItem = new LostItem(name, description, latitude, longitude, date, cat);
         boolean added = lostItemsList.add(lostItem);
 
         /*
@@ -134,7 +130,7 @@ public class addLostItemActivity extends AppCompatActivity implements AdapterVie
      * reloads lost page if item was added
      */
     public void AddData() {
-        boolean isInserted = myDB2.addLostItem(new Item(name, description, location, date, Condition.LOST, cat));
+        boolean isInserted = myDB2.addLostItem(new Item(name, description, latitude, longitude, date, Condition.LOST, cat));
         if (isInserted) {
             Toast.makeText(addLostItemActivity.this, "Item listing made successfully.", Toast.LENGTH_LONG).show();
             Intent backToLostPage = new Intent(addLostItemActivity.this,

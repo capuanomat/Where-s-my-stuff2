@@ -34,6 +34,7 @@ public class LostItemPageActivity extends AppCompatActivity {
     /** Buttons **/
     Button btnDelete;
     Button btnBackToMain;
+    Button btnShowMap;
 
     /**
      *
@@ -55,13 +56,14 @@ public class LostItemPageActivity extends AppCompatActivity {
         lostItems = myDB2.getLostItems();
 
         btnBackToMain = (Button) findViewById(R.id.buttonBackToMainLost);
+        btnDelete = (Button) findViewById(R.id.buttonDeleteLItem);
+        btnShowMap = (Button) findViewById(R.id.buttonShowMap);
 
         ArrayAdapter<Item> arrayAdapter = new ArrayAdapter<Item>(
                 this, android.R.layout.simple_list_item_1, lostItems
         );
         listView.setAdapter(arrayAdapter);
 
-        btnDelete = (Button) findViewById(R.id.buttonDeleteLItem);
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +96,15 @@ public class LostItemPageActivity extends AppCompatActivity {
                 startActivity(intentBackToMain);
             }
         });
+
+        btnShowMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent showReportsOnMap = new Intent(LostItemPageActivity.this, ReportMapFragment.class);
+                startActivity(showReportsOnMap);
+            }
+        });
+
 
 //        /** Alex stuff **/
 //        mLayoutManager = new LinearLayoutManager(this);
