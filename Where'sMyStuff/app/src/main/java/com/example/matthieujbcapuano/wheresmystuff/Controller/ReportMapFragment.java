@@ -1,7 +1,9 @@
 package com.example.matthieujbcapuano.wheresmystuff.Controller;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDialogFragment;
 
 import com.example.matthieujbcapuano.wheresmystuff.Data.ItemsDB;
 import com.example.matthieujbcapuano.wheresmystuff.Model.Item;
@@ -37,11 +39,11 @@ public class ReportMapFragment extends AppCompatActivity implements OnMapReadyCa
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.reportLocations);
         mapFragment.getMapAsync(this);
-        loadReportLocationsAndNames();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        loadReportLocationsAndNames();
         for (int i = 0; i < reportLocations.length; i++) {
             googleMap.addMarker(new MarkerOptions().position(reportLocations[i]).title(reports[i]));
         }
@@ -51,8 +53,8 @@ public class ReportMapFragment extends AppCompatActivity implements OnMapReadyCa
     private void loadReportLocationsAndNames() {
         List<Item> allthethings = allItems.getFoundItems();
         int numReports = allthethings.size();
-        LatLng[] places = new LatLng[allthethings.size()];
-        String[] itemnames = new String[allthethings.size()];
+        LatLng[] places = new LatLng[numReports];
+        String[] itemnames = new String[numReports];
 
         for (int i = 0; i < numReports; i++) {
             places[i] = allthethings.get(i).getLocation();
