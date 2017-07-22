@@ -19,6 +19,7 @@ public class AdminUser extends User {
      * @return  A string detailing all elements of the user
      * TODO: It may be unnecessary to completely override this method just to mention "Admin---"
      * TODO: Try adding instanceof(RegularUser) in the User class to adjust the string instead
+     * change
      */
     @Override
     public String toString() {

@@ -11,6 +11,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.location.Location;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Locale;
@@ -27,13 +29,15 @@ public class Item implements Parcelable {
 =======
     private String date;
     private ItemCategory cat;
-    private String location;
+    private double latitude;
+    private double longitude;
     private String description;
     private String name;
     private Condition status;
     //private Image img;
 >>>>>>> master
 
+    private static LatLng defaultLoc = new LatLng(0.00000, 0.000000);
     /**
      *
      * @param name the name of the item
@@ -44,13 +48,18 @@ public class Item implements Parcelable {
      * @param cat the category of the item
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Item(String name, String description, Location location, Date date, String status, ItemCategory cat, Image image) {
 =======
     public Item(String name, String description, String location, String date, Condition status, ItemCategory cat) {
 >>>>>>> master
+=======
+    public Item(String name, String description, LatLng location, String date, Condition status, ItemCategory cat) {
+>>>>>>> master
         this.name = name;
         this.description = description;
-        this.location = location;
+        this.latitude = location.latitude;
+        this.longitude = location.longitude;
         this.date = date;
         this.status = status;
         this.cat = cat;
@@ -61,14 +70,38 @@ public class Item implements Parcelable {
 >>>>>>> master
     }
 
+    public Item(String name, String description, double latitude, double longitude, String date, Condition status, ItemCategory cat) {
+        this.name = name;
+        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.date = date;
+        this.status = status;
+        this.cat = cat;
+    }
+
+    /**
+     *
+     * @param name          The name of the item
+     * @param description   The description of the item
+     * @param location      The location of the item
+     */
+    public Item(String name, String description, LatLng location) {
+        this(name, description, location, "", Condition.NONE_UNKNOWN, ItemCategory.OTHER_NONE);
+    }
+
     /**
      * empty constructor
      */
     public Item() {
 <<<<<<< HEAD
+<<<<<<< HEAD
         this("", "", null, null, "", ItemCategory.NONE, null);
 =======
         this("", "", "", "", Condition.NONE_UNKNOWN, ItemCategory.OTHER_NONE);
+>>>>>>> master
+=======
+        this("", "", defaultLoc, "", Condition.NONE_UNKNOWN, ItemCategory.OTHER_NONE);
 >>>>>>> master
     }
 
@@ -101,8 +134,37 @@ public class Item implements Parcelable {
      *
      * @return location of item
      */
+<<<<<<< HEAD
     public Location getLocation() {
         return location;
+=======
+    public LatLng getLocation() {
+        return new LatLng(latitude, longitude);
+    }
+
+    /**
+     *
+     * @return location of item as a string
+     */
+    public String getLocString() {
+        return (latitude + "," + longitude);
+    }
+
+    /**
+     *
+     * @return latitude of item
+     */
+    public double getLatitude() {
+        return latitude;
+    }
+
+    /**
+     *
+     * @return longitude of item
+     */
+    public double getLongitude() {
+        return longitude;
+>>>>>>> master
     }
 
     /**
@@ -121,6 +183,14 @@ public class Item implements Parcelable {
         return status;
     }
 
+    /**
+     *
+     * @return category of the item
+     */
+    public ItemCategory getCategory() {
+        return cat;
+    }
+
     public String getStatusString() {return status.toString();}
 
     /** Setters **/
@@ -136,8 +206,31 @@ public class Item implements Parcelable {
      *
      * @param location the location to set to
      */
+<<<<<<< HEAD
     public void setLocation(Location location) {
         this.location = location;
+=======
+    public void setLocation(LatLng location) {
+        setLatitude(location.latitude);
+        setLongitude(location.longitude);
+    }
+
+    /**
+     *
+     * @param latitude the latitude to set to
+     */
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+
+    /**
+     *
+     * @param longitude
+     */
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+>>>>>>> master
     }
 
     /**
@@ -164,6 +257,18 @@ public class Item implements Parcelable {
         this.status = status;
     }
 
+    /**
+     *
+     * @param cat the category of the item
+     */
+    public void setCategory(ItemCategory cat) {
+        this.cat = cat;
+    }
+
+    public static Creator<Item> getCREATOR() {
+        return CREATOR;
+    }
+
     @Override
     public String toString() {
         return name + " " + description;
@@ -177,11 +282,16 @@ public class Item implements Parcelable {
         name = in.readString();
         description = in.readString();
 <<<<<<< HEAD
+<<<<<<< HEAD
         //location =  ;
         //date = ;
         status = in.readString();
 =======
         location = in.readString();
+=======
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+>>>>>>> master
         date = in.readString();
         status = Condition.valueOf(in.readString());
         cat = ItemCategory.valueOf(in.readString());
@@ -201,11 +311,16 @@ public class Item implements Parcelable {
         dest.writeString(name);
         dest.writeString(description);
 <<<<<<< HEAD
+<<<<<<< HEAD
         //location
         //date
         dest.writeString(status);
 =======
         dest.writeString(location);
+=======
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
+>>>>>>> master
         dest.writeString(date);
         dest.writeValue(status);
         dest.writeValue(cat);

@@ -18,6 +18,7 @@ public class UserManager implements Serializable{
     private ArrayList<User> allUsers;
     private ArrayList<String> allUserNames;
     private ArrayList<String> allPasswords;
+    private ArrayList<String> allEmails;
 
     /**
      * Constructor for the class. At the moment, it initializes it with a single user: "Bob", with
@@ -31,6 +32,7 @@ public class UserManager implements Serializable{
         allUserNames.add("user");
         allPasswords = new ArrayList<>();
         allPasswords.add("pass");
+        allEmails = new ArrayList<>();
     }
 
     /**
@@ -55,6 +57,14 @@ public class UserManager implements Serializable{
      */
     public ArrayList<String> getAllPasswords() {
         return allPasswords;
+    }
+
+    /**
+     * Getter for the ArrayList<String> of all passwords.
+     * @return  An ArrayList<String> of all passwords
+     */
+    public ArrayList<String> getAllEmails() {
+        return allEmails;
     }
 
 
@@ -84,6 +94,7 @@ public class UserManager implements Serializable{
         allUsers.add(user);
         allUserNames.add(user.getUserName());
         allPasswords.add(user.getPassword());
+        allEmails.add(user.getEmail());
         return user;
     }
 
@@ -118,6 +129,31 @@ public class UserManager implements Serializable{
         }
         for (String s: allPasswords) {
             if(s.equals(password)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    /**
+     * METHOD CONTRACT:
+     * Signature: method name is findValidEmail, parameters is an email string, returns boolean
+     * Preconditions: can be called at anytime
+     * Postconditions: object is not modified by method only accessed
+     * Framing Conditons: no instance variables are modified
+     * Invariants: none
+     * Takes in a email and sees if it already exists in the UserManager. Prevents the creation
+     * of multiple users with the same email.
+     * @param email  The email to be checked for duplicates
+     * @return          Whether the email is unique or not
+     */
+    public boolean findValidEmail(String email) {
+        if (allEmails.isEmpty()) {
+            return true;
+        }
+        for (String e: allEmails) {
+            if(e.equals(email)) {
                 return false;
             }
         }

@@ -28,7 +28,8 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
     /** Instance variables to read input fields from the UI **/
     private EditText mNameView;
     private EditText mDescriptionView;
-    private EditText mLocationView;
+    private EditText mLatView;
+    private EditText mLongView;
     private EditText mDateView;
     private Spinner conditionSpinner;
     private Spinner categorySpinner;
@@ -59,7 +60,8 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
         /** Reading in the data **/
         mNameView = (EditText) findViewById(R.id.nameFound);
         mDescriptionView = (EditText) findViewById(R.id.descriptionFound);
-        mLocationView = (EditText) findViewById(R.id.locationFound);
+        mLatView = (EditText) findViewById(R.id.editLat);
+        mLongView = (EditText) findViewById(R.id.editLong);
         mDateView = (EditText) findViewById(R.id.dateFound);
         conditionSpinner = (Spinner) findViewById(R.id.conditionSpinner);
         categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
@@ -102,7 +104,8 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
     }
 
     /** Instance variables to store data from the UI **/
-    String name, description, location, date;
+    String name, description, date;
+    double latitude, longitude;
     ItemCategory cat;
     Condition status;
 
@@ -112,7 +115,8 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
     private void attemptToAddFoundItem() {
         name = mNameView.getText().toString();
         description = mDescriptionView.getText().toString();
-        location = mLocationView.getText().toString();
+        latitude = Double.parseDouble(mLatView.getText().toString());
+        longitude = Double.parseDouble(mLongView.getText().toString());
         date = mDateView.getText().toString();
         status = (Condition) conditionSpinner.getSelectedItem();
         cat = (ItemCategory) categorySpinner.getSelectedItem();
@@ -120,7 +124,7 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
         //TODO: Add verification that the item is of appropriate format before adding it
 
         /** Creates the new found item instance and tries to add it to the list **/
-        FoundItem foundItem = new FoundItem(name, description, location, date, status, cat);
+        FoundItem foundItem = new FoundItem(name, description, latitude, longitude, date, status, cat);
         boolean added = foundItemsList.add(foundItem);
 
         /*
@@ -139,7 +143,7 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
      * if item was added, reloads found page
      */
     public void AddData() {
-        boolean isInserted = myDB2.addFoundItem(new Item(name, description, location, date, status, cat));
+        boolean isInserted = myDB2.addFoundItem(new Item(name, description, latitude, longitude, date, status, cat));
         if (isInserted) {
             Toast.makeText(addFoundItemActivity.this, "Item successfully listed", Toast.LENGTH_LONG).show();
             Intent backToFoundPage = new Intent(addFoundItemActivity.this, FoundItemPageActivity.class);
