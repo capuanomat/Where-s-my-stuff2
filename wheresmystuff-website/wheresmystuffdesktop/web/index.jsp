@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Where's my stuff?</title>
+        <title>Where's my stuff? Report Items Online</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Where's My Stuff?</h1>
     </body>
 </html>
