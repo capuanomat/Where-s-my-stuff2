@@ -1,9 +1,6 @@
-package com.example.matthieujbcapuano.wheresmystuff;
+package com.example.matthieujbcapuano.wheresmystuff.Model;
 
-import com.example.matthieujbcapuano.wheresmystuff.Model.UserManager;
-import com.example.matthieujbcapuano.wheresmystuff.Model.User;
-import org.junit.Test;
-
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -14,14 +11,19 @@ import static org.junit.Assert.*;
 public class LoginAttemptTest {
     //public User(String name, String userName, String password, int[] phoneNumber,
     //String email, boolean banned, boolean isAdmin)
-    UserManager manager = new UserManager();
-    manager.addUser(new User("Randall Munroe", "xkcd", "ih8velociraptors", new int[]{902481993}, "xkcd@xkcd.com", true, true));
-    manager.addUser(new User("Marie Curie", "element96", "notazombie", new int[]{301431939}, "marie@elem96.com", false, false));
-    manager.addUser(new User("Michael", "higher&higher", "p4551oN3.14T", new int[]{902481993}, "cats4004@bleep.com", true, true));
-    manager.addUser(new User("Moana of Motunui", "t3504life", "b4maui", new int[]{310285922}, "lupo@gmail.com", true, true));
-    manager.addUser(new User("Katherine Johnson", "moonkat", "noLongerHidden", new int[]{314159265}, "johnson.katherine@nasa.gov", true, true));
-    manager.addUser(new User("Xander", "muffin", "ih8velociraptors", new int[]{503911493}, "xanders@wms.com", true, true));
-    manager.addUser(new User("Kitty Genovese", "aaaaaaaaa", "AAAAAAAaaaaaAAAaaa", new int[]{502392992}, "aaa@aaaaaa.com", true, true));
+    UserManager manager;
+
+    @Before
+    public void buildUserManager() {
+        manager = new UserManager();
+        manager.addUser(new User("Randall Munroe", "xkcd", "ih8velociraptors", new int[]{902481993}, "xkcd@xkcd.com", true, true));
+        manager.addUser(new User("Marie Curie", "element96", "notazombie", new int[]{301431939}, "marie@elem96.com", false, false));
+        manager.addUser(new User("Michael", "higher&higher", "p4551oN3.14T", new int[]{902481993}, "cats4004@bleep.com", true, true));
+        manager.addUser(new User("Moana of Motunui", "t3504life", "b4maui", new int[]{310285922}, "lupo@gmail.com", true, true));
+        manager.addUser(new User("Katherine Johnson", "moonkat", "noLongerHidden", new int[]{314159265}, "johnson.katherine@nasa.gov", true, true));
+        manager.addUser(new User("Xander", "muffin", "ih8velociraptors", new int[]{503911493}, "xanders@wms.com", true, true));
+        manager.addUser(new User("Kitty Genovese", "aaaaaaaaa", "AAAAAAAaaaaaAAAaaa", new int[]{502392992}, "aaa@aaaaaa.com", true, true));
+    }
 
     @Test
     //tests for logging in with the right user but password from another user

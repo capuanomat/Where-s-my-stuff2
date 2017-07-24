@@ -1,4 +1,4 @@
-package com.example.matthieujbcapuano.wheresmystuff.Model;
+package Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

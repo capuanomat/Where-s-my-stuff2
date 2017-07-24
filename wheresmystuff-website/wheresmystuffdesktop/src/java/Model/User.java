@@ -1,17 +1,9 @@
-package com.example.matthieujbcapuano.wheresmystuff.Model;
+package Model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
-public class User implements Parcelable {
-
-    /**
-     * Instance variable to describe legal user types.
-     */
-    public static List<String> legalUserTypes = Arrays.asList("Regular", "Admin");
+public class User {
 
     /**
      * Instance variables to describe everything important about the user.
@@ -19,10 +11,14 @@ public class User implements Parcelable {
     String name;
     String userName;
     String password;
-    int[] phoneNumber;
+    long[] phoneNumber;
     String email;
     boolean banned;
     boolean isAdmin;
+    ArrayList<Item> lostItems;
+    ArrayList<Item> toDeliver;
+    
+    public static ArrayList<Item> nullList = new ArrayList<Item>();
 
     /**
      *  Constructor with all 8 parameters.
@@ -33,10 +29,13 @@ public class User implements Parcelable {
      * @param email         Email of user
      * @param banned        Whether the user is banned or not
      * @param isAdmin       Whether the user is an admin or not
+     * @param lostItems
+     * @param toDeliver
      * TODO: Add constructors with fewer arguments and do constructor chaining to this one.
      */
-    public User(String name, String userName, String password, int[] phoneNumber,
-                String email, boolean banned, boolean isAdmin) {
+    public User(String name, String userName, String password,
+            long[] phoneNumber, String email, boolean banned, boolean isAdmin, 
+            ArrayList<Item> lostItems, ArrayList<Item> toDeliver) {
         this.name = name;
         this.userName = userName;
         this.password = password;
@@ -44,18 +43,24 @@ public class User implements Parcelable {
         this.email = email;
         this.banned = banned;
         this.isAdmin = isAdmin;
+        /*hey Matt and Alex, making a user an admin is as simple as setting
+        this boolean*/
+        this.lostItems = lostItems;
+        this.toDeliver = toDeliver;
     }
 
     public User(String name, String username, String password) {
-        this(name, username, password, new int[0], "", false, false);
+        this(name, username, password, new long[0], "", false, false, nullList, 
+                nullList);
     }
 
     public User(String username, String password) {
-        this("", username, password, new int[0], "", false, false);
+        this("", username, password, new long[0], "", false, false, nullList,
+                nullList);
     }
 
     public User() {
-        this("", "", "", new int[0], "", false, false);
+        this("", "", "", new long[0], "", false, false, nullList, nullList);
     }
 
     /**
@@ -145,7 +150,7 @@ public class User implements Parcelable {
         if (phoneNumber.length <= 1) {
             toPrint = toPrint + ", Phone Number: " + phoneNumber[0];
         } else {
-            for (int i : phoneNumber) {
+            for (long i : phoneNumber) {
                 toPrint += i + " ";
             }
         }
@@ -158,42 +163,24 @@ public class User implements Parcelable {
 
     /**********************************************************************************************
      * ALEXANDER: Borrowed from M3, These methods are required by the parcelable interface
-     *
-     */
-    private User(Parcel in) {
-        userName = in.readString();
-        password = in.readString();
-        name = in.readString();
-        phoneNumber = in.createIntArray();
-        email = in.readString();
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+     * SIMOLA: Altered method by writing my own relay for the data
+     
+    private User(DataShuttle in) {
+        this.userName = in.getInfo();
+        this.password = in.getInfo();
+        this.name = in.getInfo();
+        this.phoneNumber = in.getInfo();
+        this.email = in.getInfo();
+        this.banned = in.getInfo();
+        this.lostItems = in.getInfo();
+        this.toDeliver = in.getInfo();
     }
 
     /* *************************
        If you add new instance vars to Student, you will need to add them to the write
-     */
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(userName);
-        dest.writeString(password);
-        dest.writeString(name);
-        dest.writeIntArray(phoneNumber);
-        dest.writeString(email);
-    }
-
-    public static final Parcelable.Creator<User> CREATOR
-            = new Parcelable.Creator<User>() {
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
+     
+    public void writeToUserRelay(DataShuttle dest) {
+        
+    }*/
 
 }
