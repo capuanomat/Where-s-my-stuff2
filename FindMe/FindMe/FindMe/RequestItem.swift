@@ -1,8 +1,8 @@
 //
-//  LostItem.swift
-//  Where's My Stuff
+//  RequestItem.swift
+//  FindMe
 //
-//  Created by Ash Bhimasani on 7/19/17.
+//  Created by Ash Bhimasani on 7/25/17.
 //  Copyright © 2017 Ash Bhimasani. All rights reserved.
 //
 
@@ -10,24 +10,17 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-class LostItem {
+class RequestItem {
     private var username: String
     private var itemName: String
-    private var descrip: String
-    private var lostDate: String
     private var longitude: Double
     private var latitude: Double
-    private var reward: String = "0"
-
-    init(user: User, itemName: String, latitude: Double, longitude: Double, descrip: String, lostDate: String, reward: String) {
+    
+    init(user: User, itemName: String, latitude: Double, longitude: Double) {
         self.username = user.getUserName()
         self.itemName = itemName
         self.longitude = longitude
         self.latitude = latitude
-        self.descrip = descrip
-        self.lostDate = lostDate
-        self.reward = reward
-
     }
     
     func getUserName() -> String {
@@ -42,15 +35,6 @@ class LostItem {
     func getLatitude() -> Double {
         return self.latitude
     }
-    func getDescrip() -> String {
-        return self.descrip
-    }
-    func getDate() -> String {
-        return self.lostDate
-    }
-    func getReward()-> String {
-        return self.reward
-    }
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
@@ -58,9 +42,6 @@ class LostItem {
         itemName = snapshotValue["itemName"] as! String
         latitude = snapshotValue["latitude"] as! Double
         longitude = snapshotValue["longitude"] as! Double
-        descrip = snapshotValue["descrip"] as! String
-        lostDate = snapshotValue["lostDate"] as! String
-        reward = snapshotValue["reward"] as! String
     }
     
     func toAnyObject() -> Any {
@@ -68,10 +49,7 @@ class LostItem {
             "user": username,
             "itemName": itemName,
             "latitude": latitude,
-            "longitude": longitude,
-            "descrip": descrip,
-            "lostDate": lostDate,
-            "reward": reward
+            "longitude": longitude
         ]
     }
     

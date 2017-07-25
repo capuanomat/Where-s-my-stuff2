@@ -22,6 +22,7 @@
 		5E6D995D1F2025BE00BBBCE5 /* FoundItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D995C1F2025BE00BBBCE5 /* FoundItem.swift */; };
 		5E6D995F1F20379800BBBCE5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D995E1F20379800BBBCE5 /* MapViewController.swift */; };
 		5E9276571F216FE00087EFA4 /* LostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9276561F216FE00087EFA4 /* LostListViewController.swift */; };
+		5EA215911F2710E1007E6B24 /* RequestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA215901F2710E1007E6B24 /* RequestItem.swift */; };
 		5EE6E1FA1F2386CF00D58E1D /* FoundListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE6E1F91F2386CF00D58E1D /* FoundListViewController.swift */; };
 		5EF1B1551F23FEA800AD1EC8 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF1B1541F23FEA800AD1EC8 /* white.png */; };
 		5EF1B1571F24137E00AD1EC8 /* UISearchBar+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF1B1561F24137E00AD1EC8 /* UISearchBar+Custom.swift */; };
@@ -48,6 +49,7 @@
 		5E6D995C1F2025BE00BBBCE5 /* FoundItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundItem.swift; sourceTree = "<group>"; };
 		5E6D995E1F20379800BBBCE5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5E9276561F216FE00087EFA4 /* LostListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostListViewController.swift; sourceTree = "<group>"; };
+		5EA215901F2710E1007E6B24 /* RequestItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestItem.swift; sourceTree = "<group>"; };
 		5EE6E1F91F2386CF00D58E1D /* FoundListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundListViewController.swift; sourceTree = "<group>"; };
 		5EF1B1541F23FEA800AD1EC8 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		5EF1B1561F24137E00AD1EC8 /* UISearchBar+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Custom.swift"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				5EF1B1561F24137E00AD1EC8 /* UISearchBar+Custom.swift */,
 				5E6D995E1F20379800BBBCE5 /* MapViewController.swift */,
 				5E6D995A1F20241E00BBBCE5 /* LostItem.swift */,
+				5EA215901F2710E1007E6B24 /* RequestItem.swift */,
 				5E6D995C1F2025BE00BBBCE5 /* FoundItem.swift */,
 				5E6D99581F201D6000BBBCE5 /* SwiftySwitch.swift */,
 				5E5E45A91F1E873B008376D9 /* RegisterViewController.swift */,
@@ -266,6 +269,7 @@
 			files = (
 				5E5E45A81F1E871B008376D9 /* LoginViewController.swift in Sources */,
 				5E463BEF1F1D309900039DE9 /* ViewController.swift in Sources */,
+				5EA215911F2710E1007E6B24 /* RequestItem.swift in Sources */,
 				5E6D995B1F20241E00BBBCE5 /* LostItem.swift in Sources */,
 				5E9276571F216FE00087EFA4 /* LostListViewController.swift in Sources */,
 				5E6D995F1F20379800BBBCE5 /* MapViewController.swift in Sources */,

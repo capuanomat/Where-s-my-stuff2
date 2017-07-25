@@ -17,14 +17,17 @@ class Model: NSObject {
     private var userList: [User]
     private var lostList: [LostItem]
     private var foundList: [FoundItem]
+    private var requestList: [RequestItem]
     private let lostRef = Database.database().reference(withPath: "lost-items")
     private let foundRef = Database.database().reference(withPath: "found-items")
+    private let requestRef = Database.database().reference(withPath: "request-items")
     
     override init() {
         self.currentUser = User(username: "", password: "")
         self.userList = []
         self.lostList = []
         self.foundList = []
+        self.requestList = []
         
         super.init()
     }
@@ -92,6 +95,29 @@ class Model: NSObject {
     }
     func getFound() -> [FoundItem] {
         return self.foundList
+    }
+    func addRequest(requestIt: RequestItem) -> Void {
+        let itemRef = requestRef.childByAutoId()
+        itemRef.setValue(requestIt.toAnyObject())
+        requestList.append(requestIt)
+    }
+    func updateRequest() -> Void {
+        requestRef.observe(.value, with: { snapshot in
+            // 2
+            print(snapshot.value!)
+            var newItems: [RequestItem] = []
+            // 3
+            for item in snapshot.children {
+                // 4
+                let requestItem = RequestItem(snapshot: item as! DataSnapshot)
+                newItems.append(requestItem)
+            }
+            // 5
+            self.requestList = newItems
+        })
+    }
+    func getRequest() -> [RequestItem] {
+        return self.requestList
     }
     
     
