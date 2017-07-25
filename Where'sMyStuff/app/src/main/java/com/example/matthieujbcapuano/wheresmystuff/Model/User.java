@@ -135,7 +135,7 @@ public class User implements Parcelable {
     }
 
     /**
-     * toString method for the User Class. Is o verriden by the RegularUser and AdminUser classes.
+     * toString method for the User Class. Is overriden by the RegularUser and AdminUser classes.
      * @return  A string describing all important details about the user
      * TODO: It may be better to do instanceof and not override this method in Regular/AdminUser
      */

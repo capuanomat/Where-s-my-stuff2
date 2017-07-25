@@ -168,7 +168,7 @@ public class RegistrationActivity extends AppCompatActivity {
         return (username.length() <= 10); //_userManager.findValidUsername(username);
     }
 
-    /**
+    /**  better password check
      *
      * @param password the password to check
      * @return whether or not the password is valid

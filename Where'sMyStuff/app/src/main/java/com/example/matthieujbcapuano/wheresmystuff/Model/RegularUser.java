@@ -18,7 +18,7 @@ public class RegularUser extends User {
     /**
      * Overrides the User class toString method to show that the user is a regular user.
      * @return  A string detailing all elements of the user
-     * TODO: It may be unecessary to completely override this method just to mention "RegularUser--"
+     * TODO: It may be unnecessary to completely override this method just to mention "RegularUser--"
      * TODO: Try adding instanceof(RegularUser) in the User class to adjust the string instead
      */
     @Override

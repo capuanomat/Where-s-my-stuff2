@@ -13,10 +13,10 @@ public class LostItemManager {
     public static LostItemManager getInstance() { return _instance; }
 
     //ALEXANDER: holds list of all lost items
-    private List<LostItem> lostItemlist;
+    private List<LostItem> lostItemList;
 
     //ALEXANDER: currently selected lost item, default is first item
-    private LostItem currenLostItem;
+    private LostItem currentLostItem;
 
     //ALEXANDER: null item returned when no item is found
     private final LostItem theNullItem = new LostItem("No Name","No description", null, "No date", ItemCategory.OTHER_NONE);
@@ -25,18 +25,18 @@ public class LostItemManager {
      * constructor of manager
      */
     public LostItemManager() {
-        lostItemlist = new ArrayList<>();
+        lostItemList = new ArrayList<>();
     }
 
     public boolean addLostItem(LostItem lostItem) {
         //ALEXANDER: doesn't add if duplicate item, haven't overriden equals method in LostItem class
         //so it won't work yet
-        for (LostItem item: lostItemlist) {
+        for (LostItem item: lostItemList) {
             if (item.equals(lostItem)) {
                 return false;
             }
         }
-        lostItemlist.add(lostItem);
+        lostItemList.add(lostItem);
         return true;
     }
 
@@ -45,7 +45,7 @@ public class LostItemManager {
      * @return lost item
      */
     public LostItem getCurrentLostItem() {
-        return currenLostItem;
+        return currentLostItem;
     }
 
     /**
@@ -53,7 +53,7 @@ public class LostItemManager {
      * @param lostItem item to set as current lost item
      */
     public void setCurrentLostItem(LostItem lostItem) {
-        currenLostItem = lostItem;
+        currentLostItem = lostItem;
     }
 
     //ALEXANDER: example of searching for item in list by attribute from M3, can be implemented via
@@ -65,7 +65,7 @@ public class LostItemManager {
      * @return the item found
      */
     public LostItem getLostItemByName(String name) {
-        for (LostItem item: lostItemlist) {
+        for (LostItem item: lostItemList) {
             if (item.getName().equals(name)) {
                 return item;
             }

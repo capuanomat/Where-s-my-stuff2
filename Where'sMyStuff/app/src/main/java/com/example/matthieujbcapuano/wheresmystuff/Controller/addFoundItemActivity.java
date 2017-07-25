@@ -101,7 +101,7 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
     Condition status;
 
     /**
-     * reads views for information, creates a new foun item
+     * reads views for information, creates a new found item
      */
     private void attemptToAddFoundItem() {
         name = mNameView.getText().toString();
@@ -121,7 +121,7 @@ public class addFoundItemActivity extends AppCompatActivity implements AdapterVi
         /*
         if(added {
             Intent returnToFoundPage = new Intent(addFoundItemActivity.this, foundItemPageActivity.class);
-            startActivity(returntoFoundPage);
+            startActivity(returnToFoundPage);
         } else {
             Toast.makeText(addFoundItemActivity.this, "Item was not inserted!", Toast.LENGTH_LONG).show();
         }

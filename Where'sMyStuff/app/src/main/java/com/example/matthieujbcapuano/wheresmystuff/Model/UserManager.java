@@ -141,7 +141,7 @@ public class UserManager implements Serializable{
      * Signature: method name is findValidEmail, parameters is an email string, returns boolean
      * Preconditions: can be called at anytime
      * Postconditions: object is not modified by method only accessed
-     * Framing Conditons: no instance variables are modified
+     * Framing Conditions: no instance variables are modified
      * Invariants: none
      * Takes in a email and sees if it already exists in the UserManager. Prevents the creation
      * of multiple users with the same email.
