@@ -69,15 +69,17 @@
                                     android:layout_width="112dp"
                                     android:layout_height="match_parent"
                                     android:ems="10"
-                                    android:hint="latitude"
-                                    android:inputType="numberDecimal" />
+                                    android:hint="Latitude"
+                                    android:inputType="numberDecimal"
+                                    android:backgroundTint="#FF4F67"/>
 
                                 <EditText
                                     android:id="@+id/editLong"
                                     android:layout_width="130dp"
                                     android:layout_height="wrap_content"
                                     android:ems="10"
-                                    android:hint="longitude"
+                                    android:hint="Longitude"
+                                    android:backgroundTint="#FF4F67"
                                     android:inputType="numberDecimal" />
 
                                 <Button
@@ -91,30 +93,28 @@
                             <Spinner
                                 android:id="@+id/conditionSpinner"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
+                                android:layout_height="47dp" />
 
                             <Spinner
                                 android:id="@+id/categorySpinner"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
-
-                            <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="78dp" />
+                                android:layout_height="42dp" />
 
                             <Button
                                 android:id="@+id/buttonAddFound"
-                                android:layout_width="match_parent"
-                                android:layout_height="67dp"
-                                android:text="@string/postAsFound" />
+                                android:layout_width="175dp"
+                                android:layout_height="60dp"
+                                android:backgroundTint="#FF4F67"
+                                android:text="A d d"
+                                android:textColor="#FFFFFF"
+                                android:layout_gravity="center"/>
 
                             <EditText
                                 android:id="@+id/dateFound"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="date" />
+                                android:hint="Date"
+                                android:backgroundTint="#FF4F67"/>
                         </android.support.design.widget.TextInputLayout>
 
                     </android.support.design.widget.TextInputLayout>
@@ -123,7 +123,8 @@
                         android:id="@+id/descriptionFound"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="description" />
+                        android:hint="Description"
+                        android:backgroundTint="#FF4F67"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -131,7 +132,8 @@
                     android:id="@+id/nameFound"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
-                    android:hint=" name" />
+                    android:hint="Name"
+                    android:backgroundTint="#FF4F67"/>
 
             </android.support.design.widget.TextInputLayout>
 

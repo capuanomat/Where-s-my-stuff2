@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="77dp"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#DCDCDC"
         android:text="R E G I S T E R"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -54,7 +54,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:hint="latitude"
+                            android:hint="Latitude"
+                            android:backgroundTint="#FF4F67"
                             android:inputType="numberDecimal" />
 
                         <EditText
@@ -63,7 +64,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:hint="longitude"
+                            android:hint="Longitude"
+                            android:backgroundTint="#FF4F67"
                             android:inputType="numberDecimal" />
 
                     </LinearLayout>
@@ -86,8 +88,7 @@
                             <Spinner
                                 android:id="@+id/catspin"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
+                                android:layout_height="40dp" />
 
                             <Space
                                 android:layout_width="match_parent"
@@ -95,15 +96,19 @@
 
                             <Button
                                 android:id="@+id/buttonAddLost"
-                                android:layout_width="match_parent"
-                                android:layout_height="67dp"
-                                android:text="@string/postAsLost" />
+                                android:layout_width="175dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:backgroundTint="#FF4F67"
+                                android:text="A d d"
+                                android:textColor="#FFFFFF" />
 
                             <EditText
                                 android:id="@+id/date"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="date" />
+                                android:hint="Date"
+                                android:backgroundTint="#FF4F67"/>
                         </android.support.design.widget.TextInputLayout>
 
                     </android.support.design.widget.TextInputLayout>
@@ -112,14 +117,16 @@
                         android:id="@+id/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="description" />
+                        android:hint="Description"
+                        android:backgroundTint="#FF4F67"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <EditText
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
-                    android:hint=" name" />
+                    android:hint="Name"
+                    android:backgroundTint="#FF4F67"/>
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>

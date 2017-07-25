@@ -30,7 +30,8 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/username_Hint"
+                    android:backgroundTint="#FF4F67"
+                    android:hint="Username"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -51,6 +52,7 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
+                    android:backgroundTint="#FF4F67"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -61,11 +63,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
+                android:backgroundTint="#FF4F67"
+                android:text="S I G N  I N"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
+
 
     <ProgressBar
         android:id="@+id/login_progress"
