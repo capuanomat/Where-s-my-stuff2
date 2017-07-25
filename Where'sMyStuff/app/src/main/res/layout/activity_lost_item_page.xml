@@ -22,9 +22,9 @@
 
     <include
         layout="@layout/content_lost_item_page"
-        android:layout_height="456dp"
-        android:layout_weight="1"
-        android:id="@+id/include4" />
+        android:layout_height="match_parent"
+        android:id="@+id/include4"
+        android:layout_width="match_parent" />
 
     <Button
         android:id="@+id/buttonBackToMainLost"
