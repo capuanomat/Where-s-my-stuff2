@@ -75,7 +75,11 @@
             android:name=".Controller.addFoundItemActivity"
             android:label="@string/title_activity_add_fount_item"
             android:theme="@style/AppTheme.NoActionBar">
-
+        </activity>
+        <activity
+            android:name=".Controller.ReportMapFragment"
+            android:label="ReportMapFragment"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <meta-data
