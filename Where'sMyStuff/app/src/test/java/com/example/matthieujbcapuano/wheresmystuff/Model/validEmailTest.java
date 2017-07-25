@@ -4,18 +4,14 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-/**
- * Created by Ash Bhimasani on 7/18/2017.
- */
+//Created by Ash Bhimasani on 7/18/2017.
 
 /**
  * METHOD CONTRACT:
  * Signature: method name is findValidEmail, parameters is an email string, returns boolean
  * Preconditions: can be called at anytime
  * Postconditions: object is not modified by method only accessed
- * Framing Conditons: no instance variables are modified
+ * Framing Conditions: no instance variables are modified
  * Invariants: none
  */
 public class validEmailTest {
