@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:theme="@style/AppTheme.NoActionBar">
+
+    <ImageView
+        android:id="@+id/pup_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_splash" />
+
+    <TextView
+        android:id="@+id/wms_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_horizontal"
+        android:text="Where's My Stuff?"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="44dp"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_horizontal"
+        android:text="Fetching Lost Items Since 2017"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="12dp"
+        android:typeface="monospace" />
+
+</RelativeLayout>
