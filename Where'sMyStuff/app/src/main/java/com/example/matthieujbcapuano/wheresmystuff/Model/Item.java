@@ -14,14 +14,17 @@ import java.util.Locale;
 public class Item implements Parcelable {
     private String date;
     private ItemCategory cat;
+    private LatLng LatAndLong;
     private double latitude;
     private double longitude;
     private String description;
     private String name;
     private Condition status;
     //private Image img;
+    private String temp;
 
-    private static LatLng defaultLoc = new LatLng(0.00000, 0.000000);
+    private static LatLng defaultLoc = new LatLng(0.0, 0.0);
+
     /**
      *
      * @param name the name of the item
@@ -31,9 +34,11 @@ public class Item implements Parcelable {
      * @param status the status of the item
      * @param cat the category of the item
      */
-    public Item(String name, String description, LatLng location, String date, Condition status, ItemCategory cat) {
+    public Item(String name, String description, LatLng location, String date, Condition status,
+                ItemCategory cat) {
         this.name = name;
         this.description = description;
+        this.LatAndLong = location;
         this.latitude = location.latitude;
         this.longitude = location.longitude;
         this.date = date;
@@ -42,9 +47,11 @@ public class Item implements Parcelable {
         //this.img = img;
     }
 
-    public Item(String name, String description, double latitude, double longitude, String date, Condition status, ItemCategory cat) {
+    public Item(String name, String description, double latitude, double longitude, String date,
+                Condition status, ItemCategory cat) {
         this.name = name;
         this.description = description;
+        this.LatAndLong = new LatLng(latitude, longitude);
         this.latitude = latitude;
         this.longitude = longitude;
         this.date = date;
@@ -102,6 +109,14 @@ public class Item implements Parcelable {
         return (latitude + "," + longitude);
     }
 
+    public LatLng getLatAndLong() {
+        return LatAndLong;
+    }
+
+    public void setLatAndLong(LatLng latAndLong) {
+        LatAndLong = latAndLong;
+    }
+
     /**
      *
      * @return latitude of item
@@ -144,7 +159,8 @@ public class Item implements Parcelable {
 
     public String getStatusString() {return status.toString();}
 
-    /** Setters **/
+
+
     /**
      *
      * @param date the date to set to
@@ -213,6 +229,15 @@ public class Item implements Parcelable {
 
     public static Creator<Item> getCREATOR() {
         return CREATOR;
+    }
+
+    // TEMPORARY -----------------------------------
+    public String LatLongToString() {
+        return new String("test");
+    }
+
+    public void setLocationStr(String temp) {
+        this.temp = temp;
     }
 
     @Override

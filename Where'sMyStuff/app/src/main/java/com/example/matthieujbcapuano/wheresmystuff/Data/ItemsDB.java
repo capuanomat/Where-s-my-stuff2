@@ -47,7 +47,7 @@ public class ItemsDB extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, item.getName());
         contentValues.put(COL_3, item.getDescription());
-        contentValues.put(COL_4, item.getLatitude()+" ,"+item.getLongitude());
+        contentValues.put(COL_4, item.getLatitude() + " ," + item.getLongitude());
         contentValues.put(COL_5, item.getDate());
 
         long result = db.insert(LOST_TABLE_NAME, null, contentValues);
@@ -100,7 +100,7 @@ public class ItemsDB extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, item.getName());
         contentValues.put(COL_3, item.getDescription());
-        contentValues.put(COL_4, item.getLatitude()+" ,"+item.getLongitude());
+        contentValues.put(COL_4, item.LatLongToString());
         contentValues.put(COL_5, item.getDate());
 
         long result = db.insert(FOUND_TABLE_NAME, null, contentValues);
@@ -122,13 +122,15 @@ public class ItemsDB extends SQLiteOpenHelper{
 
                 it.setName(res.getString(res.getColumnIndex("NAME")));
                 it.setDescription(res.getString(res.getColumnIndex("DESCRIPTION")));
-                String latlongstring = res.getString(res.getColumnIndex("LOCATION"));
 
-                double latitude = Double.parseDouble(latlongstring);
-                latlongstring.replace(latitude+", ", "");
-                double longitude = Double.parseDouble(latlongstring);
-                it.setLatitude(latitude);
-                it.setLongitude(longitude);
+                //String latLong = res.getString(res.getColumnIndex("LOCATION"));
+                //double latitude = Double.parseDouble(latlongstring);
+                //latLong.replace(latitude+", ", "");
+                //double longitude = Double.parseDouble(latlongstring);
+                //it.setLatitude(latitude);
+                //it.setLongitude(longitude);
+
+                it.setLocationStr(res.getString(res.getColumnIndex("LOCATION")));
 
                 it.setDate(res.getString(res.getColumnIndex("DATE")));
                 //it.setStatus(res.getString(res.getColumnIndex("STATUS")));

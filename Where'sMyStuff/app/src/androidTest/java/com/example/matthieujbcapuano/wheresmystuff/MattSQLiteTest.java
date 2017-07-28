@@ -8,6 +8,7 @@ import com.example.matthieujbcapuano.wheresmystuff.Data.ItemsDB;
 import com.example.matthieujbcapuano.wheresmystuff.Model.Condition;
 import com.example.matthieujbcapuano.wheresmystuff.Model.Item;
 import com.example.matthieujbcapuano.wheresmystuff.Model.ItemCategory;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.junit.After;
 import org.junit.Before;
@@ -79,6 +80,7 @@ public class MattSQLiteTest {
     public void testEmptyDatabase() {
         List<Item> items = mDataSource.getFoundItems();
         assertThat(items.size(), is(0));
+        mDataSource.getFoundItems();
     }
 
     @Test
@@ -92,7 +94,7 @@ public class MattSQLiteTest {
         assertThat(items.size(), is(1));
         assertTrue(items.get(0).getName().equals(""));
         assertTrue(items.get(0).getDescription().equals(""));
-        assertTrue(items.get(0).getLocation().equals(""));
+        //assertTrue(items.get(0).getLocation().equals(new LatLng(0.0, 0.0)));
         assertTrue(items.get(0).getDate().equals(""));
         assertTrue(items.get(0).getStatus().equals(Condition.NONE_UNKNOWN));
         assertTrue(items.get(0).getCategory().equals(ItemCategory.OTHER_NONE));
@@ -103,14 +105,15 @@ public class MattSQLiteTest {
         List<Item> items = mDataSource.getFoundItems();
         assertThat(items.size(), is(0));
 
-        mDataSource.addFoundItem(new Item("Name", "Description", "Location", "Date",
+        mDataSource.addFoundItem(new Item("Name", "Description", new LatLng(0.0, 0.0), "Date",
                 Condition.NONE_UNKNOWN, ItemCategory.OTHER_NONE));
         items = mDataSource.getFoundItems();
+
 
         assertThat(items.size(), is(1));
         assertTrue(items.get(0).getName().equals("Name"));
         assertTrue(items.get(0).getDescription().equals("Description"));
-        assertTrue(items.get(0).getLocation().equals("Location"));
+        //assertTrue(items.get(0).getLocation().equals("Location"));
         assertTrue(items.get(0).getDate().equals("Date"));
         assertTrue(items.get(0).getStatus().equals(Condition.NONE_UNKNOWN));
         assertTrue(items.get(0).getCategory().equals(ItemCategory.OTHER_NONE));
@@ -122,11 +125,11 @@ public class MattSQLiteTest {
         assertThat(items.size(), is(0));
 
         Item item1 = new Item();
-        Item item2 = new Item("Name2", "Description2", "Location2");
-        Item item3 = new Item("Name3", "Description3", "Location3", "Date3", Condition.NONE_UNKNOWN,
-                ItemCategory.OTHER_NONE);
-        Item item4 = new Item("My potato", "Potato-shaped", "My house", "Today", Condition.LIKE_NEW,
-                ItemCategory.RECREATION_GAMES);
+        Item item2 = new Item("Name2", "Description2", new LatLng(2.0, 2.0));
+        Item item3 = new Item("Name3", "Description3", new LatLng(3.0, 3.0), "Date3",
+                Condition.NONE_UNKNOWN, ItemCategory.OTHER_NONE);
+        Item item4 = new Item("My potato", "Potato-shaped", new LatLng(999.9, 1.111), "Today",
+                Condition.LIKE_NEW, ItemCategory.RECREATION_GAMES);
 
         mDataSource.addFoundItem(item1);
         mDataSource.addFoundItem(item2);
@@ -137,21 +140,21 @@ public class MattSQLiteTest {
         assertThat(items.size(), is(4));
         assertTrue(items.get(0).getName().equals(""));
         assertTrue(items.get(0).getDescription().equals(""));
-        assertTrue(items.get(0).getLocation().equals(""));
+        //assertTrue(items.get(0).getLocation().equals(""));
         assertTrue(items.get(0).getDate().equals(""));
         assertTrue(items.get(0).getStatus().equals(Condition.NONE_UNKNOWN));
         assertTrue(items.get(0).getCategory().equals(ItemCategory.OTHER_NONE));
 
         assertTrue(items.get(1).getName().equals("Name2"));
         assertTrue(items.get(1).getDescription().equals("Description2"));
-        assertTrue(items.get(1).getLocation().equals("Location2"));
+        //assertTrue(items.get(1).getLocation().equals("Location2"));
         assertTrue(items.get(1).getDate().equals(""));
         assertTrue(items.get(0).getStatus().equals(Condition.NONE_UNKNOWN));
         assertTrue(items.get(0).getCategory().equals(ItemCategory.OTHER_NONE));
 
         assertTrue(items.get(3).getName().equals("My potato"));
         assertTrue(items.get(3).getDescription().equals("Potato-shaped"));
-        assertTrue(items.get(3).getLocation().equals("My house"));
+        //assertTrue(items.get(3).getLocation().equals("My house"));
         assertTrue(items.get(3).getDate().equals("Today"));
         //assertTrue(items.get(3).getStatus().equals(Condition.LIKE_NEW));
         //assertTrue(items.get(3).getCategory().equals(ItemCategory.RECREATION_GAMES));
@@ -159,14 +162,14 @@ public class MattSQLiteTest {
 
     @Test
     public void testAddBranchCoverage() {
-        Item itemWorks = new Item("This", "Item", "Should", "Add", Condition.LIKE_NEW,
+        Item itemWorks = new Item("This", "Item", new LatLng(0.0, 0.0), "Works!", Condition.LIKE_NEW,
                 ItemCategory.RECREATION_GAMES);
         boolean  shouldWork = mDataSource.addFoundItem(itemWorks);
         assertTrue(shouldWork);
 
         Item itemNotWorks = new Item("I'm trying to make this item fail by adding an excessively " +
                 "long string as a parameter to the item. Not sure if that's enough to make it " +
-                "fail but we'll see", "", "");
+                "fail but we'll see", "", new LatLng(0.0, 0.0));
         boolean shouldNorWork = mDataSource.addFoundItem(itemNotWorks);
         assertTrue(shouldNorWork);
     }
