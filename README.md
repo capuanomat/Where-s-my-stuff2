@@ -5,16 +5,7 @@ Team 18: Summer 2017, CS - 2340 group project to help people find lost items in 
 dabest app
 
 ## TO DO
-- SIMOLA: Finish Google Maps and demo by Tuesday
-- M8: Methods for JUnit:
-    - Sharence: findValidUsername() in UserManager
-    - Ash: isPasswordValid() in LoginActivity
-    - Alex: isPasswordValid() in RegistrationActivity
-    - Simola: isUserNameValid() in RegistrationActivity
-    - Matthieu: addFoundItem(Item item) in ItemsDB
-- M8: EVERYONE prepare for code review on Tuesday
-- ASH: IOS Implementation
-- SIMOLA: If time, do web app
+- Complete Final Exam
 
 
 ## Future Ideas & Extra Credit Ideas:
